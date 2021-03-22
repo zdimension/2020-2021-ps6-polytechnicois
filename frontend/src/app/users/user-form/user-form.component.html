@@ -1,0 +1,14 @@
+<div class="card">
+    <h2>Create a new User</h2>
+    <form class="user-form" [formGroup]="userForm">
+        <label for="name">
+            Title <br>
+            <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+        </label>
+        <br>
+        <br>
+        <button type="submit" class="button-card" (click)="addUser()">Create</button>
+    </form>
+</div>
+<!-- Uncomment below to see your form structure and how it changes-->
+<!-- <br><br>{{quizForm.getRawValue() | json}} -->

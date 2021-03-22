@@ -1,0 +1,30 @@
+<div class="edit-quiz">
+    <h1>EDIT</h1>
+
+    <div class="card">
+        <h2>Edit quiz</h2>
+        <form class="quiz-edit" [formGroup]="quizForm">
+            <label for="name">
+                Title <br>
+                <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+            </label>
+            <br>
+            <label for="theme">
+                Theme <br>
+                <!--      <input class="input-custom" type="text" id="theme" [formControlName]="'theme'">-->
+                <select class="input-custom" name="theme-field" id="theme" [formControlName]="'theme'">
+                    <option *ngFor="let currentTheme of THEME_LIST" [value]="currentTheme">
+                        {{currentTheme}}
+                    </option>
+                </select>
+            </label>
+            <br>
+            <button type="submit" class="button-card" (click)="updateQuiz()">Save</button>
+        </form>
+    </div>
+
+    <nav>
+        <a routerLink="">Home</a>
+    </nav>
+</div>
+

@@ -1,0 +1,13 @@
+<div class="card">
+    <h2>
+        <i class="fas fa-laugh-squint"></i>
+        Nom : {{question.label}}
+    </h2>
+    <div class="answer" *ngFor="let answer of question.answers">
+        <p>
+            <span>{{answer.value}}</span>
+            <span *ngIf="answer.isCorrect">✅</span>
+        </p>
+    </div>
+    <button class="button-card" (click)="deleteQuestion()">Delete</button>
+</div>

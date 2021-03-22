@@ -1,0 +1,12 @@
+<div class="card">
+    <h2>
+
+        Nom : {{user.name}}
+    </h2>
+
+    <p *ngIf="user.creationDate != null">
+        {{user.creationDate | date}}
+    </p>
+    <button class="button-card" (click)="selectUser()">Select</button>
+    <button class="button-card" (click)="deleteUser()">Delete</button>
+</div>

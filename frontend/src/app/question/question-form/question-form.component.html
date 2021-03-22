@@ -1,0 +1,31 @@
+<div class="card">
+    <h2>Create a new Question</h2>
+    <form class="question-form" [formGroup]="questionForm">
+        <label for="label">
+            Label <br>
+            <input class="input-custom" type="text" id="label" [formControlName]="'label'">
+        </label>
+        <br>
+
+        <button class="button-card" (click)="addAnswer()">Add Answer</button>
+        <div class="answer" formArrayName="answers">
+            <div *ngFor="let answer of answers.controls; let i=index">
+                <div class="answer-form" [formGroupName]="i">
+                    <label for="valueQuestion">
+                        Answer
+                        <input id="valueQuestion" type="text" [formControlName]="'value'">
+                    </label>
+                    <br>
+                    <label for="isCorrect">
+                        Correct
+                        <input id="isCorrect" type="checkbox" [formControlName]="'isCorrect'">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="button-card" (click)="addQuestionToQuiz()">Create</button>
+    </form>
+</div>
+<!-- Uncomment below to see your form structure and how it changes-->
+<!-- <br><br>{{quizForm.getRawValue() | json}} -->

@@ -1,0 +1,12 @@
+<h2>{{quiz.getValue().name}}</h2>
+<app-question-form></app-question-form>
+<br>
+
+<div class="quiz" *ngFor="let question of questionList">
+    <app-question [question]="question" (questionDeleted)="deleteQuestion($event)"></app-question>
+</div>
+
+
+<nav>
+    <a routerLink="">Home</a>
+</nav>
