@@ -1,7 +1,8 @@
-import { Question } from './question.model';
+import { Question } from "./question.model";
 
-export interface Quiz {
-    id: string,
+export interface Quiz
+{
+    id: string;
     name: string;
     theme: string;
     questions: Question[];

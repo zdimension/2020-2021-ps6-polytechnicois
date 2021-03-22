@@ -12,7 +12,7 @@
     },
     "array-type": false,
     "arrow-return-shorthand": true,
-    "curly": true,
+    "curly": false,
     "deprecation": {
       "severity": "warning"
     },
@@ -66,7 +66,7 @@
     ],
     "quotemark": [
       true,
-      "single"
+      "double"
     ],
     "semicolon": {
       "options": [
@@ -121,7 +121,7 @@
         "check-typecast"
       ]
     },
-    "component-class-suffix": true,
+    "component-class-suffix": false,
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
     "no-conflicting-lifecycle": true,

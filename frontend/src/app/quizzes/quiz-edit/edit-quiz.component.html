@@ -3,23 +3,23 @@
 
     <div class="card">
         <h2>Edit quiz</h2>
-        <form class="quiz-edit" [formGroup]="quizForm">
+        <form [formGroup]="quizForm" class="quiz-edit">
             <label for="name">
                 Title <br>
-                <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+                <input [formControlName]="'name'" class="input-custom" id="name" type="text">
             </label>
             <br>
             <label for="theme">
                 Theme <br>
                 <!--      <input class="input-custom" type="text" id="theme" [formControlName]="'theme'">-->
-                <select class="input-custom" name="theme-field" id="theme" [formControlName]="'theme'">
+                <select [formControlName]="'theme'" class="input-custom" id="theme" name="theme-field">
                     <option *ngFor="let currentTheme of THEME_LIST" [value]="currentTheme">
                         {{currentTheme}}
                     </option>
                 </select>
             </label>
             <br>
-            <button type="submit" class="button-card" (click)="updateQuiz()">Save</button>
+            <button (click)="updateQuiz()" class="button-card" type="submit">Save</button>
         </form>
     </div>
 

@@ -1,10 +1,12 @@
-export interface Answer {
+export interface Answer
+{
     type?: string;
     value: string;
     isCorrect: boolean;
 }
 
-export interface Question {
+export interface Question
+{
     label: string;
     answers: Answer[];
 }

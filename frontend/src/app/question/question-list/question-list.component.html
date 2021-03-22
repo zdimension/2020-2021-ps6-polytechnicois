@@ -2,8 +2,8 @@
 <app-question-form></app-question-form>
 <br>
 
-<div class="quiz" *ngFor="let question of questionList">
-    <app-question [question]="question" (questionDeleted)="deleteQuestion($event)"></app-question>
+<div *ngFor="let question of questionList" class="quiz">
+    <app-question (questionDeleted)="deleteQuestion($event)" [question]="question"></app-question>
 </div>
 
 

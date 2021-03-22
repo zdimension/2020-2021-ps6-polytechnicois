@@ -1,13 +1,13 @@
 <div class="card">
     <h2>Create a new User</h2>
-    <form class="user-form" [formGroup]="userForm">
+    <form [formGroup]="userForm" class="user-form">
         <label for="name">
             Title <br>
-            <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+            <input [formControlName]="'name'" class="input-custom" id="name" type="text">
         </label>
         <br>
         <br>
-        <button type="submit" class="button-card" (click)="addUser()">Create</button>
+        <button (click)="addUser()" class="button-card" type="submit">Create</button>
     </form>
 </div>
 <!-- Uncomment below to see your form structure and how it changes-->
