@@ -11,6 +11,9 @@ module.exports = {
         "linebreak-style": "off",
         "indent": ["error", 4],
         "brace-style": ["error", "allman"],
-        "quotes": ["error", "double"]
+        "quotes": ["error", "double"],
+        "arrow-brace-style": "off",
+        "no-unused-vars": "warn",
+        "comma-dangle": "off"
     }
 };
