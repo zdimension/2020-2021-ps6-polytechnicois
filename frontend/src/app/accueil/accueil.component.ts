@@ -1,0 +1,20 @@
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+
+@Component({
+    selector: "app-user",
+    templateUrl: "./accueil.component.html"/*,
+    styleUrls: ["./user.component.scss"]*/
+})
+export class AccueilComponent implements OnInit
+{
+
+    constructor()
+    {
+    }
+
+    ngOnInit(): void
+    {
+    }
+
+
+}
