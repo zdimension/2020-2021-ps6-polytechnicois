@@ -18,6 +18,8 @@ import { UserComponent } from "./users/user/user.component";
 import { UserFormComponent } from "./users/user-form/user-form.component";
 import { UserListComponent } from "./users/user-list/user-list.component";
 
+import { AccueilComponent } from "./accueil/accueil.component";
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -31,7 +33,8 @@ import { UserListComponent } from "./users/user-list/user-list.component";
         QuestionForm,
         UserComponent,
         UserFormComponent,
-        UserListComponent
+        UserListComponent,
+        AccueilComponent
     ],
     imports: [
         BrowserModule,

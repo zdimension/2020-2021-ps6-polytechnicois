@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: "edit-quiz/:id", component: EditQuizComponent },
     { path: "question-quiz/:id", component: QuestionList },
     { path: "user-list", component: UserListComponent },
-    {path: "accueil", component: AccueilComponent}
+    { path: "accueil", component: AccueilComponent }
 ];
 
 @NgModule({
