@@ -27,7 +27,7 @@ export class QuizService
      */
     public quizzes$ = new BehaviorSubject(this.quizzes);
 
-    private dataURL = new URL("http://localhost:9428/api/quizzes");
+    private dataURL = new URL("http://localhost:9428/quizzes");
 
     constructor(private http: HttpClient)
     {
