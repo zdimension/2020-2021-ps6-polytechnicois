@@ -19,6 +19,7 @@ import { UserFormComponent } from "./users/user-form/user-form.component";
 import { UserListComponent } from "./users/user-list/user-list.component";
 
 import { AccueilComponent } from "./accueil/accueil.component";
+import { CreationCompteComponent } from "./creationcompte/creationcompte.component";
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { AccueilComponent } from "./accueil/accueil.component";
         UserComponent,
         UserFormComponent,
         UserListComponent,
-        AccueilComponent
+        AccueilComponent,
+        CreationCompteComponent
     ],
     imports: [
         BrowserModule,

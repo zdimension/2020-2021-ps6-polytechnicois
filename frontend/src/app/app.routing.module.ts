@@ -6,6 +6,7 @@ import { QuestionList } from "./question/question-list/question-list.component";
 import { UserListComponent } from "./users/user-list/user-list.component";
 
 import { AccueilComponent } from "./accueil/accueil.component";
+import { CreationCompteComponent } from "./creationcompte/creationcompte.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/quiz-list", pathMatch: "full" },
@@ -13,7 +14,8 @@ const routes: Routes = [
     { path: "edit-quiz/:id", component: EditQuizComponent },
     { path: "question-quiz/:id", component: QuestionList },
     { path: "user-list", component: UserListComponent },
-    { path: "accueil", component: AccueilComponent }
+    { path: "accueil", component: AccueilComponent },
+    { path: "creationcompte", component: CreationCompteComponent }
 ];
 
 @NgModule({
