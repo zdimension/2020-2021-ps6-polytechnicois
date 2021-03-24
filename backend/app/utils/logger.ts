@@ -7,4 +7,4 @@ console.log = function consoleLog(...args)
 };
 console.info = console.log;
 
-module.exports = console;
+export default console;
