@@ -1,1 +1,29 @@
-Accueil!!!
+<div class="accueil">
+    <h1>Polyquiz</h1>
+    <button routerLink="/creationcompte">Cr&eacute;er un compte</button>
+    <hr />
+    <form [formGroup]="loginForm" class="login-form">
+        <p>D&eacute;j&agrave; inscrit ?</p>
+        <p>
+            <label for="login">
+                Indentifiant <br>
+                <input [formControlName]="'login'" class="input-custom" id="login" type="text">
+            </label>
+        </p>
+        <p>
+            <label for="pass">
+                Mot de passe <br>
+                <input [formControlName]="'pass'" class="input-custom" id="pass" type="password">
+            </label>
+        </p>
+        <p>
+            <label for="souvenir">
+                <input [formControlName]="'souvenir'" class="input-custom" id="souvenir" type="checkbox">
+                Se souvenir de moi
+            </label>
+        </p>
+        <p>
+            <button (click)="connexion()" class="button-card" type="submit">Connexion</button>
+        </p>
+    </form>
+</div>
