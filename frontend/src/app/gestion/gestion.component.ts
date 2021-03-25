@@ -1,0 +1,18 @@
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+
+@Component({
+    selector: "app-gestion",
+    templateUrl: "./gestion.component.html"/*,
+    styleUrls: ["./user.component.scss"]*/
+})
+export class GestionComponent implements OnInit
+{
+
+    constructor()
+    {
+    }
+
+    ngOnInit(): void
+    {
+    }
+}

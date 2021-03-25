@@ -20,6 +20,12 @@ import { UserListComponent } from "./users/user-list/user-list.component";
 
 import { AccueilComponent } from "./accueil/accueil.component";
 import { CreationCompteComponent } from "./creationcompte/creationcompte.component";
+import { ConnecteComponent } from "./connecte/connecte.component";
+import { GestionComponent } from "./gestion/gestion.component";
+import { ScoreComponent } from "./score/score.component";
+import { CreationQuizComponent } from "./creationquiz/creationquiz.component";
+import { ChoisirQuizComponent } from "./choisirquiz/choisirquiz.component";
+import { PlayComponent } from "./play/play.component";
 
 @NgModule({
     declarations: [
@@ -36,7 +42,13 @@ import { CreationCompteComponent } from "./creationcompte/creationcompte.compone
         UserFormComponent,
         UserListComponent,
         AccueilComponent,
-        CreationCompteComponent
+        CreationCompteComponent,
+        ConnecteComponent,
+        GestionComponent,
+        ScoreComponent,
+        CreationQuizComponent,
+        ChoisirQuizComponent,
+        PlayComponent
     ],
     imports: [
         BrowserModule,
