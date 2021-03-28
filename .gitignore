@@ -37,3 +37,4 @@ typings
 Thumbs.db
 
 *.sqlite
+backend/swagger.json

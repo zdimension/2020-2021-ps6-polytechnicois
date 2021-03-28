@@ -1,10 +1,11 @@
 import morgan from "morgan";
 import logger from "./utils/logger";
-import { Action, createExpressServer } from "routing-controllers";
+import { Action, createExpressServer, getMetadataArgsStorage } from "routing-controllers";
 import DBService from "./services/DBService";
-import bodyParser from "body-parser";
 import AuthService from "./services/AuthService";
 import User from "./models/User";
+import { routingControllersToSpec } from "routing-controllers-openapi";
+import * as fs from "fs";
 
 const auth = new AuthService();
 const app = createExpressServer({
@@ -27,8 +28,17 @@ const app = createExpressServer({
 
 const DB = new DBService();
 
+const storage = getMetadataArgsStorage();
+const spec = routingControllersToSpec(storage);
+spec.components.schemas = DB.getSequelizeSchema().definitions;
+fs.writeFileSync("swagger.json", JSON.stringify(spec));
+import swaggerUi from "swagger-ui-express";
 app.disable("x-powered-by");
-app.use(bodyParser.json({}));
+app.get("/", function (req, res)
+{
+    res.redirect("/docs");
+})
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(require("../swagger.json")));
 app.use(morgan("[:date[iso]] :method :url :status :response-time ms - :res[content-length]"));
 DB.start().then(() =>
 {

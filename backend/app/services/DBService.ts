@@ -1,5 +1,6 @@
 import sequelize from "../config/database";
 import logger from "../utils/logger";
+import sjs from "sequelize-json-schema";
 
 export default class DBService
 {
@@ -16,5 +17,10 @@ export default class DBService
         {
             logger.error("Unable to connect to DB: ", err);
         }
+    }
+
+    getSequelizeSchema()
+    {
+        return sjs.getSequelizeSchema(sequelize);
     }
 }
