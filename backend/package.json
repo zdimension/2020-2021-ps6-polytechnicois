@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/NablaT/backend-ps6-starter-quiz#readme",
   "dependencies": {
+    "@alt3/sequelize-to-json-schemas": "^0.3.55",
     "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
     "@babel/node": "^7.13.12",
@@ -42,7 +43,6 @@
     "routing-controllers": "^0.9.0",
     "routing-controllers-openapi": "^3.0.0",
     "sequelize": "^6.6.2",
-    "sequelize-json-schema": "^2.1.1",
     "sequelize-typescript": "^2.1.0",
     "sqlite3": "^5.0.2",
     "swagger-ui-express": "^4.1.6",

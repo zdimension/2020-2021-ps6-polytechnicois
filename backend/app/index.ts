@@ -30,7 +30,7 @@ const DB = new DBService();
 
 const storage = getMetadataArgsStorage();
 const spec = routingControllersToSpec(storage);
-spec.components.schemas = DB.getSequelizeSchema().definitions;
+spec.components.schemas = DB.getSequelizeSchema();
 fs.writeFileSync("swagger.json", JSON.stringify(spec));
 import swaggerUi from "swagger-ui-express";
 app.disable("x-powered-by");

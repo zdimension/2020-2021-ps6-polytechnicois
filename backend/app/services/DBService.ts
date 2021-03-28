@@ -1,6 +1,6 @@
 import sequelize from "../config/database";
 import logger from "../utils/logger";
-import sjs from "sequelize-json-schema";
+import { JsonSchemaManager, OpenApi3Strategy } from "@alt3/sequelize-to-json-schemas";
 
 export default class DBService
 {
@@ -21,6 +21,13 @@ export default class DBService
 
     getSequelizeSchema()
     {
-        return sjs.getSequelizeSchema(sequelize);
+        const schemaManager = new JsonSchemaManager();
+        const strat = new OpenApi3Strategy();
+        const res = {};
+        for (const mod in sequelize.models)
+        {
+            res[mod] = schemaManager.generate(sequelize.models[mod], strat);
+        }
+        return res;
     }
 }
