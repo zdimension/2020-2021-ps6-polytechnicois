@@ -11,6 +11,7 @@ const auth = new AuthService();
 const app = createExpressServer({
     cors: true,
     controllers: [__dirname + "/controllers/*.ts"],
+    interceptors: [__dirname + "/interceptors/*.ts"],
     authorizationChecker: async (action: Action, roles: string[]) =>
     {
         try

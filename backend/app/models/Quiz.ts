@@ -16,8 +16,8 @@ export default class Quiz extends Model
     themeId!: number;
 
     @BelongsTo(() => QuizTheme, "themeId")
-    theme!: QuizTheme
+    theme!: QuizTheme;
 
     @HasMany(() => Question)
-    questions!: Question[]
+    questions!: Question[];
 }

@@ -1,17 +1,29 @@
 import sequelize from "../config/database";
 import logger from "../utils/logger";
 import { JsonSchemaManager, OpenApi3Strategy } from "@alt3/sequelize-to-json-schemas";
+import User from "../models/User";
 
 export default class DBService
 {
+    private static async insertSampleData()
+    {
+        logger.info("Inserting sample data...");
+        await User.bulkCreate([
+            { name: "admin", password: "polyquiz" }
+        ]);
+    }
+
     async start()
     {
         try
         {
             logger.info("Connecting to DB...");
             await sequelize.authenticate();
-            await sequelize.sync();
+            await sequelize.sync({ force: true });
+
             logger.info("Connected to DB - " + await sequelize.databaseVersion());
+
+            await DBService.insertSampleData();
         }
         catch (err)
         {
