@@ -1,16 +1,22 @@
-import { Body, Controller, Get, Post } from "routing-controllers";
+import { Body, Controller, Get, Param, Post } from "routing-controllers";
 import Quiz from "../models/Quiz";
 
-@Controller()
+@Controller("/quizzes")
 export default class QuizController
 {
-    @Get("/quizzes")
+    @Get("/")
     async getAll()
     {
         return await Quiz.findAll();
     }
 
-    @Post("/quizzes")
+    @Get("/:id")
+    async getOne(@Param("id") id: number)
+    {
+        return await Quiz.findByPk(id);
+    }
+
+    @Post("/")
     async create(@Body() quiz: Quiz)
     {
     }

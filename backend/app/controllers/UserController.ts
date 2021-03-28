@@ -11,7 +11,7 @@ import User from "../models/User";
 import AuthService from "../services/AuthService";
 import BcryptService from "../services/BcryptService";
 
-@Controller()
+@Controller("/auth")
 export default class UserController
 {
     /*async register()

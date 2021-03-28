@@ -3,14 +3,13 @@ import logger from "./utils/logger";
 import { Action, createExpressServer } from "routing-controllers";
 import DBService from "./services/DBService";
 import bodyParser from "body-parser";
-import * as controllers from "./controllers";
 import AuthService from "./services/AuthService";
 import User from "./models/User";
 
 const auth = new AuthService();
 const app = createExpressServer({
     cors: true,
-    controllers: Object.values(controllers),
+    controllers: [__dirname + "/controllers/*.ts"],
     authorizationChecker: async (action: Action, roles: string[]) =>
     {
         try
