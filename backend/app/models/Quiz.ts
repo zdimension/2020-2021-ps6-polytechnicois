@@ -1,4 +1,4 @@
-import { BelongsTo, Column, ForeignKey, HasMany, HasOne, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, HasMany, Model, Table } from "sequelize-typescript";
 import { Difficulty, TDifficulty } from "../utils/types";
 import Question from "./Question";
 import QuizTheme from "./QuizTheme";

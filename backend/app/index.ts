@@ -6,6 +6,7 @@ import AuthService from "./services/AuthService";
 import User from "./models/User";
 import { routingControllersToSpec } from "routing-controllers-openapi";
 import * as fs from "fs";
+import swaggerUi from "swagger-ui-express";
 
 const auth = new AuthService();
 const app = createExpressServer({
@@ -33,7 +34,6 @@ const storage = getMetadataArgsStorage();
 const spec = routingControllersToSpec(storage);
 spec.components.schemas = DB.getSequelizeSchema();
 fs.writeFileSync("swagger.json", JSON.stringify(spec));
-import swaggerUi from "swagger-ui-express";
 app.disable("x-powered-by");
 app.get("/", function (req, res)
 {

@@ -1,8 +1,10 @@
 import {
-    BadRequestError, Body,
+    BadRequestError,
+    Body,
     Controller,
     Get,
-    HeaderParam, HttpError,
+    HeaderParam,
+    HttpError,
     InternalServerError,
     Post,
     UnauthorizedError
