@@ -6,7 +6,7 @@ export interface Question extends BaseModel
 {
     id: number;
     label: string;
-    isImage: boolean;
+    image?: string;
     difficulty: TDifficulty;
     answers: string[];
     correctAnswer: TCorrectAnswer;

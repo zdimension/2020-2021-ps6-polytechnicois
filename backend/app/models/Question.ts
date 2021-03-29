@@ -1,4 +1,4 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { AllowNull, BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { Difficulty, TDifficulty } from "../utils/types";
 import Quiz from "./Quiz";
 import { ENUM } from "sequelize";
@@ -13,7 +13,8 @@ export default class Question extends Model
     label!: string;
 
     @Column
-    isImage!: boolean;
+    @AllowNull
+    image?: string;
 
     @Column(Difficulty)
     difficulty!: TDifficulty;

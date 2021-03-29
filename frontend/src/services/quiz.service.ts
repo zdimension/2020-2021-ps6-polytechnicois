@@ -14,17 +14,11 @@ export class QuizService
      * https://angular.io/docs/ts/latest/tutorial/toh-pt4.html
      */
 
-    /**
-     * The list of quiz.
-     * The list is retrieved from the mock.
-     */
     private quizzes = [];
-
-    /**
-     * Observable which contains the list of the quiz.
-     * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
-     */
     public quizzes$ = new BehaviorSubject(this.quizzes);
+
+    private themes = [];
+    public themes$ = new BehaviorSubject(this.themes);
 
     private dataURL = new URL("http://localhost:9428/quizzes");
 
@@ -83,13 +77,4 @@ export class QuizService
         const indexQuiz = this.quizzes.findIndex((element) => element === quiz);
         this.quizzes[indexQuiz].questions.splice(indexQues, 1);
     }
-
-    getFirstUnusedId(): string
-    {
-        if (this.quizzes.length === 0)
-            return "0";
-        return (Math.max(...this.quizzes.map(o => parseInt(o.id, 10))) + 1).toString();
-    }
-
-
 }

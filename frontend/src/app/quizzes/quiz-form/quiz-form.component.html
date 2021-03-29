@@ -10,7 +10,7 @@
             Theme <br>
             <!--      <input class="input-custom" type="text" id="theme" [formControlName]="'theme'">-->
             <select [formControlName]="'theme'" class="input-custom" id="theme" name="theme-field">
-                <option *ngFor="let currentTheme of THEME_LIST" [value]="currentTheme">
+                <option *ngFor="let currentTheme of themeList" [value]="currentTheme">
                     {{currentTheme}}
                 </option>
             </select>

@@ -28,7 +28,6 @@ export default class DBService
                 questions: [
                     {
                         label: "Qui était le roi Soleil ?",
-                        isImage: false,
                         difficulty: 3,
                         answers: [
                             "François 1er",
@@ -37,6 +36,17 @@ export default class DBService
                             "Ségolène Royale"
                         ],
                         correctAnswer: 1
+                    },
+                    {
+                        label: "Qui est-ce ?",
+                        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/P%C3%A9tain_-_Portrait_photographique_1941.jpg/220px-P%C3%A9tain_-_Portrait_photographique_1941.jpg",
+                        difficulty: 3,
+                        answers: [
+                            "Philippe Pétain",
+                            "George Brassens",
+                            "Charles de Gaulle",
+                            "Adolf Hitler"
+                        ]
                     }
                 ]
             }
