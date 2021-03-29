@@ -38,7 +38,7 @@ app.disable("x-powered-by");
 app.get("/", function (req, res)
 {
     res.redirect("/docs");
-})
+});
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(require("../swagger.json")));
 app.use(morgan("[:date[iso]] :method :url :status :response-time ms - :res[content-length]"));
 DB.start().then(() =>

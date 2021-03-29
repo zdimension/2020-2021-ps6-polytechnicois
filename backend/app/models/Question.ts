@@ -21,6 +21,6 @@ export default class Question extends Model
     @Column
     quizId: number;
 
-    @BelongsTo(() => Quiz, "quizId")
+    @BelongsTo(() => Quiz)
     quiz!: Quiz;
 }

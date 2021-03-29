@@ -2,15 +2,44 @@ import sequelize from "../config/database";
 import logger from "../utils/logger";
 import { JsonSchemaManager, OpenApi3Strategy } from "@alt3/sequelize-to-json-schemas";
 import User from "../models/User";
+import Quiz from "../models/Quiz";
+import QuizTheme from "../models/QuizTheme";
+import Question from "../models/Question";
 
 export default class DBService
 {
     private static async insertSampleData()
     {
         logger.info("Inserting sample data...");
+
         await User.bulkCreate([
             { name: "admin", password: "polyquiz" }
         ]);
+
+        const themes = await QuizTheme.bulkCreate([
+            { name: "Histoire" }
+        ]);
+
+        await Quiz.bulkCreate([
+            {
+                name: "Les rois de France",
+                difficulty: 3,
+                themeId: themes[0].id,
+                questions: [
+                    {
+                        label: "Qui était le roi Soleil ?",
+                        isImage: false,
+                        difficulty: 3,
+                        answers: [
+                            "François 1er",
+                            "Louis XIV",
+                            "Benoît XVI",
+                            "Ségolène Royale"
+                        ]
+                    }
+                ]
+            }
+        ], { include: { model: Question, as: "questions" } });
     }
 
     async start()

@@ -1,4 +1,4 @@
-import { BelongsTo, Column, HasMany, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { Difficulty, TDifficulty } from "../utils/types";
 import Question from "./Question";
 import QuizTheme from "./QuizTheme";
@@ -13,9 +13,10 @@ export default class Quiz extends Model
     difficulty!: TDifficulty;
 
     @Column
+    @ForeignKey(() => QuizTheme)
     themeId!: number;
 
-    @BelongsTo(() => QuizTheme, "themeId")
+    @BelongsTo(() => QuizTheme)
     theme!: QuizTheme;
 
     @HasMany(() => Question)

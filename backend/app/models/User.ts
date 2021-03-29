@@ -12,6 +12,12 @@ export default class User extends Model
     @Column
     password!: string;
 
+    @BeforeCreate
+    static beforeCreateHook(instance: User, options: any): void
+    {
+        instance.password = new BcryptService().password(instance.password);
+    }
+
     toJSON(): object
     {
         const values = Object.assign({}, this.get());
@@ -19,11 +25,5 @@ export default class User extends Model
         delete values.password;
 
         return values;
-    }
-
-    @BeforeCreate
-    static beforeCreateHook(instance: User, options: any): void
-    {
-        instance.password = new BcryptService().password(instance.password);
     }
 }
