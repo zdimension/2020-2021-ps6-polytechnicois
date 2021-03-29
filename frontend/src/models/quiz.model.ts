@@ -1,10 +1,13 @@
 import { Question } from "./question.model";
+import { TDifficulty } from "../../../backend/app/utils/types";
+import { QuizTheme } from "./quiztheme.model";
+import { BaseModel } from "./base.model";
 
-export interface Quiz
+export interface Quiz extends BaseModel
 {
-    id: string;
+    id: number;
     name: string;
-    theme: string;
+    difficulty: TDifficulty;
+    theme: QuizTheme;
     questions: Question[];
-    creationDate?: Date;
 }

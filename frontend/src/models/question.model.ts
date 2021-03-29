@@ -1,12 +1,13 @@
-export interface Answer
-{
-    type?: string;
-    value: string;
-    isCorrect: boolean;
-}
+import { TDifficulty } from "../../../backend/app/utils/types";
+import { TCorrectAnswer } from "../../../backend/app/models/Question";
+import { BaseModel } from "./base.model";
 
-export interface Question
+export interface Question extends BaseModel
 {
+    id: number;
     label: string;
-    answers: Answer[];
+    isImage: boolean;
+    difficulty: TDifficulty;
+    answers: string[];
+    correctAnswer: TCorrectAnswer;
 }

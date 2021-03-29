@@ -1,7 +1,7 @@
 import { BaseModel } from "./base.model";
 
-export interface User extends BaseModel
+export interface QuizTheme extends BaseModel
 {
-    id: string;
+    id: number;
     name: string;
 }
