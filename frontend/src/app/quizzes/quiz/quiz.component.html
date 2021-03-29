@@ -7,10 +7,10 @@
         Nom : {{quiz.name}}
     </h2>
     <p>
-        <span>Theme: {{quiz.theme}}</span>
+        <span>Theme: {{quiz.theme.name}}</span>
     </p>
-    <p *ngIf="quiz.creationDate != null">
-        {{quiz.creationDate | date}}
+    <p>
+        {{quiz.createdAt | date}}
     </p>
     <p>
         {{quiz.questions.length}} question(s)

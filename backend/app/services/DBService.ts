@@ -35,7 +35,8 @@ export default class DBService
                             "Louis XIV",
                             "Benoît XVI",
                             "Ségolène Royale"
-                        ]
+                        ],
+                        correctAnswer: 1
                     }
                 ]
             }

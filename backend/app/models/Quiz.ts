@@ -1,4 +1,4 @@
-import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { Difficulty, TDifficulty } from "../utils/types";
 import Question from "./Question";
 import QuizTheme from "./QuizTheme";
@@ -21,4 +21,10 @@ export default class Quiz extends Model
 
     @HasMany(() => Question)
     questions!: Question[];
+
+    /*@Column(DataType.VIRTUAL)
+    get themeName()
+    {
+        return this.getDataValue("theme").name;
+    }*/
 }
