@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Quiz } from "../models/quiz.model";
-import { QUIZ_LIST } from "../mocks/quiz-list.mock";
 import { HttpClient } from "@angular/common/http";
 import { Question } from "../models/question.model";
 
@@ -19,7 +18,7 @@ export class QuizService
      * The list of quiz.
      * The list is retrieved from the mock.
      */
-    private quizzes = QUIZ_LIST;
+    private quizzes = [];
 
     /**
      * Observable which contains the list of the quiz.
@@ -56,7 +55,7 @@ export class QuizService
         });
     }
 
-    getQuiz(id: string): Quiz
+    getQuiz(id: number): Quiz
     {
         return this.quizzes.find(quiz => quiz.id === id);
     }
