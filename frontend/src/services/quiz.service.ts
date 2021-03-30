@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Quiz } from "../models/quiz.model";
 import { HttpClient } from "@angular/common/http";
 import { Question } from "../models/question.model";
@@ -45,6 +45,9 @@ export class QuizService
         this.http.get<Quiz[]>(this.dataURL.toString()).subscribe((tickets) =>
         {
             this.quizzes = tickets;
+            this.quizzes.forEach(quiz => {
+                console.log(quiz);
+            });
             this.quizzes$.next(tickets);
         });
     }
@@ -52,6 +55,7 @@ export class QuizService
     getQuiz(id: number): Quiz
     {
         return this.quizzes.find(quiz => quiz.id === id);
+        // return this.http.get<Quiz>(this.dataURL + "/" + id).pipe();
     }
 
     getQuizSub(id: string): BehaviorSubject<Quiz>

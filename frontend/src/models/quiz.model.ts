@@ -9,4 +9,5 @@ export interface Quiz extends BaseModel
     difficulty: 1 | 2 | 3 | 4 | 5;
     theme: QuizTheme;
     questions: Question[];
+    questionCount: number;
 }
