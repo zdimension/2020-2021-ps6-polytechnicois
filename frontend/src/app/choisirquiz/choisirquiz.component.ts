@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Quiz } from "../../models/quiz.model";
+import { QuizService } from "../../services/quiz.service";
 
 @Component({
     selector: "app-choisirquiz",
@@ -8,8 +10,14 @@ import { Component, OnInit } from "@angular/core";
 export class ChoisirQuizComponent implements OnInit
 {
 
-    constructor()
+    public quizList: Quiz[] = [];
+
+    constructor(public quizService: QuizService)
     {
+        this.quizService.quizzes$.subscribe((quiz) =>
+        {
+            return this.quizList = quiz;
+        });
     }
 
     ngOnInit(): void
