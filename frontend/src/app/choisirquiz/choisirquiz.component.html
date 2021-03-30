@@ -11,7 +11,7 @@
         </p>
         <p>
             <label for="dejafait">
-                Quiz d&egrave;j&agrave; fait ?<br>
+                Quiz d&eacute;j&agrave; fait ?<br>
                 <select [formControlName]="'dejafait'" id="dejafait">
                     <option *ngFor="let c of listdejafait" [ngValue]="c">{{c}}</option>
                 </select>
@@ -48,5 +48,6 @@
         <div>{{quiz.questionCount}} questions</div>
         <div>Difficult&eacute; {{quiz.difficulty}}</div>
         {{quiz.theme.name}}
+        <button routerLink="/play/{{quiz.id}}">Faire le quiz</button>
     </fieldset>
 </div>
