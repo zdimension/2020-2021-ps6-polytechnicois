@@ -16,11 +16,25 @@ export class ChoisirQuizComponent implements OnInit
     {
         this.quizService.quizzes$.subscribe((quiz) =>
         {
-            return this.quizList = quiz;
+            this.quizList = quiz;
+            this.parseQuizList();
+            return;
         });
     }
 
     ngOnInit(): void
     {
+    }
+
+    parseQuizList(): void
+    {
+        console.log("here");
+        for(let i = 0; i < this.quizList.length; i++)
+        {
+            this.quizService.getQuizById(this.quizList[i].id).subscribe(q => {
+                this.quizList[i].questions = q.questions;
+                console.log(q);
+            });
+        }
     }
 }

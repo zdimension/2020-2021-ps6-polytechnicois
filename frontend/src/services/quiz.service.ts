@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Quiz } from "../models/quiz.model";
 import { HttpClient } from "@angular/common/http";
 import { Question } from "../models/question.model";
@@ -52,6 +52,12 @@ export class QuizService
     getQuiz(id: number): Quiz
     {
         return this.quizzes.find(quiz => quiz.id === id);
+        // return this.http.get<Quiz>(this.dataURL + "/" + id).pipe();
+    }
+
+    getQuizById(id: number): Observable<Quiz>
+    {
+        return this.http.get<Quiz>(this.dataURL + "/" + id);
     }
 
     getQuizSub(id: string): BehaviorSubject<Quiz>

@@ -1,6 +1,10 @@
 <div class="choisirquiz">
     <div *ngFor="let quiz of quizList" class="quiz">
-        {{quiz.name}}
-        {{quiz.theme}}
+        <div>{{quiz.name}}</div>
+        <div>{{quiz.questionCount}} qestions</div>
+        <div *ngFor="let question of quiz.questions">
+            <div>{{question.label}}</div>
+        </div>
+        {{quiz.questions.length}}
     </div>
 </div>

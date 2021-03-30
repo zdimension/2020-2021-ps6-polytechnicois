@@ -26,7 +26,7 @@ import { ScoreComponent } from "./score/score.component";
 import { CreationQuizComponent } from "./creationquiz/creationquiz.component";
 import { ChoisirQuizComponent } from "./choisirquiz/choisirquiz.component";
 import { PlayComponent } from "./play/play.component";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     declarations: [
