@@ -45,9 +45,6 @@ export class QuizService
         this.http.get<Quiz[]>(this.dataURL.toString()).subscribe((tickets) =>
         {
             this.quizzes = tickets;
-            this.quizzes.forEach(quiz => {
-                console.log(quiz);
-            });
             this.quizzes$.next(tickets);
         });
     }
@@ -56,6 +53,11 @@ export class QuizService
     {
         return this.quizzes.find(quiz => quiz.id === id);
         // return this.http.get<Quiz>(this.dataURL + "/" + id).pipe();
+    }
+
+    getQuizById(id: number): Observable<Quiz>
+    {
+        return this.http.get<Quiz>(this.dataURL + "/" + id);
     }
 
     getQuizSub(id: string): BehaviorSubject<Quiz>
