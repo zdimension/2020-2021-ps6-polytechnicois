@@ -35,7 +35,7 @@ export class QuestionForm implements OnInit
     {
         const questionToCreate = this.questionForm.getRawValue() as Question;
         console.log("add question: " + questionToCreate);
-        this.quizService.addQuestionToQuiz(questionToCreate, this.quizService.getQuiz(this.route.snapshot.paramMap.get("id")));
+        this.quizService.addQuestionToQuiz(questionToCreate, this.quizService.getQuiz(parseInt(this.route.snapshot.paramMap.get("id"), 10)));
     }
 
     addAnswer(): void

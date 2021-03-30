@@ -20,7 +20,7 @@ export class QuestionList implements OnInit
     constructor(public route: ActivatedRoute, public quizService: QuizService)
     {
         this.getQuiz();
-        new BehaviorSubject(this.quizService.getQuiz(this.route.snapshot.paramMap.get("id")).questions).subscribe((question) =>
+        new BehaviorSubject(this.quizService.getQuiz(parseInt(this.route.snapshot.paramMap.get("id"), 10)).questions).subscribe((question) =>
         {
             return this.questionList = question;
         });

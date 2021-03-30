@@ -1,9 +1,9 @@
 <div class="card">
     <h2>
         <!--        <i class="fab fa-leanpub"></i>-->
-        <i *ngIf="quiz.theme === 'Sport'" class="fas fa-quidditch"></i>
-        <i *ngIf="quiz.theme === 'Actor'" class="fas fa-video"></i>
-        <i *ngIf="quiz.theme === 'Fun'" class="fas fa-laugh-squint"></i>
+        <i *ngIf="quiz.theme.name === 'Sport'" class="fas fa-quidditch"></i>
+        <i *ngIf="quiz.theme.name === 'Actor'" class="fas fa-video"></i>
+        <i *ngIf="quiz.theme.name === 'Fun'" class="fas fa-laugh-squint"></i>
         Nom : {{quiz.name}}
     </h2>
     <p>

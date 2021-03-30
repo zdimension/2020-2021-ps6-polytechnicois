@@ -4,8 +4,8 @@
         Nom : {{user.name}}
     </h2>
 
-    <p *ngIf="user.creationDate != null">
-        {{user.creationDate | date}}
+    <p *ngIf="user.createdAt != null">
+        {{user.createdAt | date}}
     </p>
     <button (click)="selectUser()" class="button-card">Select</button>
     <button (click)="deleteUser()" class="button-card">Delete</button>
