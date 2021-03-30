@@ -14,7 +14,7 @@ export class EditQuizComponent implements OnInit
 
     public quizEdit: Quiz;
     public quizForm: FormGroup;
-    public id: string;
+    public id: number;
     public THEME_LIST = ["Actor", "Sport", "Book", "Other"];
 
     constructor(public formBuilder: FormBuilder, public route: ActivatedRoute, public quizService: QuizService)
@@ -34,7 +34,7 @@ export class EditQuizComponent implements OnInit
 
     getQuiz(): void
     {
-        this.id = this.route.snapshot.paramMap.get("id");
+        this.id = parseInt(this.route.snapshot.paramMap.get("id"), 10);
         this.quizEdit = this.quizService.getQuiz(this.id);
         console.log(this.quizEdit);
     }
@@ -43,9 +43,9 @@ export class EditQuizComponent implements OnInit
     updateQuiz(): void
     {
         const quizToUpdate = this.quizForm.getRawValue() as Quiz;
-        if (this.quizEdit.creationDate !== undefined)
+        if (this.quizEdit.createdAt !== undefined)
         {
-            quizToUpdate.creationDate = this.quizEdit.creationDate;
+            quizToUpdate.createdAt = this.quizEdit.createdAt;
         }
         this.quizService.updateQuiz(quizToUpdate);
     }

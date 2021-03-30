@@ -38,7 +38,7 @@ export class UserFormComponent implements OnInit
     {
         // We retrieve here the user object from the userForm and we cast the type "as User".
         const userToCreate = this.userForm.getRawValue() as User;
-        userToCreate.creationDate = new Date(Date.now());
+        userToCreate.createdAt = new Date(Date.now());
         userToCreate.id = this.userService.getFirstUnusedId();
 
         // Do you need to log your object here in your class? Uncomment the code below
