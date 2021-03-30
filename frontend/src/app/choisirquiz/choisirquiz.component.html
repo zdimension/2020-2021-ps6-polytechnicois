@@ -4,7 +4,8 @@
             <label for="theme">
                 Th&egrave;me<br>
                 <select [formControlName]="'theme'" id="theme">
-                    <option *ngFor="let c of themes" [ngValue]="c">{{ c }}</option>
+                    <option value="Peu importe">Peu importe</option>
+                    <option *ngFor="let c of listThemes" [ngValue]="c.name">{{ c.name }}</option>
                 </select>
             </label>
         </p>
@@ -46,5 +47,6 @@
         <legend>{{quiz.name}}</legend>
         <div>{{quiz.questionCount}} questions</div>
         <div>Difficult&eacute; {{quiz.difficulty}}</div>
+        {{quiz.theme.name}}
     </fieldset>
 </div>
