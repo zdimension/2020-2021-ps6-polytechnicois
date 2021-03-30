@@ -1,7 +1,6 @@
 
 
 #mainplayingcard {
-  color:blue;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
   border-radius: 25px;
 }
@@ -19,18 +18,17 @@
 }
 
 #playingquestion {
-  color:red;
 }
 
 #playinganswer {
-  color:yellow;
-
 }
 
+$btn-bkg: #3f51b5;
+
 .answerbutton {
-  background-color: #3f51b5;
+  background-color: $btn-bkg;
   background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
-  border: solid 1px #3f51b5;
+  border: solid 1px $btn-bkg;
   border-radius: 25px;
   color: white;
   font-weight: bold;
@@ -46,6 +44,9 @@
   cursor: pointer;
   background:
           linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.4)),
-          radial-gradient(at 50% , #6578e0 5%, transparent 70%);
-  background-color: #3f51b5;
+          radial-gradient(lighten($btn-bkg, 20%), transparent 70%);
+  background-color: $btn-bkg;
 }
+
+//essayer d'ajouter cet effet par dessus :
+//https://stackoverflow.com/questions/9649706/css3-box-shadow-linear-gradient
