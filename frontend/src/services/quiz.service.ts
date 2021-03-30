@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs/Rx";
 import { Quiz } from "../models/quiz.model";
 import { HttpClient } from "@angular/common/http";
 import { Question } from "../models/question.model";
