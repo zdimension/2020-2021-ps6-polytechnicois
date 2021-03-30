@@ -12,8 +12,8 @@ export default class Question extends Model
     @Column
     label!: string;
 
-    @Column
     @AllowNull
+    @Column
     image?: string;
 
     @Column(Difficulty)
