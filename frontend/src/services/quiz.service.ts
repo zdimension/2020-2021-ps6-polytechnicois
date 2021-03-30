@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs/Rx";
 import { Quiz } from "../models/quiz.model";
 import { HttpClient } from "@angular/common/http";
 import { Question } from "../models/question.model";
+import { QuizTheme } from "../models/quiztheme.model";
 
 @Injectable({
     providedIn: "root"
@@ -20,11 +21,12 @@ export class QuizService
     private themes = [];
     public themes$ = new BehaviorSubject(this.themes);
 
-    private dataURL = new URL("http://localhost:9428/quizzes");
+    private dataURL = new URL("http://localhost:9428/");
 
     constructor(private http: HttpClient)
     {
         this.getQuizzes();
+        this.getThemes();
     }
 
     addQuiz(quiz: Quiz): void
@@ -42,7 +44,7 @@ export class QuizService
 
     getQuizzes(): void
     {
-        this.http.get<Quiz[]>(this.dataURL.toString()).subscribe((tickets) =>
+        this.http.get<Quiz[]>(this.dataURL.toString() + "quizzes").subscribe((tickets) =>
         {
             this.quizzes = tickets;
             this.quizzes$.next(tickets);
@@ -57,7 +59,7 @@ export class QuizService
 
     getQuizById(id: number): Observable<Quiz>
     {
-        return this.http.get<Quiz>(this.dataURL + "/" + id);
+        return this.http.get<Quiz>(this.dataURL + "quizzes" + "/" + id);
     }
 
     getQuizSub(id: string): BehaviorSubject<Quiz>
@@ -70,6 +72,15 @@ export class QuizService
         const quizToUpdate = this.getQuiz(quizGiven.id);
         quizToUpdate.theme = quizGiven.theme;
         quizToUpdate.name = quizGiven.name;
+    }
+
+    getThemes(): void
+    {
+        this.http.get<Quiz[]>(this.dataURL.toString() + "themes").subscribe((tickets) =>
+        {
+            this.themes = tickets;
+            this.themes$.next(tickets);
+        });
     }
 
     addQuestionToQuiz(question: Question, quiz: Quiz): void

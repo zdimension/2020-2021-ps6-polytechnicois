@@ -15,7 +15,8 @@ export default class QuizController
                 { model: QuizTheme, attributes: ["id", "name"] },
                 { model: Question, attributes: [] }
             ],
-            attributes: { include: [[sequelize.fn("COUNT", sequelize.col("Questions.id")), "questionCount"]] }
+            attributes: { include: [[sequelize.fn("COUNT", sequelize.col("Questions.id")), "questionCount"]] },
+            group: ["Quiz.id"]
         });
     }
 
@@ -23,7 +24,7 @@ export default class QuizController
     @OnNull(404)
     async getOne(@Param("id") id: number): Promise<Quiz | null>
     {
-        return await Quiz.findByPk(id, { include: { model: Question } }) || null;
+        return await Quiz.findByPk(id, { include: { model: Question } });
     }
 
     @Post("/")
