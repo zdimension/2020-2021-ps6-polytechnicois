@@ -15,7 +15,7 @@ import { ChoisirQuizComponent } from "./choisirquiz/choisirquiz.component";
 import { PlayComponent } from "./play/play.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/quiz-list", pathMatch: "full" }, // Rediriger vers accueil
+    { path: "", redirectTo: "/accueil", pathMatch: "full" }, // Rediriger vers accueil
     { path: "quiz-list", component: QuizListComponent },
     { path: "edit-quiz/:id", component: EditQuizComponent },
     { path: "question-quiz/:id", component: QuestionList },
