@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="accueil">
+    <h1>Polyquiz</h1>
+    <button routerLink="/accueil">Se connecter</button>
+    <hr />
+    <form [formGroup]="createAccountForm" class="login-form">
+        <p>D&eacute;j&agrave; inscrit ?</p>
+        <p>
+            <label for="login">
+                Indentifiant <br>
+                <input [formControlName]="'login'" class="input-custom" id="login" type="text">
+            </label>
+        </p>
+        <p>
+            <label for="pass">
+                Mot de passe <br>
+                <input [formControlName]="'pass'" class="input-custom" id="pass" type="password">
+            </label>
+        </p>
+        <p>
+            <label for="pass2">
+                Confirmation mot de passe <br>
+                <input [formControlName]="'pass2'" class="input-custom" id="pass2" type="password">
+            </label>
+        </p>
+        <p>
+            <label for="typequiz">
+                Type de questions<br>
+                <select [formControlName]="'typequiz'" id="typequiz">
+                    <option *ngFor="let c of typeQuestions" [ngValue]="c">{{ c }}</option>
+                </select>
+            </label>
+        </p>
+        <p>
+            <button (click)="createAccount()" class="button-card" type="submit">Creacute;er le compte</button>
+        </p>
+    </form>
+</div>
