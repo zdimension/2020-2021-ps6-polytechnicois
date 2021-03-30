@@ -5,6 +5,33 @@
     <title>Play</title>
 </head>
 <body>
-{{quiz.name}}
+<div class="container">
+
+    <div id="mainplayingcard" class="card col-12 align-content-center flex-column">
+        <div id="playingheader" class="justify-content-between flex-row row">
+            <div>
+                <span>{{quiz.name}}</span>
+            </div>
+            <div>
+                <span>Question x sur x</span>
+            </div>
+            <div>
+                <span>{{quiz.difficulty}}</span>
+            </div>
+        </div>
+        <div id="playingcard" class="justify-content-between flex-row row">
+            <div id="playingquestion">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aperiam esse in officiis perferendis quisquam ratione vero. A accusamus aliquam dolor esse minima odit quasi soluta! Itaque maiores obcaecati voluptatum.</p>
+            </div>
+            <div id="playinganswer">
+                <div class="answerbutton">Ségo</div>
+                <div class="answerbutton">F1</div>
+                <div class="answerbutton">Benoit</div>
+                <div class="answerbutton">Louis</div>
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
