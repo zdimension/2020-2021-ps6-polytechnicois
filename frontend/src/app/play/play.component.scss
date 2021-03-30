@@ -1,23 +1,17 @@
-
+@import '../../styles/button/main';
 
 #mainplayingcard {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
   border-radius: 25px;
 }
 
-#mainplayingcard >* {
-  margin:1px;
-}
-
 #playingheader {
   //try this :
   //https://css-tricks.com/restricting-a-pseudo-element-to-its-parents-border-box/
-  background-color: #ffff00;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.15));
+  background: linear-gradient(to bottom, #fef086, #fde635);
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
-  padding-left: 2%;
-  padding-right: 2%;
+  padding: 0.4em 1em;
   width: 100%;
 }
 
@@ -27,12 +21,30 @@
 }
 
 #playingquestion {
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: x-large;
 }
 
 #playinganswer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-row-gap: 0.6em;
+  grid-column-gap: 0.6em;
+  grid-auto-rows: 1fr;
 }
 
-$btn-bkg: #3f51b5;
+#playinganswer .btn {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#playinganswer td {
+  height: 100%;
+}
+
+$btn-bkg: #7777ff;
 
 .answerbutton {
   background-color: $btn-bkg;
@@ -41,19 +53,22 @@ $btn-bkg: #3f51b5;
   border-radius: 25px;
   color: white;
   font-weight: bold;
+  text-shadow: black;
   padding: 0.5em 1em;
+  transition: all 0.5s ease;
 }
 
 .answerbutton:hover {
   cursor: pointer;
-  background-image: linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.5));
+  filter: brightness(1.3);
+  transition: all 0.1s ease;
 }
 
 .answerbutton:active {
   cursor: pointer;
+  filter: brightness(1.3);
   background:
-          linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.4)),
-          radial-gradient(lighten($btn-bkg, 20%), transparent 70%);
+          radial-gradient(lighten($btn-bkg, 5%), transparent 70%);
   background-color: $btn-bkg;
 }
 

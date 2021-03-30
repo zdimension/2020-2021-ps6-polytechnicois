@@ -7,7 +7,7 @@
 <body>
 <div class="container">
 
-    <div id="mainplayingcard" class="card col-12 align-content-center flex-column">
+    <div id="mainplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5">
         <div id="playingheader" class="justify-content-between flex-row d-flex">
             <div>
                 <span>{{quiz.name}}</span>
@@ -20,19 +20,28 @@
             </div>
         </div>
         <div id="playingcard" class="justify-content-between flex-row d-flex row">
-            <div id="playingquestion" class="col">
-                <p>
-                    {{quiz.questions[0].label}}
-                </p></div>
-            <div id="playinganswer" class="row col">
-                <div class="answerbutton col">{{quiz.questions[0].answers[0]}}</div>
-                <div class="answerbutton col">{{quiz.questions[0].answers[1]}}</div>
-                <div class="w-100"></div>
-                <div class="answerbutton col">{{quiz.questions[0].answers[2]}}</div>
-                <div class="answerbutton col">{{quiz.questions[0].answers[3]}}</div>
+            <div id="playingquestion" class="container col d-flex align-items-center justify-content-center">
+                {{quiz.questions[0].label}}
             </div>
-        </div>
 
+            <div class="epsilon container col">
+                <div id="playinganswer" class="p-3">
+                    <button class="btn btn-secondary">
+                        {{quiz.questions[0].answers[0]}}
+                    </button>
+                    <button class="btn btn-secondary">
+                        {{quiz.questions[0].answers[1]}}
+                    </button>
+                    <button class="btn btn-secondary">
+                        {{quiz.questions[0].answers[2]}}
+                    </button>
+                    <button class="btn btn-secondary">
+                        {{quiz.questions[0].answers[3]}}
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 </body>
