@@ -39,8 +39,9 @@ export class UserService
 
     getFirstUnusedId(): string
     {
-        if (this.users.length == 0)
+        if (this.users.length === 0)
             return "0";
+        // tslint:disable-next-line:only-arrow-functions typedef
         Math.max.apply(Math, this.users.map(function(o)
         {
             return o.id + 1;
