@@ -13,7 +13,7 @@
                 <span>{{quiz.name}}</span>
             </div>
             <div>
-                <span>Question x sur x</span>
+                <span>Question x sur {{quiz.questions.length}}</span>
             </div>
             <div>
                 <span>{{quiz.difficulty}}/5</span>
@@ -21,14 +21,15 @@
         </div>
         <div id="playingcard" class="justify-content-between flex-row d-flex row">
             <div id="playingquestion" class="col">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aperiam esse in officiis perferendis quisquam ratione vero. A accusamus aliquam dolor esse minima odit quasi soluta! Itaque maiores obcaecati voluptatum.</p>
-            </div>
+                <p>
+                    {{quiz.questions[0].label}}
+                </p></div>
             <div id="playinganswer" class="row col">
-                <div class="answerbutton col">Ségo</div>
-                <div class="answerbutton col">F1</div>
+                <div class="answerbutton col">{{quiz.questions[0].answers[0]}}</div>
+                <div class="answerbutton col">{{quiz.questions[0].answers[1]}}</div>
                 <div class="w-100"></div>
-                <div class="answerbutton col">Benoit</div>
-                <div class="answerbutton col">Louis</div>
+                <div class="answerbutton col">{{quiz.questions[0].answers[2]}}</div>
+                <div class="answerbutton col">{{quiz.questions[0].answers[3]}}</div>
             </div>
         </div>
 
