@@ -27,7 +27,7 @@ const routes: Routes = [
     { path: "score", component: ScoreComponent },
     { path: "creationquiz", component: CreationQuizComponent },
     { path: "choisirquiz", component: ChoisirQuizComponent },
-    { path: "play", component: PlayComponent }
+    { path: "play/:id", component: PlayComponent }
 ];
 
 // play
