@@ -5,6 +5,7 @@ import User from "../models/User";
 import Quiz from "../models/Quiz";
 import QuizTheme from "../models/QuizTheme";
 import Question from "../models/Question";
+import * as fs from "fs";
 
 export default class DBService
 {
@@ -17,40 +18,12 @@ export default class DBService
         ]);
 
         const themes = await QuizTheme.bulkCreate([
-            { name: "Histoire" }
+            { name: "Histoire" },
+            { name: "Musique" }
         ]);
 
-        await Quiz.bulkCreate([
-            {
-                name: "Les rois de France",
-                difficulty: 3,
-                themeId: themes[0].id,
-                questions: [
-                    {
-                        label: "Qui était le roi Soleil ?",
-                        difficulty: 3,
-                        answers: [
-                            "François 1er",
-                            "Louis XIV",
-                            "Benoît XVI",
-                            "Ségolène Royale"
-                        ],
-                        correctAnswer: 1
-                    },
-                    {
-                        label: "Qui est-ce ?",
-                        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/P%C3%A9tain_-_Portrait_photographique_1941.jpg/220px-P%C3%A9tain_-_Portrait_photographique_1941.jpg",
-                        difficulty: 3,
-                        answers: [
-                            "Philippe Pétain",
-                            "George Brassens",
-                            "Charles de Gaulle",
-                            "Adolf Hitler"
-                        ]
-                    }
-                ]
-            }
-        ], { include: { model: Question, as: "questions" } });
+        await Quiz.bulkCreate(JSON.parse(await fs.promises.readFile("sample.json", "utf-8")),
+            { include: { model: Question, as: "questions" } });
     }
 
     async start()

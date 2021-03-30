@@ -1,0 +1,83 @@
+[
+  {
+    "name": "Les rois de France",
+    "difficulty": 3,
+    "themeId": 1,
+    "questions": [
+      {
+        "label": "Qui était le roi Soleil ?",
+        "difficulty": 3,
+        "answers": [
+          "François 1er",
+          "Louis XIV",
+          "Benoît XVI",
+          "Ségolène Royale"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "label": "Qui est-ce ?",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/P%C3%A9tain_-_Portrait_photographique_1941.jpg/220px-P%C3%A9tain_-_Portrait_photographique_1941.jpg",
+        "difficulty": 3,
+        "correctAnswer": 0,
+        "answers": [
+          "Philippe Pétain",
+          "George Brassens",
+          "Charles de Gaulle",
+          "Adolf Hitler"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "La musique classique",
+    "difficulty": 4,
+    "themeId": 2,
+    "questions": [
+      {
+        "label": "Qui a composé « La truite » ?",
+        "difficulty": 2,
+        "correctAnswer": 0,
+        "answers": [
+          "Franz Schubert",
+          "Franz Liszt",
+          "Frederic Chopin",
+          "Patrick Saumon"
+        ]
+      },
+      {
+        "label": "Qu’a composé Maurice Ravel ?",
+        "difficulty": 1,
+        "correctAnswer": 0,
+        "answers": [
+          "Le bolero",
+          "La vareuse",
+          "Le veston",
+          "Le cache-coeur "
+        ]
+      },
+      {
+        "label": "Quel est l’intrus parmi ces compositions de Tchaïkovsky ?",
+        "difficulty": 4,
+        "correctAnswer": 2,
+        "answers": [
+          "Le lac des Cygnes",
+          "Casse-noisette",
+          "Ave Maria",
+          "Manfred"
+        ]
+      },
+      {
+        "label": "Complétez le titre de cette musique de Richard Wagner « La ... des walkyries » :",
+        "difficulty": 1,
+        "correctAnswer": 2,
+        "answers": [
+          "La balade",
+          "La danse",
+          "La chevauchée",
+          "La montée"
+        ]
+      }
+    ]
+  }
+]
