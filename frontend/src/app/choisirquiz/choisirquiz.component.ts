@@ -28,11 +28,10 @@ export class ChoisirQuizComponent implements OnInit
 
     parseQuizList(): void
     {
-        console.log("here");
-        for(let i = 0; i < this.quizList.length; i++)
+        for (const quiz of this.quizList)
         {
-            this.quizService.getQuizById(this.quizList[i].id).subscribe(q => {
-                this.quizList[i].questions = q.questions;
+            this.quizService.getQuizById(quiz.id).subscribe(q => {
+                quiz.questions = q.questions;
                 console.log(q);
             });
         }
