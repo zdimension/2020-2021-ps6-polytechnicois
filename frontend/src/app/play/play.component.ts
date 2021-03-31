@@ -36,4 +36,8 @@ export class PlayComponent implements OnInit
             console.log("T'es nul vieux crouton !!");
         }
     }
+
+    setStars(){
+        document.documentElement.style.setProperty('--rating', String(this.quiz["difficulty"]));
+    }
 }
