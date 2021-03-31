@@ -16,6 +16,8 @@ export class PlayComponent implements OnInit
     {
     }
 
+    public numquestion=1;
+
     ngOnInit(): void {
         this.getQuiz();
     }
@@ -24,5 +26,14 @@ export class PlayComponent implements OnInit
         const id = +this.route.snapshot.paramMap.get('id');
         this.quizService.getQuizById(id)
             .subscribe(quiz => this.quiz = quiz);
+    }
+
+    reponseCliquee(n): void
+    {
+        if(this.quiz.questions[0].correctAnswer == n) {
+            console.log("Correct");
+        } else {
+            console.log("T'es nul vieux crouton !!");
+        }
     }
 }

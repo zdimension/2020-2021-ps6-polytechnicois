@@ -13,10 +13,10 @@
                 <span>{{quiz.name}}</span>
             </div>
             <div>
-                <span>Question x sur {{quiz.questions.length}}</span>
+                <span>Question {{numquestion}} sur {{quiz.questions.length}}</span>
             </div>
             <div>
-                <span>{{quiz.difficulty}}/5</span>
+                <span>Difficult&eacute;: {{quiz.difficulty}}/5</span>
             </div>
         </div>
         <div id="playingcard" class="justify-content-between flex-row d-flex row">
@@ -26,17 +26,8 @@
 
             <div class="epsilon container col">
                 <div id="playinganswer" class="p-3">
-                    <button class="btn btn-secondary">
-                        {{quiz.questions[0].answers[0]}}
-                    </button>
-                    <button class="btn btn-secondary">
-                        {{quiz.questions[0].answers[1]}}
-                    </button>
-                    <button class="btn btn-secondary">
-                        {{quiz.questions[0].answers[2]}}
-                    </button>
-                    <button class="btn btn-secondary">
-                        {{quiz.questions[0].answers[3]}}
+                    <button class="btn btn-secondary" *ngFor="let answer of quiz.questions[0].answers; let i=index;" (click)="reponseCliquee(i)">
+                        {{answer}}
                     </button>
                 </div>
             </div>
