@@ -1,7 +1,7 @@
 import sequelize from "../config/database";
 import logger from "../utils/logger";
 import { JsonSchemaManager, OpenApi3Strategy } from "@alt3/sequelize-to-json-schemas";
-import User from "../models/User";
+import User, { UserRole } from "../models/User";
 import Quiz from "../models/Quiz";
 import QuizTheme from "../models/QuizTheme";
 import Question from "../models/Question";
@@ -14,7 +14,7 @@ export default class DBService
         logger.info("Inserting sample data...");
 
         await User.bulkCreate([
-            { name: "admin", password: "polyquiz" }
+            { name: "admin", password: "polyquiz", role: UserRole.Admin }
         ]);
 
         const themes = await QuizTheme.bulkCreate([

@@ -1,15 +1,16 @@
 import {
     BadRequestError,
     Body,
-    Controller, CurrentUser,
+    CurrentUser,
     Get,
-    HeaderParam, HttpCode,
     HttpError,
-    InternalServerError, JsonController, Patch,
+    InternalServerError,
+    JsonController,
+    Patch,
     Post,
     UnauthorizedError
 } from "routing-controllers";
-import User from "../models/User";
+import User, { UserRole } from "../models/User";
 import AuthService from "../services/AuthService";
 import BcryptService from "../services/BcryptService";
 
@@ -148,8 +149,13 @@ export default class UserController
     }
 
     @Patch("/update")
-    async update(@CurrentUser() current: User, @Body() user: { password?: string, highContrast?: boolean, fontSize?: number})
+    async update(@CurrentUser() current: User, @Body() user: { password?: string, highContrast?: boolean, fontSize?: number, role?: UserRole })
     {
+        if (current.role != UserRole.Admin && user.role)
+        {
+            throw new UnauthorizedError("Only administrators can update a user's role");
+        }
+        
         return await current.update(user);
     }
 

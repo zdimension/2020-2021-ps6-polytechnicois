@@ -2,7 +2,6 @@ import BcryptService from "../services/BcryptService";
 
 import {
     BeforeBulkCreate,
-    BeforeBulkUpdate,
     BeforeCreate, BeforeUpdate,
     Column,
     Default,
@@ -10,6 +9,13 @@ import {
     Table,
     Unique
 } from "sequelize-typescript";
+
+export enum UserRole
+{
+    Regular,
+    NonAutonomous,
+    Admin
+}
 
 @Table
 export default class User extends Model
@@ -28,6 +34,10 @@ export default class User extends Model
     @Default(1)
     @Column
     fontSize!: number;
+
+    @Default(UserRole.Regular)
+    @Column
+    role!: UserRole;
 
     @BeforeBulkCreate
     static beforeBulkCreateHook(instances: User[]): void
