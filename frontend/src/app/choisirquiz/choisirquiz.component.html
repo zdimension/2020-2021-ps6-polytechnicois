@@ -3,7 +3,7 @@
         <p>
             <label for="theme">
                 Th&egrave;me<br>
-                <select [formControlName]="'theme'" id="theme">
+                <select [formControlName]="'theme'" id="theme" (change)="changeDisplay()">
                     <option value="Peu importe">Peu importe</option>
                     <option *ngFor="let c of listThemes" [ngValue]="c.name">{{ c.name }}</option>
                 </select>
@@ -12,7 +12,7 @@
         <p>
             <label for="dejafait">
                 Quiz d&eacute;j&agrave; fait ?<br>
-                <select [formControlName]="'dejafait'" id="dejafait">
+                <select [formControlName]="'dejafait'" id="dejafait" (change)="changeDisplay()">
                     <option *ngFor="let c of listdejafait" [ngValue]="c">{{c}}</option>
                 </select>
             </label>
@@ -20,7 +20,7 @@
         <p>
             <label for="difficulte">
                 Difficult&eacute;:<br>
-                <select [formControlName]="'difficulte'" id="difficulte">
+                <select [formControlName]="'difficulte'" id="difficulte" (change)="changeDisplay()">
                     <option *ngFor="let c of listdifficulte" [ngValue]="c">{{c}}</option>
                 </select>
             </label>
@@ -28,14 +28,14 @@
         <p>
             <label for="nbquestions">
                 Nombre de questions:<br>
-                <select [formControlName]="'nbquestions'" id="nbquestions">
+                <select [formControlName]="'nbquestions'" id="nbquestions" (change)="changeDisplay()">
                     <option *ngFor="let c of listnbquestions" [ngValue]="c">{{c}}</option>
                 </select>
             </label>
         </p>
         <p>
             <label for="trierauhasard">
-                <input [formControlName]="'trierauhasard'" class="input-custom" id="trierauhasard" type="checkbox">
+                <input [formControlName]="'trierauhasard'" class="input-custom" id="trierauhasard" type="checkbox" (change)="changeDisplay()">
                 Trier au hasard ?
             </label>
         </p>
@@ -43,7 +43,7 @@
 </div>
 <hr />
 <div class="choisirquiz">
-    <fieldset *ngFor="let quiz of quizList" class="quiz">
+    <fieldset *ngFor="let quiz of quizListDisplayed" class="quiz">
         <legend>{{quiz.name}}</legend>
         <div>{{quiz.questionCount}} questions</div>
         <div>Difficult&eacute; {{quiz.difficulty}}</div>
