@@ -1,10 +1,10 @@
-import { Body, Controller, Get, OnNull, Param, Post } from "routing-controllers";
+import { Body, Controller, Get, JsonController, OnNull, Param, Post } from "routing-controllers";
 import Quiz from "../models/Quiz";
 import Question from "../models/Question";
 import QuizTheme from "../models/QuizTheme";
 import sequelize from "sequelize";
 
-@Controller("/quizzes")
+@JsonController("/quizzes")
 export default class QuizController
 {
     @Get("/")

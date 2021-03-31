@@ -5,6 +5,6 @@ export class JSONInterceptor implements InterceptorInterface
 {
     intercept(action: Action, content: any)
     {
-        return typeof content === "object" && content !== null ? JSON.stringify(content) : content;
+        return typeof content === "object" && content !== null ? JSON.parse(JSON.stringify(content)) : content;
     }
 }

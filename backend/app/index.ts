@@ -25,6 +25,15 @@ const app = createExpressServer({
         {
             return false;
         }
+    },
+    currentUserChecker: async (action: Action) =>
+    {
+        return User.findOne();
+    },
+    defaults: {
+        paramOptions: {
+            required: true
+        }
     }
 });
 

@@ -1,11 +1,11 @@
 import {
     BadRequestError,
     Body,
-    Controller,
+    Controller, CurrentUser,
     Get,
-    HeaderParam,
+    HeaderParam, HttpCode,
     HttpError,
-    InternalServerError,
+    InternalServerError, JsonController, Patch,
     Post,
     UnauthorizedError
 } from "routing-controllers";
@@ -13,7 +13,7 @@ import User from "../models/User";
 import AuthService from "../services/AuthService";
 import BcryptService from "../services/BcryptService";
 
-@Controller("/auth")
+@JsonController("/auth")
 export default class UserController
 {
     /*async register()
@@ -141,18 +141,16 @@ export default class UserController
         throw new BadRequestError("Username or password is wrong");
     }
 
-    @Post("/validate")
-    async validate(@HeaderParam("authorization") token: string)
+    @Get("/me")
+    async current(@CurrentUser() current: User)
     {
-        try
-        {
-            new AuthService().verify(token);
-            return { isvalid: true };
-        }
-        catch (err)
-        {
-            throw new UnauthorizedError("Invalid Token!");
-        }
+        return current;
+    }
+
+    @Patch("/update")
+    async update(@CurrentUser() current: User, @Body() user: { password?: string, highContrast?: boolean, fontSize?: number})
+    {
+        return await current.update(user);
     }
 
     @Get("/users")
