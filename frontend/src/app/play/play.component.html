@@ -22,15 +22,18 @@
             <div id="playingquestion" class="container col d-flex align-items-center justify-content-center">
                 {{questionlabel}}
             </div>
-
+            <img *ngIf="urlImage != null" [src]="urlImage" />
             <div class="epsilon container col">
                 <div id="playinganswer" class="p-3">
-                    <button class="btn btn-secondary" *ngFor="let answer of answersDisplayed; let i=index;" (click)="reponseCliquee(i)">
+                    <button class="btn btn-secondary" *ngFor="let answer of answersDisplayed; let i=index;" [disabled]="!firstStage && i != correctAnswer" (click)="reponseCliquee(i)">
                         {{answer}}
                     </button>
                 </div>
             </div>
 
+        </div>
+        <div>
+            {{displayedMessage}}
         </div>
     </div>
 </div>

@@ -24,6 +24,10 @@ export class PlayComponent implements OnInit
     public quizdifficulty: number;
     public questionlabel: string;
     public questionCount=0;
+    public correctAnswer=0;
+    public displayedMessage="Selectionnez la bonne reponse";
+    public quizTermine=false;
+    public urlImage: string=null;
 
     ngOnInit(): void {
         this.getQuiz();
@@ -39,13 +43,16 @@ export class PlayComponent implements OnInit
                 this.quizdifficulty=this.quiz.difficulty;
                 this.questionlabel=this.quiz.questions[this.numquestion-1].label;
                 this.questionCount=this.quiz.questions.length;
+                this.correctAnswer=this.quiz.questions[this.numquestion-1].correctAnswer;
+                this.urlImage=this.quiz.questions[this.numquestion-1].image;
             });
     }
 
     reponseCliquee(n): void
     {
-        console.log(this.firstStage);
-        console.log(this.numquestion);
+        if(this.quizTermine) {
+            return;
+        }
         this.questionlabel=this.quiz.questions[this.numquestion-1].label;
         if(this.firstStage)
         {
@@ -54,15 +61,23 @@ export class PlayComponent implements OnInit
             } else {
                 console.log("Incorrect");
             }
-            this.answersDisplayed=[this.quiz.questions[this.numquestion-1].answers[this.quiz.questions[this.numquestion-1].correctAnswer]];
+            this.displayedMessage="Cliquez sur la bonne réponse";
         }
         else
         {
-            this.answersDisplayed=this.quiz.questions[this.numquestion-1].answers;
             this.numquestion++;
             if(this.numquestion > this.questionCount) {
                 console.log("Quiz termine");
+                this.displayedMessage="Quiz terminé";
+                this.quizTermine=true;
+                this.numquestion--;
+                return;
             }
+            this.answersDisplayed=this.quiz.questions[this.numquestion-1].answers;
+            this.questionlabel=this.quiz.questions[this.numquestion-1].label;
+            this.correctAnswer=this.quiz.questions[this.numquestion-1].correctAnswer;
+            this.urlImage=this.quiz.questions[this.numquestion-1].image;
+            this.displayedMessage="Selectionnez la bonne reponse";
         }
         this.firstStage=!this.firstStage;
     }
