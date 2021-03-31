@@ -44,24 +44,23 @@
   height: 100%;
 }
 
-:root {
-  --star-size: 60px;
-  --star-color: #fff;
-  --star-background: #fc0;
-}
+$percent: calc(var(--rating) / 5 * 100%);
+$starsize: 300px;
+$starcolor: #9d9b9b;
+$starback:black;
 
+//https://css-tricks.com/five-methods-for-five-star-ratings/
 .Stars {
-  --percent: calc(var(--rating) / 5 * 100%);
 
   display: inline-block;
-  font-size: var(--star-size);
+  font-size: var($starsize);
   font-family: Times; // make sure ★ appears correctly
   line-height: 1;
 
   &::before {
     content: '★★★★★';
     letter-spacing: 3px;
-    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    background: linear-gradient(90deg, $starback $percent, $starcolor $percent);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

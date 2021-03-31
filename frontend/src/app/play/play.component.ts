@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, HostBinding, OnInit } from "@angular/core";
 import { Quiz } from "../../models/quiz.model";
 import { QuizService } from "../../services/quiz.service";
 import { ActivatedRoute } from "@angular/router";
@@ -20,6 +20,7 @@ export class PlayComponent implements OnInit
     private firstStage=true;
     public answersDisplayed: string[];
     public quizname: string;
+    @HostBinding("style.--rating")
     public quizdifficulty: number;
     public questionlabel: string;
     public questionCount=0;
@@ -66,7 +67,4 @@ export class PlayComponent implements OnInit
         this.firstStage=!this.firstStage;
     }
 
-    setStars(){
-        document.documentElement.style.setProperty('--rating', String(this.quiz["difficulty"]));
-    }
 }
