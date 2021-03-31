@@ -1,49 +1,60 @@
 <div>
-    <form [formGroup]="choisirQuizForm" class="choisirquiz-form">
-        <p>
-            <label for="theme">
-                Th&egrave;me<br>
-                <select [formControlName]="'theme'" id="theme" (change)="changeDisplay()">
-                    <option value="Peu importe">Peu importe</option>
-                    <option *ngFor="let c of listThemes" [ngValue]="c.name">{{ c.name }}</option>
-                </select>
-            </label>
-        </p>
-        <p>
-            <label for="dejafait">
-                Quiz d&eacute;j&agrave; fait ?<br>
-                <select [formControlName]="'dejafait'" id="dejafait" (change)="changeDisplay()">
-                    <option *ngFor="let c of listdejafait" [ngValue]="c">{{c}}</option>
-                </select>
-            </label>
-        </p>
-        <p>
-            <label for="difficulte">
-                Difficult&eacute;:<br>
-                <select [formControlName]="'difficulte'" id="difficulte" (change)="changeDisplay()">
-                    <option *ngFor="let c of listdifficulte" [ngValue]="c">{{c}}</option>
-                </select>
-            </label>
-        </p>
-        <p>
-            <label for="nbquestions">
-                Nombre de questions:<br>
-                <select [formControlName]="'nbquestions'" id="nbquestions" (change)="changeDisplay()">
-                    <option *ngFor="let c of listnbquestions" [ngValue]="c">{{c}}</option>
-                </select>
-            </label>
-        </p>
-        <p>
-            <label for="trierauhasard">
-                <input [formControlName]="'trierauhasard'" class="input-custom" id="trierauhasard" type="checkbox" (change)="changeDisplay()">
-                Trier au hasard ?
-            </label>
-        </p>
-    </form>
+    <div class="epsilon container d-flex justify-content-center">
+        <button class="btn btn-primary" type="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseExample">
+            Filtres
+        </button>
+    </div>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <form [formGroup]="choisirQuizForm" class="choisirquiz-form flex-row d-flex col">
+            <p class="col">
+                <label for="theme">
+                    Th&egrave;me<br>
+                    <select [formControlName]="'theme'" id="theme" (change)="changeDisplay()">
+                        <option value="Peu importe">Peu importe</option>
+                        <option *ngFor="let c of listThemes" [ngValue]="c.name">{{ c.name }}</option>
+                    </select>
+                </label>
+            </p>
+            <p class="col">
+                <label for="dejafait">
+                    Quiz d&eacute;j&agrave; fait ?<br>
+                    <select [formControlName]="'dejafait'" id="dejafait" (change)="changeDisplay()">
+                        <option *ngFor="let c of listdejafait" [ngValue]="c">{{c}}</option>
+                    </select>
+                </label>
+            </p>
+            <p class="col">
+                <label for="difficulte">
+                    Difficult&eacute;:<br>
+                    <select [formControlName]="'difficulte'" id="difficulte" (change)="changeDisplay()">
+                        <option *ngFor="let c of listdifficulte" [ngValue]="c">{{c}}</option>
+                    </select>
+                </label>
+            </p>
+            <p class="col">
+                <label for="nbquestions">
+                    Nombre de questions:<br>
+                    <select [formControlName]="'nbquestions'" id="nbquestions" (change)="changeDisplay()">
+                        <option *ngFor="let c of listnbquestions" [ngValue]="c">{{c}}</option>
+                    </select>
+                </label>
+            </p>
+            <p class="col">
+                <label for="trierauhasard">
+                    <input [formControlName]="'trierauhasard'" class="input-custom" id="trierauhasard" type="checkbox"
+                           (change)="changeDisplay()">
+                    Trier au hasard ?
+                </label>
+            </p>
+        </form>
+    </div>
 </div>
-<hr />
-<div class="choisirquiz">
-    <fieldset *ngFor="let quiz of quizListDisplayed" class="quiz">
+<hr/>
+<div class="choisirquiz container flex-row d-flex col">
+
+    <div *ngFor="let quiz of quizListDisplayed" class="container card col">
+
         <legend>{{quiz.name}}</legend>
         <div>{{quiz.questionCount}} questions</div>
         <div>Difficult&eacute; {{quiz.difficulty}}</div>
@@ -51,5 +62,7 @@
         <div class="epsilon">
             <button class="btn btn-secondary" routerLink="/play/{{quiz.id}}">Faire le quiz</button>
         </div>
-    </fieldset>
+
+
+    </div>
 </div>

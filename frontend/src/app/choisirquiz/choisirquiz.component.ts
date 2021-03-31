@@ -19,6 +19,8 @@ export class ChoisirQuizComponent implements OnInit
     public listdifficulte: string[] = ["Peu importe", ">=1", ">=2", ">=3", ">=4", ">=5"];
     public listnbquestions: string[] = ["Peu importe", "Peu", "Moyen", "Beaucoup"];
     public listThemes: QuizTheme[];
+    //to collapse filters
+    public isCollapsed = true;
 
     constructor(public quizService: QuizService, public formBuilder: FormBuilder)
     {
