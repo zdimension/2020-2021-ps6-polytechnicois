@@ -6,8 +6,8 @@ import { QuizTheme } from "../../models/quiztheme.model";
 
 @Component({
     selector: "app-choisirquiz",
-    templateUrl: "./choisirquiz.component.html"/*,
-    styleUrls: ["./user.component.scss"]*/
+    templateUrl: "./choisirquiz.component.html",
+    styleUrls: ["./choisirquiz.component.scss"]
 })
 export class ChoisirQuizComponent implements OnInit
 {

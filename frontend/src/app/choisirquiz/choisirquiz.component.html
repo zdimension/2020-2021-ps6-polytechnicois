@@ -48,6 +48,8 @@
         <div>{{quiz.questionCount}} questions</div>
         <div>Difficult&eacute; {{quiz.difficulty}}</div>
         {{quiz.theme.name}}
-        <button routerLink="/play/{{quiz.id}}">Faire le quiz</button>
+        <div class="epsilon">
+            <button class="btn btn-secondary" routerLink="/play/{{quiz.id}}">Faire le quiz</button>
+        </div>
     </fieldset>
 </div>
