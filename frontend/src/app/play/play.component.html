@@ -10,22 +10,23 @@
     <div id="mainplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5">
         <div id="playingheader" class="justify-content-between flex-row d-flex">
             <div>
-                <span>{{quiz.name}}</span>
+                <span>{{quizname}}</span>
             </div>
             <div>
-                <span>Question {{numquestion}} sur {{quiz.questions.length}}</span>
+                <span>Question {{numquestion}} sur {{questionCount}}</span>
             </div>
-            <div class="Stars">
+            <div>
+                <span>Difficult&eacute;: {{quizdifficulty}}/5</span>
             </div>
         </div>
         <div id="playingcard" class="justify-content-between flex-row d-flex row">
             <div id="playingquestion" class="container col d-flex align-items-center justify-content-center">
-                {{quiz.questions[0].label}}
+                {{questionlabel}}
             </div>
 
             <div class="epsilon container col">
                 <div id="playinganswer" class="p-3">
-                    <button class="btn btn-secondary" *ngFor="let answer of quiz.questions[0].answers; let i=index;" (click)="reponseCliquee(i)">
+                    <button class="btn btn-secondary" *ngFor="let answer of answersDisplayed; let i=index;" (click)="reponseCliquee(i)">
                         {{answer}}
                     </button>
                 </div>
