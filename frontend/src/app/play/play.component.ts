@@ -35,5 +35,6 @@ export class PlayComponent implements OnInit
         } else {
             console.log("T'es nul vieux crouton !!");
         }
+        this.quiz.questions[0].answers=[this.quiz.questions[0].answers[this.quiz.questions[0].correctAnswer]];
     }
 }
