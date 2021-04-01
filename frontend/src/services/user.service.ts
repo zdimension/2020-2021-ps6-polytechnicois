@@ -39,7 +39,6 @@ export class UserService
         {
             this.user = tickets.user;
             this.user$.next(tickets.user);
-            console.log(this.user);
         });
     }
 }

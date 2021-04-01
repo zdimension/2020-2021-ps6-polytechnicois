@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { UserService } from "../../services/user.service";
+import { User } from "../../models/user.model";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-accueil",
@@ -11,13 +13,23 @@ export class AccueilComponent implements OnInit
 {
 
     public loginForm: FormGroup;
+    public user: User=null;
 
-    constructor(public formBuilder: FormBuilder, public userService: UserService)
+    constructor(public formBuilder: FormBuilder, public userService: UserService, private router: Router)
     {
         this.loginForm = this.formBuilder.group({
             login: [""],
             pass: [""],
             souvenir: new FormControl(true)
+        });
+
+        this.userService.user$.subscribe((user) =>
+        {
+            this.user = user;
+            if(this.user != null) {
+                this.router.navigate(['/connecte']);
+            }
+            return;
         });
     }
 
