@@ -36,7 +36,7 @@ export class UserFormComponent implements OnInit
 
     addUser(): void
     {
-        // We retrieve here the user object from the userForm and we cast the type "as User".
+        /*// We retrieve here the user object from the userForm and we cast the type "as User".
         const userToCreate = this.userForm.getRawValue() as User;
         userToCreate.createdAt = new Date(Date.now());
         userToCreate.id = this.userService.getFirstUnusedId();
@@ -47,6 +47,6 @@ export class UserFormComponent implements OnInit
         console.log("Add user: ", userToCreate);
 
         // Now, add your user in the list!
-        this.userService.addUser(userToCreate);
+        this.userService.addUser(userToCreate);*/
     }
 }

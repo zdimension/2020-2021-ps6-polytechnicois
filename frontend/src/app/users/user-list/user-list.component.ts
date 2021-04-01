@@ -14,10 +14,10 @@ export class UserListComponent implements OnInit
 
     constructor(public userService: UserService)
     {
-        this.userService.users$.subscribe((user) =>
+        /*this.userService.users$.subscribe((user) =>
         {
             return this.userList = user;
-        });
+        });*/
     }
 
     ngOnInit(): void
@@ -32,7 +32,7 @@ export class UserListComponent implements OnInit
     deleteUser(userService: User): void
     {
         console.log(userService);
-        this.userService.deleteUser(userService);
+        //this.userService.deleteUser(userService);
     }
 
 }
