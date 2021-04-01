@@ -5,8 +5,8 @@
             <div class="epsilon">
                 <button class="btn btn-lg btn-azure col my-3" routerLink="/choisirquiz">Faire quiz
                 </button>
-                <button class="btn btn-lg  btn-azure col my-3" routerLink="/score">Score</button>
-                <button class="btn btn-lg btn-azure col my-3" routerLink="/editquiz">G&eacute;rer quiz
+                <button class="btn btn-lg btn-azure col my-3" routerLink="/score" *ngIf="autonomous">Score</button>
+                <button class="btn btn-lg btn-azure col my-3" routerLink="/editquiz" *ngIf="autonomous">G&eacute;rer quiz
                 </button>
             </div>
         </div>
