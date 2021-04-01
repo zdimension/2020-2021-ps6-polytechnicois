@@ -12,11 +12,14 @@ export class ConnecteComponent implements OnInit
 {
 
     public user: User;
+    public autonomous: boolean=true;
+
     constructor(public userService: UserService, private router: Router)
     {
         this.userService.user$.subscribe((user) =>
         {
             this.user = user;
+            this.autonomous = this.user.role != 1;
             if(this.user == null) {
                 this.router.navigate(['/accueil']);
                 return;

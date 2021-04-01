@@ -8,7 +8,14 @@ html {
 body {
   margin: 0;
   background-color: $app-background-color;
+  height: 100vh;
+  overflow:hidden;
 }
+
+app-root > div {
+  height: 100%;
+}
+
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
