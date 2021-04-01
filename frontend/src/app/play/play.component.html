@@ -25,7 +25,7 @@
             <img *ngIf="urlImage != null" [src]="urlImage" />
             <div class="epsilon container col">
                 <div id="playinganswer" class="p-3">
-                    <button class="btn btn-secondary" *ngFor="let answer of answersDisplayed; let i=index;" [disabled]="!firstStage && i != correctAnswer" (click)="reponseCliquee(i)">
+                    <button class="btn btn-azure" *ngFor="let answer of answersDisplayed; let i=index;" [disabled]="!firstStage && i != correctAnswer" (click)="reponseCliquee(i)">
                         {{answer}}
                     </button>
                 </div>
