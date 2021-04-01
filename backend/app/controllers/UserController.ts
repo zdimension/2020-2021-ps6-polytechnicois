@@ -155,7 +155,7 @@ export default class UserController
         {
             throw new UnauthorizedError("Only administrators can update a user's role");
         }
-        
+
         return await current.update(user);
     }
 

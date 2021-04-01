@@ -14,7 +14,9 @@ export default class DBService
         logger.info("Inserting sample data...");
 
         await User.bulkCreate([
-            { name: "admin", password: "polyquiz", role: UserRole.Admin }
+            { name: "admin", password: "polyquiz", role: UserRole.Admin },
+            { name: "josette", password: "polyquiz", role: UserRole.NonAutonomous },
+            { name: "philippe", password: "polyquiz", role: UserRole.Regular },
         ]);
 
         const themes = await QuizTheme.bulkCreate([
