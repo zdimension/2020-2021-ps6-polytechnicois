@@ -34,7 +34,7 @@ export class UserService
     connexion(name: string, password: string): void
     {
         this.http.post<UserToken>(this.dataURL.toString() + "login", {name, password}).pipe(
-            catchError(this.handleError)
+            catchError((e)=>this.handleError(e))
         ).subscribe((tickets) =>
         {
             this.user = tickets.user;
