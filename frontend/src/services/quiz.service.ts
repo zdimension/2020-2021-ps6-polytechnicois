@@ -4,6 +4,9 @@ import { Quiz } from "../models/quiz.model";
 import { HttpClient } from "@angular/common/http";
 import { Question } from "../models/question.model";
 import { QuizTheme } from "../models/quiztheme.model";
+import { UserService } from "./user.service";
+import { Router } from "@angular/router";
+import { User } from "../models/user.model";
 
 @Injectable({
     providedIn: "root"
@@ -22,11 +25,20 @@ export class QuizService
     public themes$ = new BehaviorSubject(this.themes);
 
     private dataURL = new URL("http://localhost:9428/");
+    public user: User;
 
-    constructor(private http: HttpClient)
+    constructor(private http: HttpClient, public userService: UserService, private router: Router)
     {
         this.getQuizzes();
         this.getThemes();
+        this.userService.user$.subscribe((user) =>
+        {
+            this.user = user;
+            if(this.user == null) {
+                this.router.navigate(['/accueil']);
+            }
+            return;
+        });
     }
 
     addQuiz(quiz: Quiz): void

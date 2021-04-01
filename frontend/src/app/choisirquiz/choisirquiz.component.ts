@@ -3,6 +3,9 @@ import { Quiz } from "../../models/quiz.model";
 import { QuizService } from "../../services/quiz.service";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { QuizTheme } from "../../models/quiztheme.model";
+import { UserService } from "../../services/user.service";
+import { Router } from "@angular/router";
+import { User } from "../../models/user.model";
 
 @Component({
     selector: "app-choisirquiz",
@@ -21,8 +24,9 @@ export class ChoisirQuizComponent implements OnInit
     public listThemes: QuizTheme[];
     //to collapse filters
     public isCollapsed = true;
+    public user: User;
 
-    constructor(public quizService: QuizService, public formBuilder: FormBuilder)
+    constructor(public quizService: QuizService, public formBuilder: FormBuilder, public userService: UserService, private router: Router)
     {
         this.quizService.quizzes$.subscribe((quiz) =>
         {
@@ -40,6 +44,14 @@ export class ChoisirQuizComponent implements OnInit
         });
         this.quizService.themes$.subscribe((themes) => {
             return this.listThemes = themes;
+        });
+        this.userService.user$.subscribe((user) =>
+        {
+            this.user = user;
+            if(this.user == null) {
+                this.router.navigate(['/accueil']);
+            }
+            return;
         });
     }
 
