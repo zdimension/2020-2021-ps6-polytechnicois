@@ -1,6 +1,6 @@
 <div>
     <div class="epsilon container d-flex justify-content-center">
-        <button class="btn btn-primary" type="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+        <button id="filters" class="btn btn-yellow" type="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
                 aria-controls="collapseExample">
             Filtres
         </button>
@@ -60,7 +60,7 @@
         <div>Difficult&eacute; {{quiz.difficulty}}</div>
         {{quiz.theme.name}}
         <div class="epsilon">
-            <button class="btn btn-secondary" routerLink="/play/{{quiz.id}}">Faire le quiz</button>
+            <button class="btn btn-azure" routerLink="/play/{{quiz.id}}">Faire le quiz</button>
         </div>
 
 
