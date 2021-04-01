@@ -28,6 +28,7 @@ import { ChoisirQuizComponent } from "./choisirquiz/choisirquiz.component";
 import { PlayComponent } from "./play/play.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AuthInterceptor } from "../interceptors/auth.interceptor";
+import { ErrorInterceptor } from "../interceptors/error.interceptor";
 
 @NgModule({
     declarations: [
@@ -63,6 +64,11 @@ import { AuthInterceptor } from "../interceptors/auth.interceptor";
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
             multi: true
         }
     ],

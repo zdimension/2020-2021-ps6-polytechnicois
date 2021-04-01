@@ -47,6 +47,6 @@ export class AccueilComponent implements OnInit
         console.log("Try to connect");
         let login=this.loginForm.get('login').value;
         let pass=this.loginForm.get('pass').value;
-        this.userService.connexion(login, pass);
+        this.userService.login(login, pass);
     }
 }

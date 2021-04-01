@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit
 
     deconnexion(): void
     {
-        this.userService.deconnexion();
+        this.userService.logout();
     }
 
 }

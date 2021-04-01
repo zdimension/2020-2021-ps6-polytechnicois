@@ -15,12 +15,11 @@ import { ChoisirQuizComponent } from "./choisirquiz/choisirquiz.component";
 import { PlayComponent } from "./play/play.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/accueil", pathMatch: "full" }, // Rediriger vers accueil
     { path: "quiz-list", component: QuizListComponent },
     { path: "edit-quiz/:id", component: EditQuizComponent },
     { path: "question-quiz/:id", component: QuestionList },
     { path: "user-list", component: UserListComponent },
-    { path: "accueil", component: AccueilComponent },
+    { path: "", component: AccueilComponent },
     { path: "creationcompte", component: CreationCompteComponent },
     { path: "connecte", component: ConnecteComponent },
     { path: "gestion", component: GestionComponent },

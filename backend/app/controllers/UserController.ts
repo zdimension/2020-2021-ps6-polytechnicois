@@ -98,9 +98,9 @@ export default class UserController
     };*/
 
     @Post("/login")
-    async login(@Body() user: { name: string; password: string })
+    async login(@Body() query: { name: string; password: string })
     {
-        const { name, password } = user;
+        const { name, password } = query;
 
         if (name && password)
         {
@@ -122,7 +122,7 @@ export default class UserController
                 {
                     const token = new AuthService().issue({ id: user.id });
 
-                    return { token, user };
+                    return { ...user.toJSON(), token };
                 }
 
                 throw new UnauthorizedError();

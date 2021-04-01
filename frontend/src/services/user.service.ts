@@ -3,8 +3,9 @@ import { BehaviorSubject, throwError } from "rxjs";
 import { User } from "../models/user.model";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Quiz } from "../models/quiz.model";
-import { catchError } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 import { BaseModel } from "../models/base.model";
+import { Observable } from "rxjs/Rx";
 
 
 @Injectable({
@@ -18,12 +19,7 @@ export class UserService
 
     public user$ = new BehaviorSubject(this.user);
     public errorConnect$ = new BehaviorSubject(this.errorConnect);
-    private dataURL = new URL("http://localhost:9428/auth/");
-
-
-    constructor(private http: HttpClient)
-    {
-    }
+    private dataURL = new URL("http://localhost:9428/auth");
 
     private handleError(error: HttpErrorResponse)
     {
@@ -34,8 +30,13 @@ export class UserService
         return throwError("Can't finish operation");
     }
 
+    loggedIn(): boolean
+    {
+        return localStorage.getItem("token") !== null;
+    }
 
-    connexion(name: string, password: string): void
+
+    /*login(name: string, password: string): void
     {
         this.errorConnect=false;
         this.errorConnect$.next(this.errorConnect);
@@ -50,19 +51,19 @@ export class UserService
             }
             this.user$.next(this.user);
         });
-    }
+    }*/
 
     updateUser(): void
     {
-        this.http.patch(this.dataURL.toString() + "me/", this.user).subscribe();
+        this.http.patch(`${this.dataURL}/me/`, this.user).subscribe();
     }
 
-    deconnexion(): void
+    /*logout(): void
     {
         localStorage.removeItem("token");
         this.user=null;
         this.user$.next(this.user);
-    }
+    }*/
 
     changeFont(p: boolean): void
     {
@@ -81,13 +82,41 @@ export class UserService
             this.user.fontSize--;
         }
         this.user$.next(this.user);
-        this.http.patch(this.dataURL.toString() + "me", {fontSize: this.user.fontSize}).subscribe();
+        this.http.patch(`${this.dataURL}/me/`, {fontSize: this.user.fontSize}).subscribe();
         //this.updateUser();
     }
-}
 
-export interface UserToken
-{
-    token: string;
-    user: User;
+
+
+
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
+
+    constructor(private http: HttpClient)
+    {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("currentUser")));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
+
+    public get currentUserValue(): User
+    {
+        return this.currentUserSubject.value;
+    }
+
+    login(username: string, password: string)
+    {
+        return this.http.post<any>(`${this.dataURL}/login/`, { username, password })
+            .pipe(map(user =>
+            {
+                localStorage.setItem("currentUser", JSON.stringify(user));
+                this.currentUserSubject.next(user);
+                return user;
+            }));
+    }
+
+    logout()
+    {
+        localStorage.removeItem("currentUser");
+        this.currentUserSubject.next(null);
+    }
 }
