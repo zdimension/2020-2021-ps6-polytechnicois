@@ -14,11 +14,7 @@ export class HeaderComponent implements OnInit
 
     constructor(public userService: UserService, private router: Router)
     {
-        this.userService.user$.subscribe((user) =>
-        {
-            this.user = user;
-            return;
-        });
+        this.userService.currentUser.subscribe((user) => this.user = user);
     }
 
     ngOnInit(): void
@@ -33,6 +29,7 @@ export class HeaderComponent implements OnInit
     deconnexion(): void
     {
         this.userService.logout();
+        this.router.navigate(["/connexion"]);
     }
 
 }

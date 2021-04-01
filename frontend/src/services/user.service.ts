@@ -1,10 +1,8 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, throwError } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { User } from "../models/user.model";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Quiz } from "../models/quiz.model";
-import { catchError, map } from "rxjs/operators";
-import { BaseModel } from "../models/base.model";
+import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/operators";
 import { Observable } from "rxjs/Rx";
 
 
@@ -14,14 +12,14 @@ import { Observable } from "rxjs/Rx";
 
 export class UserService
 {
-    public user: User=null;
+    /*public user: User=null;
     public errorConnect: boolean = false;
 
     public user$ = new BehaviorSubject(this.user);
-    public errorConnect$ = new BehaviorSubject(this.errorConnect);
+    public errorConnect$ = new BehaviorSubject(this.errorConnect);*/
     private dataURL = new URL("http://localhost:9428/auth");
 
-    private handleError(error: HttpErrorResponse)
+    /*private handleError(error: HttpErrorResponse)
     {
         this.user=null;
         this.user$.next(this.user);
@@ -33,7 +31,7 @@ export class UserService
     loggedIn(): boolean
     {
         return localStorage.getItem("token") !== null;
-    }
+    }*/
 
 
     /*login(name: string, password: string): void
@@ -53,10 +51,10 @@ export class UserService
         });
     }*/
 
-    updateUser(): void
+    /*updateUser(): void
     {
         this.http.patch(`${this.dataURL}/me/`, this.user).subscribe();
-    }
+    }*/
 
     /*logout(): void
     {
@@ -65,7 +63,7 @@ export class UserService
         this.user$.next(this.user);
     }*/
 
-    changeFont(p: boolean): void
+    /*changeFont(p: boolean): void
     {
         if(this.user == null) {
             return;
@@ -83,9 +81,39 @@ export class UserService
         }
         this.user$.next(this.user);
         this.http.patch(`${this.dataURL}/me/`, {fontSize: this.user.fontSize}).subscribe();
+    }*/
+
+    public get user(): User
+    {
+        return this.currentUserSubject.value;
     }
 
+    changeFont(p: boolean): void
+    {
+        if (this.user == null)
+        {
+            return;
+        }
 
+        if (p)
+        {
+            if (this.user.fontSize >= 10)
+            {
+                return;
+            }
+            this.user.fontSize++;
+        }
+        else
+        {
+            if (this.user.fontSize <= 1)
+            {
+                return;
+            }
+            this.user.fontSize--;
+        }
+        this.currentUserSubject.next(this.user);
+        this.http.patch(`${this.dataURL}/me/`, { fontSize: this.user.fontSize }).subscribe();
+    }
 
 
     private currentUserSubject: BehaviorSubject<User>;
@@ -104,7 +132,7 @@ export class UserService
 
     login(username: string, password: string)
     {
-        return this.http.post<any>(`${this.dataURL}/login/`, { username, password })
+        return this.http.post<User>(`${this.dataURL}/login/`, { username, password })
             .pipe(map(user =>
             {
                 localStorage.setItem("currentUser", JSON.stringify(user));

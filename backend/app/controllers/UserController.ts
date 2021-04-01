@@ -98,24 +98,24 @@ export default class UserController
     };*/
 
     @Post("/login")
-    async login(@Body() query: { name: string; password: string })
+    async login(@Body() query: { username: string; password: string })
     {
-        const { name, password } = query;
+        const { username, password } = query;
 
-        if (name && password)
+        if (username && password)
         {
             try
             {
                 const user = await User
                     .findOne({
                         where: {
-                            name,
+                            name: username,
                         },
                     });
 
                 if (!user)
                 {
-                    throw new BadRequestError("User not found");
+                    throw new UnauthorizedError("Utilisateur non trouvé");
                 }
 
                 if (new BcryptService().comparePassword(password, user.password))
@@ -125,7 +125,7 @@ export default class UserController
                     return { ...user.toJSON(), token };
                 }
 
-                throw new UnauthorizedError();
+                throw new UnauthorizedError("Nom d'utilisateur ou mot de passe incorrect");
             }
             catch (err)
             {
@@ -138,8 +138,6 @@ export default class UserController
                 }
             }
         }
-
-        throw new BadRequestError("Username or password is wrong");
     }
 
     @Get("/me")
@@ -153,7 +151,7 @@ export default class UserController
     {
         if (current.role != UserRole.Admin && user.role)
         {
-            throw new UnauthorizedError("Only administrators can update a user's role");
+            throw new UnauthorizedError("Seul un administrateur peut gérer les rôles");
         }
 
         return await current.update(user);

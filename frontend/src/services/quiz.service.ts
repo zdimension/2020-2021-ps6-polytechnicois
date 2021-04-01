@@ -31,14 +31,7 @@ export class QuizService
     {
         this.getQuizzes();
         this.getThemes();
-        this.userService.user$.subscribe((user) =>
-        {
-            this.user = user;
-            if(this.user == null) {
-                this.router.navigate(['/accueil']);
-            }
-            return;
-        });
+        this.userService.currentUser.subscribe((user) => this.user = user);
     }
 
     addQuiz(quiz: Quiz): void

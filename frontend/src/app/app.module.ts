@@ -18,9 +18,9 @@ import { UserComponent } from "./users/user/user.component";
 import { UserFormComponent } from "./users/user-form/user-form.component";
 import { UserListComponent } from "./users/user-list/user-list.component";
 
-import { AccueilComponent } from "./accueil/accueil.component";
+import { ConnexionComponent } from "./connexion/connexion.component";
 import { CreationCompteComponent } from "./creationcompte/creationcompte.component";
-import { ConnecteComponent } from "./connecte/connecte.component";
+import { AccueilComponent } from "./accueil/accueil.component";
 import { GestionComponent } from "./gestion/gestion.component";
 import { ScoreComponent } from "./score/score.component";
 import { CreationQuizComponent } from "./creationquiz/creationquiz.component";
@@ -44,9 +44,9 @@ import { ErrorInterceptor } from "../interceptors/error.interceptor";
         UserComponent,
         UserFormComponent,
         UserListComponent,
-        AccueilComponent,
+        ConnexionComponent,
         CreationCompteComponent,
-        ConnecteComponent,
+        AccueilComponent,
         GestionComponent,
         ScoreComponent,
         CreationQuizComponent,

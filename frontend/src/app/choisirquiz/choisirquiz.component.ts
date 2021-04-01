@@ -45,14 +45,7 @@ export class ChoisirQuizComponent implements OnInit
         this.quizService.themes$.subscribe((themes) => {
             return this.listThemes = themes;
         });
-        this.userService.user$.subscribe((user) =>
-        {
-            this.user = user;
-            if(this.user == null) {
-                this.router.navigate(['/accueil']);
-            }
-            return;
-        });
+        this.userService.currentUser.subscribe((user) => this.user = user);
     }
 
     ngOnInit(): void
