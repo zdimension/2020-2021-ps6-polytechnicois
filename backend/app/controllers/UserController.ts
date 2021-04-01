@@ -17,99 +17,49 @@ import BcryptService from "../services/BcryptService";
 @JsonController("/auth")
 export default class UserController
 {
-    /*async register()
+    private static logUser(user: User)
     {
-        const { body } = req;
+        const token = new AuthService().issue({ id: user.id });
 
+        return { ...user.toJSON(), token };
+    }
+
+    @Post("/register")
+    async register(@Body() body: { username: string; password: string, password2: string, autonomous: boolean })
+    {
         if (body.password === body.password2)
         {
             try
             {
                 const user = await User.create({
-                    name: body.name,
+                    name: body.username,
                     password: body.password,
+                    role: body.autonomous ? UserRole.Regular : UserRole.NonAutonomous
                 });
-                const token = new AuthService().issue({ id: user.id });
 
-                return res.status(200).json({ token, user });
+                return UserController.logUser(user);
             }
             catch (err)
             {
                 console.log(err);
-                return res.status(500).json({ msg: "Internal server error" });
+                throw new InternalServerError(err);
             }
         }
 
-        return res.status(400).json({ msg: "Bad Request: Passwords don't match" });
+        throw new BadRequestError("Les mots de passe ne correspondent pas");
     };
-
-    async login()
-    {
-        const { name, password } = req.body;
-
-        if (name && password)
-        {
-            try
-            {
-                const user = await User
-                    .findOne({
-                        where: {
-                            name,
-                        },
-                    });
-
-                if (!user)
-                {
-                    return res.status(400).json({ msg: "Bad Request: User not found" });
-                }
-
-                if (new BcryptService().comparePassword(password, user.password))
-                {
-                    const token = new AuthService().issue({ id: user.id });
-
-                    return res.status(200).json({ token, user });
-                }
-
-                return res.status(401).json({ msg: "Unauthorized" });
-            }
-            catch (err)
-            {
-                console.log(err);
-                return res.status(500).json({ msg: "Internal server error" });
-            }
-        }
-
-        return res.status(400).json({ msg: "Bad Request: Email or password is wrong" });
-    };
-
-    async validate()
-    {
-        const { token } = req.body;
-
-        new AuthService().verify(token, (err) =>
-        {
-            if (err)
-            {
-                return res.status(401).json({ isvalid: false, err: "Invalid Token!" });
-            }
-
-            return res.status(200).json({ isvalid: true });
-        });
-    };*/
 
     @Post("/login")
     async login(@Body() query: { username: string; password: string })
     {
-        const { username, password } = query;
-
-        if (username && password)
+        if (query.username && query.password)
         {
             try
             {
                 const user = await User
                     .findOne({
                         where: {
-                            name: username,
+                            name: query.username,
                         },
                     });
 
@@ -118,11 +68,9 @@ export default class UserController
                     throw new UnauthorizedError("Utilisateur non trouvé");
                 }
 
-                if (new BcryptService().comparePassword(password, user.password))
+                if (new BcryptService().comparePassword(query.password, user.password))
                 {
-                    const token = new AuthService().issue({ id: user.id });
-
-                    return { ...user.toJSON(), token };
+                    return UserController.logUser(user);
                 }
 
                 throw new UnauthorizedError("Nom d'utilisateur ou mot de passe incorrect");

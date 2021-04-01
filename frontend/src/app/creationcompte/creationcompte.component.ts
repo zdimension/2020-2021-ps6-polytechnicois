@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UserService } from "../../services/user.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { first } from "rxjs/operators";
 
 @Component({
     selector: "app-creationcompte",
@@ -8,25 +11,56 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 })
 export class CreationCompteComponent implements OnInit
 {
-    public createAccountForm: FormGroup;
+    registerForm: FormGroup;
+    loading = false;
+    submitted = false;
+    returnUrl: string;
+    error = "";
 
-    typeQuestions: string[] = ["Toutes", "Textuelles seulement", "Textuelles seulement"];
-
-    constructor(public formBuilder: FormBuilder)
+    constructor(
+        private formBuilder: FormBuilder,
+        private userService: UserService,
+        private router: Router,
+        private route: ActivatedRoute)
     {
-        this.createAccountForm = this.formBuilder.group({
-            login: [""],
-            pass: [""],
-            pass2: [""],
-            typequiz: new FormControl(this.typeQuestions[0])
-        });
+        if (this.userService.currentUserValue)
+        {
+            this.router.navigate(["/"]);
+        }
     }
 
     ngOnInit(): void
     {
+        this.registerForm = this.formBuilder.group({
+            username: ["", Validators.required],
+            password: ["", Validators.required],
+            password2: ["", Validators.required],
+            autonomous: new FormControl(true)
+        });
+
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    createAccount(): void {
-        console.log("Create account");
+    get f() { return this.registerForm.controls; }
+
+    onSubmit(): void
+    {
+        this.submitted = true;
+
+        if (this.registerForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+        this.userService.register(this.registerForm.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
     }
 }

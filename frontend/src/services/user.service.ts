@@ -132,7 +132,18 @@ export class UserService
 
     login(username: string, password: string)
     {
-        return this.http.post<User>(`${this.dataURL}/login/`, { username, password })
+        return this.http.post<User>(`${this.dataURL}/login`, { username, password })
+            .pipe(map(user =>
+            {
+                localStorage.setItem("currentUser", JSON.stringify(user));
+                this.currentUserSubject.next(user);
+                return user;
+            }));
+    }
+
+    register(user: { username: string; password: string, password2: string, autonomous: boolean })
+    {
+        return this.http.post<User>(`${this.dataURL}/register`, user)
             .pipe(map(user =>
             {
                 localStorage.setItem("currentUser", JSON.stringify(user));

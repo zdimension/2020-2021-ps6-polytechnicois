@@ -6,8 +6,7 @@ import { first } from "rxjs/operators";
 
 @Component({
     selector: "app-connexion",
-    templateUrl: "./connexion.component.html",
-    styleUrls: ["./connexion.component.scss"]
+    templateUrl: "./connexion.component.html"
 })
 export class ConnexionComponent implements OnInit
 {
