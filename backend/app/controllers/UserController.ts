@@ -148,7 +148,7 @@ export default class UserController
         return current;
     }
 
-    @Patch("/update")
+    @Patch("/me")
     async update(@CurrentUser() current: User, @Body() user: { password?: string, highContrast?: boolean, fontSize?: number, role?: UserRole })
     {
         if (current.role != UserRole.Admin && user.role)

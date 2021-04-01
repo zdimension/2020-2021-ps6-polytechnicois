@@ -43,6 +43,7 @@ export class UserService
             catchError((e)=>this.handleError(e))
         ).subscribe((tickets) =>
         {
+            localStorage.setItem("token", tickets.token);
             this.user = tickets.user;
             if(this.user == undefined) {
                 this.user=null;
@@ -53,11 +54,12 @@ export class UserService
 
     updateUser(): void
     {
-        this.http.patch(this.dataURL.toString() + "update/", this.user);
+        this.http.patch(this.dataURL.toString() + "me/", this.user).subscribe();
     }
 
     deconnexion(): void
     {
+        localStorage.removeItem("token");
         this.user=null;
         this.user$.next(this.user);
     }
@@ -79,12 +81,12 @@ export class UserService
             this.user.fontSize--;
         }
         this.user$.next(this.user);
-        //this.http.patch(this.dataURL.toString() + "update/", this.user.fontSize);
+        this.http.patch(this.dataURL.toString() + "me", {fontSize: this.user.fontSize}).subscribe();
         //this.updateUser();
     }
 }
 
-export interface UserToken extends BaseModel
+export interface UserToken
 {
     token: string;
     user: User;

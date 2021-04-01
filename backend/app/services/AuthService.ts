@@ -11,6 +11,8 @@ export default class AuthService
 
     verify(token)
     {
+        if (token.startsWith("Bearer "))
+            token = token.substring(7);
         return jwt.verify(token, secret);
     }
 }
