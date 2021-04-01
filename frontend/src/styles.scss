@@ -12,5 +12,10 @@ body {
   overflow:hidden;
 }
 
+app-root > div {
+  height: 100%;
+}
+
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
