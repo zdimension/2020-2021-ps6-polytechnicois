@@ -1,50 +1,50 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, throwError } from "rxjs";
 import { User } from "../models/user.model";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Quiz } from "../models/quiz.model";
+import { catchError } from "rxjs/operators";
+import { BaseModel } from "../models/base.model";
 
 
 @Injectable({
     providedIn: "root"
 })
+
 export class UserService
 {
-    /**
-     * The list of quiz.
-     * The list is retrieved from the mock.
-     */
-    private users: User[] = [];
+    private user: User=null;
 
-    /**
-     * Observable which contains the list of the quiz.
-     * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
-     */
-    public users$ = new BehaviorSubject(this.users);
+    public user$ = new BehaviorSubject(this.user);
+    private dataURL = new URL("http://localhost:9428/auth/");
 
-    constructor()
+
+    constructor(private http: HttpClient)
     {
     }
 
-    addUser(user: User): void
+    private handleError(error: HttpErrorResponse)
     {
-        this.users.push(user);
-        // You need here to update the list of quiz and then update our observable (Subject) with the new list
-        // More info: https://angular.io/tutorial/toh-pt6#the-searchterms-rxjs-subject
+        this.user=null;
+        this.user$=null;
+        return throwError("Can't finish operation");
     }
 
-    deleteUser(user: User): void
-    {
-        const index = this.users.findIndex((element) => element === user);
-        this.users.splice(index, 1);
-    }
 
-    getFirstUnusedId(): string
+    connexion(name: string, password: string): void
     {
-        if (this.users.length === 0)
-            return "0";
-        // tslint:disable-next-line:only-arrow-functions typedef
-        Math.max.apply(Math, this.users.map(function(o)
+        this.http.post<UserToken>(this.dataURL.toString() + "login", {name, password}).pipe(
+            catchError(this.handleError)
+        ).subscribe((tickets) =>
         {
-            return o.id + 1;
-        }));
+            this.user = tickets.user;
+            this.user$.next(tickets.user);
+        });
     }
+}
+
+export interface UserToken extends BaseModel
+{
+    token: string;
+    user: User;
 }
