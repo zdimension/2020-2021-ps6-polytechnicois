@@ -14,6 +14,7 @@ export class AccueilComponent implements OnInit
 
     public loginForm: FormGroup;
     public user: User=null;
+    public errorConnect: boolean=false;
 
     constructor(public formBuilder: FormBuilder, public userService: UserService, private router: Router)
     {
@@ -29,6 +30,11 @@ export class AccueilComponent implements OnInit
             if(this.user != null) {
                 this.router.navigate(['/connecte']);
             }
+            return;
+        });
+        this.userService.errorConnect$.subscribe((e) =>
+        {
+            this.errorConnect=e;
             return;
         });
     }

@@ -14,8 +14,10 @@ import { BaseModel } from "../models/base.model";
 export class UserService
 {
     public user: User=null;
+    public errorConnect: boolean = false;
 
     public user$ = new BehaviorSubject(this.user);
+    public errorConnect$ = new BehaviorSubject(this.errorConnect);
     private dataURL = new URL("http://localhost:9428/auth/");
 
 
@@ -27,12 +29,16 @@ export class UserService
     {
         this.user=null;
         this.user$.next(this.user);
+        this.errorConnect=true;
+        this.errorConnect$.next(this.errorConnect);
         return throwError("Can't finish operation");
     }
 
 
     connexion(name: string, password: string): void
     {
+        this.errorConnect=false;
+        this.errorConnect$.next(this.errorConnect);
         this.http.post<UserToken>(this.dataURL.toString() + "login", {name, password}).pipe(
             catchError((e)=>this.handleError(e))
         ).subscribe((tickets) =>
@@ -48,6 +54,25 @@ export class UserService
     deconnexion(): void
     {
         this.user=null;
+        this.user$.next(this.user);
+    }
+
+    changeFont(p: boolean): void
+    {
+        if(this.user == null) {
+            return;
+        }
+        if(p) {
+            if(this.user.fontSize >= 10) {
+                return;
+            }
+            this.user.fontSize++;
+        } else {
+            if(this.user.fontSize <= 1) {
+                return;
+            }
+            this.user.fontSize--;
+        }
         this.user$.next(this.user);
     }
 }
