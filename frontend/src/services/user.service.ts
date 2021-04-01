@@ -82,7 +82,6 @@ export class UserService
         }
         this.user$.next(this.user);
         this.http.patch(this.dataURL.toString() + "me", {fontSize: this.user.fontSize}).subscribe();
-        //this.updateUser();
     }
 }
 
