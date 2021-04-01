@@ -27,7 +27,7 @@ export class AccueilComponent implements OnInit
         this.userService.user$.subscribe((user) =>
         {
             this.user = user;
-            if(this.user != null) {
+            if(this.user != null && this.router.url === "/accueil") {
                 this.router.navigate(['/connecte']);
             }
             return;

@@ -19,7 +19,9 @@ export class ConnecteComponent implements OnInit
             this.user = user;
             if(this.user == null) {
                 this.router.navigate(['/accueil']);
+                return;
             }
+            console.log(this.user.fontSize);
             return;
         });
     }

@@ -65,7 +65,6 @@ export class ChoisirQuizComponent implements OnInit
         {
             this.quizService.getQuizById(quiz.id).subscribe(q => {
                 quiz.questions = q.questions;
-                console.log(q);
             });
         }
         this.quizListDisplayed=this.quizList;

@@ -51,6 +51,11 @@ export class UserService
         });
     }
 
+    updateUser(): void
+    {
+        this.http.patch(this.dataURL.toString() + "update/", this.user);
+    }
+
     deconnexion(): void
     {
         this.user=null;
@@ -74,6 +79,8 @@ export class UserService
             this.user.fontSize--;
         }
         this.user$.next(this.user);
+        //this.http.patch(this.dataURL.toString() + "update/", this.user.fontSize);
+        //this.updateUser();
     }
 }
 
