@@ -17,7 +17,7 @@ export class ConnecteComponent implements OnInit
         this.userService.user$.subscribe((user) =>
         {
             this.user = user;
-            console.log("here");
+            console.log("connecte"+user);
             if(this.user == null) {
                 this.router.navigate(['/accueil']);
             }

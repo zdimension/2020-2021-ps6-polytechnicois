@@ -13,7 +13,7 @@ import { BaseModel } from "../models/base.model";
 
 export class UserService
 {
-    private user: User=null;
+    public user: User=null;
 
     public user$ = new BehaviorSubject(this.user);
     private dataURL = new URL("http://localhost:9428/auth/");
@@ -26,7 +26,7 @@ export class UserService
     private handleError(error: HttpErrorResponse)
     {
         this.user=null;
-        this.user$=null;
+        this.user$.next(this.user);
         return throwError("Can't finish operation");
     }
 
@@ -38,7 +38,10 @@ export class UserService
         ).subscribe((tickets) =>
         {
             this.user = tickets.user;
-            this.user$.next(tickets.user);
+            if(this.user == undefined) {
+                this.user=null;
+            }
+            this.user$.next(this.user);
         });
     }
 

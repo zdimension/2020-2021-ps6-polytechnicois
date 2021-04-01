@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit
 
     constructor(public userService: UserService)
     {
+        console.log("constr")
         this.userService.user$.subscribe((user) =>
         {
             this.user = user;
