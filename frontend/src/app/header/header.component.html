@@ -1,4 +1,7 @@
 <div class="header">
+    <div style="float: left;" *ngIf="user!=null">
+        <button (click)="deconnexion()">D&eacute;connexion</button>
+    </div>
     Polyquiz
     <div style="float: right;">
         Changer la taille de police

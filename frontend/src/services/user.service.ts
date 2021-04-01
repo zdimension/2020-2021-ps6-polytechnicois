@@ -41,6 +41,12 @@ export class UserService
             this.user$.next(tickets.user);
         });
     }
+
+    deconnexion(): void
+    {
+        this.user=null;
+        this.user$.next(this.user);
+    }
 }
 
 export interface UserToken extends BaseModel
