@@ -28,8 +28,13 @@ export class PlayComponent implements OnInit
     public displayedMessage="Selectionnez la bonne reponse";
     public quizTermine=false;
     public urlImage: string=null;
+    public trainMode: boolean=false;
+    public displayedInTrainMode: boolean[]=[];
 
     ngOnInit(): void {
+        this.route.queryParams.subscribe(params => {
+            this.trainMode=params.hasOwnProperty('trainmode');
+        });
         this.getQuiz();
     }
 
@@ -45,6 +50,7 @@ export class PlayComponent implements OnInit
                 this.questionCount=this.quiz.questions.length;
                 this.correctAnswer=this.quiz.questions[this.numquestion-1].correctAnswer;
                 this.urlImage=this.quiz.questions[this.numquestion-1].image;
+                this.updateDisplayedInTrainMode();
             });
     }
 
@@ -78,8 +84,27 @@ export class PlayComponent implements OnInit
             this.correctAnswer=this.quiz.questions[this.numquestion-1].correctAnswer;
             this.urlImage=this.quiz.questions[this.numquestion-1].image;
             this.displayedMessage="Selectionnez la bonne reponse";
+            this.updateDisplayedInTrainMode();
         }
         this.firstStage=!this.firstStage;
+    }
+
+    public getRandom(min: number, max: number): number
+    {
+        if(min > max) {
+            let tmp=min;
+            min=max;
+            max=tmp;
+        }
+        return min+Math.round(Math.random() * (max-min));
+    }
+
+    private updateDisplayedInTrainMode(): void
+    {
+        this.displayedInTrainMode=[];
+        for(let i=0; i < this.questionCount; i++) {
+            this.displayedInTrainMode.push(i!=this.correctAnswer && this.getRandom(0, 1) === 1);
+        }
     }
 
 }
