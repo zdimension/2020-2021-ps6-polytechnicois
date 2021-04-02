@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit } from "@angular/core";
 import { Quiz } from "../../models/quiz.model";
 import { QuizService } from "../../services/quiz.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: "app-play",
@@ -12,7 +12,7 @@ export class PlayComponent implements OnInit
 {
 
     quiz: Quiz;
-    constructor(private quizService: QuizService, private route: ActivatedRoute)
+    constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router)
     {
     }
 
@@ -105,6 +105,15 @@ export class PlayComponent implements OnInit
         for(let i=0; i < this.questionCount; i++) {
             this.displayedInTrainMode.push(i!=this.correctAnswer && this.getRandom(0, 1) === 1);
         }
+    }
+
+    public goToTrain(): void
+    {
+        this.trainMode=true;
+        this.numquestion=1;
+        this.quizTermine=false;
+        this.getQuiz();
+        this.router.navigate([this.router.url.split('?')[0]], {skipLocationChange: false, replaceUrl: true, queryParams: {'trainmode' :true}});
     }
 
 }

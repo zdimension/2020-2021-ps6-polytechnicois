@@ -7,7 +7,7 @@
 <body>
 <div class="container">
 
-    <div id="mainplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5">
+    <div id="mainplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5" *ngIf="!quizTermine">
         <div id="playingheader" class="justify-content-between flex-row d-flex">
             <div>
                 <span>{{quizname}}</span>
@@ -34,6 +34,17 @@
         </div>
         <div>
             {{displayedMessage}}
+        </div>
+    </div>
+
+    <div id="quiztermineplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5" *ngIf="quizTermine">
+        <div id="playingtermineheader" class="justify-content-between flex-row d-flex">
+            Quiz termin&eacute; !
+        </div>
+        <div id="buttonsquiztermine" class="justify-content-between flex-row d-flex row">
+            <button (click)="goToTrain()">S'entra&icirc;ner</button>
+            <button routerLink="/choisirquiz">Faire un autre quiz</button>
+            <button routerLink="/">Retour &agrave; l'accueil</button>
         </div>
     </div>
 </div>
