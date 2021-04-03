@@ -3,20 +3,26 @@
 
     <div class="epsilon p-2">
         <button class="btn btn-xs btn-green" (click)="accueil()">
-            <i class="bi-alarm"></i>
-            Retour à l'accueil
+            <i class="bi-house"></i>
+            <span>Retour à l'accueil</span>
         </button>
     </div>
     <div class="epsilon p-2">
         <button class="btn btn-xs btn-tertiary" (click)="deconnexion()">
             <i class="bi-power"></i>
-            Déconnexion
+            <span>Déconnexion</span>
         </button>
     </div>
 
-    <div class="epsilon ml-auto p-2">
+    <div class="epsilon ml-auto p-2 d-flex align-items-center">
         Changer la taille de police
-        <button class="btn btn-xs btn-green" (click)="changeFont(true)"> +-+ (Augmenter)</button>
-        <button class="btn btn-xs btn-green" (click)="changeFont(false)"> ---- (Diminuer)</button>
+        <button class="btn btn-xs btn-green ml-3" (click)="changeFont(true)">
+            <i class="bi-plus"></i>
+            <span>Augmenter</span>
+        </button>
+        <button class="btn btn-xs btn-green" (click)="changeFont(false)">
+            <i class="bi-dash"></i>
+            <span>Diminuer</span>
+        </button>
     </div>
 </div>
