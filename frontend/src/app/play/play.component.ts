@@ -113,6 +113,8 @@ export class PlayComponent implements OnInit
         this.numquestion=1;
         this.quizTermine=false;
         this.getQuiz();
+        this.firstStage=true;
+        this.displayedMessage="Selectionnez la bonne reponse";
         this.router.navigate([this.router.url.split('?')[0]], {skipLocationChange: false, replaceUrl: true, queryParams: {'trainmode' :true}});
     }
 
