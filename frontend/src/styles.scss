@@ -1,5 +1,10 @@
 @import './styles/variables.scss';
 
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+@import 'styles/button/main';
+
 /* You can add global styles to this file, and also import other style files */
 html {
   font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
@@ -17,7 +22,3 @@ app-root > div {
 }
 
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-
-@import 'styles/button/main';

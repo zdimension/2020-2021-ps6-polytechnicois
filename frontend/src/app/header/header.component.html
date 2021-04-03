@@ -2,7 +2,7 @@
 
 
     <div class="epsilon p-2" *ngIf="user!=null"> <!-- [ngStyle]="{'display':user!=null ? 'flex':'none'}" -->
-        <button class="btn btn-xs btn-light" (click)="deconnexion()">
+        <button class="btn btn-xs btn-green" (click)="deconnexion()">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power"
                  viewBox="0 0 16 16">
                 <path d="M7.5 1v7h1V1h-1z"/>
@@ -12,15 +12,15 @@
         </button>
     </div>
         <span class="p-2">
-            <a href="">
+            <a href="" *ngIf="user!=null">
                 Polyquiz
             </a>
         </span>
 
     <div class="epsilon ml-auto p-2" *ngIf="user!=null">
         Changer la taille de police
-        <button class="btn btn-xs btn-light" (click)="changeFont(true)"> +-+ (Augmenter)</button>
-        <button class="btn btn-xs btn-light" (click)="changeFont(false)"> ---- (Diminuer)</button>
+        <button class="btn btn-xs btn-green" (click)="changeFont(true)"> +-+ (Augmenter)</button>
+        <button class="btn btn-xs btn-green" (click)="changeFont(false)"> ---- (Diminuer)</button>
     </div>
     <!--
         <div style="float: right;">

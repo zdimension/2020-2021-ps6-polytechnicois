@@ -25,7 +25,7 @@
             <img *ngIf="urlImage != null" [src]="urlImage" />
             <div class="epsilon container col">
                 <div id="playinganswer" class="p-3">
-                    <button class="btn btn-azure" *ngFor="let answer of answersDisplayed; let i=index;" [disabled]="(!firstStage || (trainMode && displayedInTrainMode[i])) && i != correctAnswer" (click)="reponseCliquee(i)">
+                    <button class="btn btn-bluejoel" *ngFor="let answer of answersDisplayed; let i=index;" [disabled]="(!firstStage || (trainMode && displayedInTrainMode[i])) && i != correctAnswer" (click)="reponseCliquee(i)">
                         {{answer}}
                     </button>
                 </div>
@@ -42,9 +42,9 @@
             Quiz termin&eacute; !
         </div>
         <div id="buttonsquiztermine" class="epsilon justify-content-between flex-row d-flex row">
-            <button class="btn btn-azure" (click)="goToTrain()">S'entra&icirc;ner</button>
-            <button class="btn btn-azure" routerLink="/choisirquiz">Faire un autre quiz</button>
-            <button class="btn btn-azure" routerLink="/">Retour &agrave; l'accueil</button>
+            <button class="btn btn-bluejoel" (click)="goToTrain()">S'entra&icirc;ner</button>
+            <button class="btn btn-bluejoel" routerLink="/choisirquiz">Faire un autre quiz</button>
+            <button class="btn btn-bluejoel" routerLink="/">Retour &agrave; l'accueil</button>
         </div>
     </div>
 </div>
