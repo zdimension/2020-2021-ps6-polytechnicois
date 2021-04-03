@@ -1,4 +1,5 @@
 import {
+    Authorized,
     BadRequestError,
     Body,
     CurrentUser,
@@ -109,35 +110,28 @@ export default class UserController
     }
 
     @Get("/users")
+    @Authorized(UserRole.Admin)
     async getAll()
     {
         return await User.findAll();
     }
 
     @Get("/users/:id")
+    @Authorized(UserRole.Admin)
     async getOne(
         @CurrentUser() current: User,
         @Param("id") id: number)
     {
-        if (current.role != UserRole.Admin)
-        {
-            throw new UnauthorizedError("Seul un administrateur peut gérer les utilisateurs");
-        }
-
         return await User.findByPk(id);
     }
 
     @Patch("/users/:id")
+    @Authorized(UserRole.Admin)
     async updateOne(
         @CurrentUser() current: User,
         @Param("id") id: number,
         @Body() user: { password?: string, highContrast?: boolean, fontSize?: number, role?: UserRole })
     {
-        if (current.role != UserRole.Admin)
-        {
-            throw new UnauthorizedError("Seul un administrateur peut gérer les utilisateurs");
-        }
-
         return await (await User.findByPk(id)).update(user);
     }
 }
