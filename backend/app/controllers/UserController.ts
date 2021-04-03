@@ -1,4 +1,5 @@
 import {
+    Authorized,
     BadRequestError,
     Body,
     CurrentUser,
@@ -6,6 +7,7 @@ import {
     HttpError,
     InternalServerError,
     JsonController,
+    Param,
     Patch,
     Post,
     UnauthorizedError
@@ -13,6 +15,7 @@ import {
 import User, { UserRole } from "../models/User";
 import AuthService from "../services/AuthService";
 import BcryptService from "../services/BcryptService";
+import { TDifficulty } from "../utils/types";
 
 @JsonController("/auth")
 export default class UserController
@@ -95,7 +98,9 @@ export default class UserController
     }
 
     @Patch("/me")
-    async update(@CurrentUser() current: User, @Body() user: { password?: string, highContrast?: boolean, fontSize?: number, role?: UserRole })
+    async update(
+        @CurrentUser() current: User,
+        @Body() user: UserUpdateQuery)
     {
         if (current.role != UserRole.Admin && user.role)
         {
@@ -106,8 +111,38 @@ export default class UserController
     }
 
     @Get("/users")
+    @Authorized(UserRole.Admin)
     async getAll()
     {
         return await User.findAll();
     }
+
+    @Get("/users/:id")
+    @Authorized(UserRole.Admin)
+    async getOne(
+        @CurrentUser() current: User,
+        @Param("id") id: number)
+    {
+        return await User.findByPk(id);
+    }
+
+    @Patch("/users/:id")
+    @Authorized(UserRole.Admin)
+    async updateOne(
+        @CurrentUser() current: User,
+        @Param("id") id: number,
+        @Body() user: UserUpdateQuery)
+    {
+        return await (await User.findByPk(id)).update(user);
+    }
+}
+
+interface UserUpdateQuery
+{
+    password?: string,
+    highContrast?: boolean,
+    fontSize?: number,
+    role?: UserRole,
+    maxDifficulty?: TDifficulty;
+    maxQuestions?: number;
 }

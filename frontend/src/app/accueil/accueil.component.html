@@ -7,8 +7,8 @@
                 </button>
                 <div *ngIf="user.role !== 1">
                     <button class="btn btn-lg btn-bluejoel col my-3" routerLink="/score">Score</button>
-                    <button class="btn btn-lg btn-bluejoel col my-3" routerLink="/editquiz">Gérer quiz
-                    </button>
+                    <button class="btn btn-lg btn-bluejoel col my-3" routerLink="/editquiz">Gérer quiz</button>
+                    <button class="btn btn-lg btn-bluejoel col my-3" *ngIf="user.role === 2" routerLink="/gestion">Gestion des comptes</button>
                 </div>
             </div>
         </div>

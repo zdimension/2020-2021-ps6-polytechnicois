@@ -15,8 +15,14 @@ export class AuthGuard implements CanActivate
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     {
         const currentUser = this.userService.currentUserValue;
+        //console.log("here: " + state.url);
         if (currentUser)
         {
+            if(state.url === "/gestion" && currentUser.role !== 2)
+            {
+                this.router.navigate(["/"], { queryParams: { returnUrl: state.url } });
+                return false;
+            }
             return true;
         }
 
