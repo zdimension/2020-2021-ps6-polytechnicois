@@ -155,6 +155,11 @@ export class UserService
         return this.http.get<User[]>(`${this.dataURL}/users`);
     }
 
+    getUserById(id: number): Observable<User>
+    {
+        return this.http.get<User>(`${this.dataURL}/users/${id}`);
+    }
+
     logout()
     {
         localStorage.removeItem("currentUser");
