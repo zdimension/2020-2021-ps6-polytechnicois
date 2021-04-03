@@ -2,7 +2,8 @@ import BcryptService from "../services/BcryptService";
 
 import {
     BeforeBulkCreate,
-    BeforeCreate, BeforeUpdate,
+    BeforeCreate,
+    BeforeUpdate,
     Column,
     Default,
     Model,

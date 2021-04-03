@@ -3,7 +3,6 @@ import { BehaviorSubject, Observable } from "rxjs/Rx";
 import { Quiz } from "../models/quiz.model";
 import { HttpClient } from "@angular/common/http";
 import { Question } from "../models/question.model";
-import { QuizTheme } from "../models/quiztheme.model";
 import { UserService } from "./user.service";
 import { Router } from "@angular/router";
 import { User } from "../models/user.model";
@@ -13,6 +12,7 @@ import { User } from "../models/user.model";
 })
 export class QuizService
 {
+    public user: User;
     /**
      * Services Documentation:
      * https://angular.io/docs/ts/latest/tutorial/toh-pt4.html
@@ -20,12 +20,9 @@ export class QuizService
 
     private quizzes = [];
     public quizzes$ = new BehaviorSubject(this.quizzes);
-
     private themes = [];
     public themes$ = new BehaviorSubject(this.themes);
-
     private dataURL = new URL("http://localhost:9428/");
-    public user: User;
 
     constructor(private http: HttpClient, public userService: UserService, private router: Router)
     {

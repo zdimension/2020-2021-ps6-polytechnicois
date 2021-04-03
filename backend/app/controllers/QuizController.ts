@@ -1,4 +1,4 @@
-import { Body, Controller, Get, JsonController, OnNull, Param, Post } from "routing-controllers";
+import { Body, Get, JsonController, OnNull, Param, Post } from "routing-controllers";
 import Quiz from "../models/Quiz";
 import Question from "../models/Question";
 import QuizTheme from "../models/QuizTheme";

@@ -28,6 +28,11 @@ export class ConnexionComponent implements OnInit
         }
     }
 
+    get f()
+    {
+        return this.loginForm.controls;
+    }
+
     ngOnInit(): void
     {
         this.loginForm = this.formBuilder.group({
@@ -36,16 +41,15 @@ export class ConnexionComponent implements OnInit
             remember: new FormControl(true)
         });
 
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
     }
-
-    get f() { return this.loginForm.controls; }
 
     onSubmit(): void
     {
         this.submitted = true;
 
-        if (this.loginForm.invalid) {
+        if (this.loginForm.invalid)
+        {
             return;
         }
 
@@ -53,10 +57,12 @@ export class ConnexionComponent implements OnInit
         this.userService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
-                data => {
+                data =>
+                {
                     this.router.navigate([this.returnUrl]);
                 },
-                error => {
+                error =>
+                {
                     this.error = error;
                     this.loading = false;
                 });
