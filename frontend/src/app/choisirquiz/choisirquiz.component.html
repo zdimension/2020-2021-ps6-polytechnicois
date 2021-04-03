@@ -62,6 +62,7 @@
         <div class="epsilon">
             <button class="btn btn-bluejoel" routerLink="/play/{{quiz.id}}">Faire le quiz</button>
         </div>
+        <button *ngIf="user.role !== 1">Modifier</button>
 
 
     </div>
