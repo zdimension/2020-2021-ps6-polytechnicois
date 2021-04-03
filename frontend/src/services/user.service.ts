@@ -150,6 +150,11 @@ export class UserService
             }));
     }
 
+    getAllUsers(): Observable<User[]>
+    {
+        return this.http.get<User[]>(`${this.dataURL}/users`);
+    }
+
     logout()
     {
         localStorage.removeItem("currentUser");

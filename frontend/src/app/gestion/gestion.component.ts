@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { User } from "../../models/user.model";
+import { UserService } from "../../services/user.service";
 
 @Component({
     selector: "app-gestion",
@@ -8,11 +10,17 @@ import { Component, OnInit } from "@angular/core";
 export class GestionComponent implements OnInit
 {
 
-    constructor()
+    public users: User[] = [];
+
+    constructor(private userService: UserService)
     {
     }
 
     ngOnInit(): void
     {
+        console.log("here");
+        this.userService.getAllUsers().subscribe(users => {
+            this.users = users;
+        });
     }
 }
