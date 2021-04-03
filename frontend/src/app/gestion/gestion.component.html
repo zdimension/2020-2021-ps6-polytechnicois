@@ -1,6 +1,14 @@
 <div id="gestion">
     管理職
-    <div *ngFor="let user of users" class="container card col">
-        {{user.name}}
+    <div *ngFor="let user of users" routerLink="/gestion/{{user.id}}" class="container card col">
+        <p>
+            {{user.name}}
+        </p>
+        <p>
+            {{userRoleStr[user.role]}}
+        </p>
+        <p>
+            {{user.highContrast ? "Contraste &eacute;lev&eacute;" : "Contraste normal"}}
+        </p>
     </div>
 </div>

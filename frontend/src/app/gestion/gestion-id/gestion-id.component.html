@@ -1,0 +1,24 @@
+<div id="gestionid" *ngIf="userToModify !== null">
+    <button routerLink="/gestion">Retour au menu de gestion</button>
+    <div>
+        {{userToModify.name}}
+    </div>
+    <div>
+        <form [formGroup]="changeUserForm">
+            <p>
+                <label for="roleUser">
+                    <select [formControlName]="'roleUser'" id="roleUser" (change)="changeUser()">
+                        <option *ngFor="let c of userRoleStr; let i=index" [ngValue]="i">{{c}}</option>
+                    </select>
+                    Statut d'utilisateur
+                </label>
+            </p>
+            <p>
+                <label for="highContrast">
+                    <input [formControlName]="'highContrast'" class="input-custom" id="highContrast" type="checkbox" (change)="changeUser()">
+                    Contraste &eacute;lev&eacute; ?
+                </label>
+            </p>
+        </form>
+    </div>
+</div>
