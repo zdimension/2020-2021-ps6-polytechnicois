@@ -9,7 +9,7 @@
         <form [formGroup]="choisirQuizForm" class="choisirquiz-form flex-row d-flex col">
             <p class="col">
                 <label for="theme">
-                    Th&egrave;me<br>
+                    Thème<br>
                     <select [formControlName]="'theme'" id="theme" (change)="changeDisplay()">
                         <option value="Peu importe">Peu importe</option>
                         <option *ngFor="let c of listThemes" [ngValue]="c.name">{{ c.name }}</option>
@@ -18,7 +18,7 @@
             </p>
             <p class="col">
                 <label for="dejafait">
-                    Quiz d&eacute;j&agrave; fait ?<br>
+                    Quiz déjà fait ?<br>
                     <select [formControlName]="'dejafait'" id="dejafait" (change)="changeDisplay()">
                         <option *ngFor="let c of listdejafait" [ngValue]="c">{{c}}</option>
                     </select>
@@ -26,7 +26,7 @@
             </p>
             <p class="col">
                 <label for="difficulte">
-                    Difficult&eacute;:<br>
+                    Difficulté:<br>
                     <select [formControlName]="'difficulte'" id="difficulte" (change)="changeDisplay()">
                         <option *ngFor="let c of listdifficulte" [ngValue]="c">{{c}}</option>
                     </select>
@@ -57,7 +57,7 @@
 
         <legend>{{quiz.name}}</legend>
         <div>{{quiz.questionCount}} questions</div>
-        <div>Difficult&eacute; {{quiz.difficulty}}</div>
+        <div>Difficulté {{quiz.difficulty}}</div>
         {{quiz.theme.name}}
         <div class="epsilon">
             <button class="btn btn-bluejoel" routerLink="/play/{{quiz.id}}">Faire le quiz</button>

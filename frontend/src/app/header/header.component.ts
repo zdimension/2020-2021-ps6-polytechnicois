@@ -32,4 +32,8 @@ export class HeaderComponent implements OnInit
         this.router.navigate(["/connexion"]);
     }
 
+    accueil(): void
+    {
+        this.router.navigate(["/"]);
+    }
 }
