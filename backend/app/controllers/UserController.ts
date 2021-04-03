@@ -6,6 +6,7 @@ import {
     HttpError,
     InternalServerError,
     JsonController,
+    Param,
     Patch,
     Post,
     UnauthorizedError
@@ -95,7 +96,9 @@ export default class UserController
     }
 
     @Patch("/me")
-    async update(@CurrentUser() current: User, @Body() user: { password?: string, highContrast?: boolean, fontSize?: number, role?: UserRole })
+    async update(
+        @CurrentUser() current: User,
+        @Body() user: { password?: string, highContrast?: boolean, fontSize?: number, role?: UserRole })
     {
         if (current.role != UserRole.Admin && user.role)
         {
@@ -109,5 +112,32 @@ export default class UserController
     async getAll()
     {
         return await User.findAll();
+    }
+
+    @Get("/users/:id")
+    async getOne(
+        @CurrentUser() current: User,
+        @Param("id") id: number)
+    {
+        if (current.role != UserRole.Admin)
+        {
+            throw new UnauthorizedError("Seul un administrateur peut gérer les utilisateurs");
+        }
+
+        return await User.findByPk(id);
+    }
+
+    @Patch("/users/:id")
+    async updateOne(
+        @CurrentUser() current: User,
+        @Param("id") id: number,
+        @Body() user: { password?: string, highContrast?: boolean, fontSize?: number, role?: UserRole })
+    {
+        if (current.role != UserRole.Admin)
+        {
+            throw new UnauthorizedError("Seul un administrateur peut gérer les utilisateurs");
+        }
+
+        return await (await User.findByPk(id)).update(user);
     }
 }
