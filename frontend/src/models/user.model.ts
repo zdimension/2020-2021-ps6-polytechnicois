@@ -4,7 +4,7 @@ export interface User extends BaseModel
 {
     id: number;
     name: string;
-    highcontrast: boolean;
+    highContrast: boolean;
     fontSize: number;
     role: number;
     token: string;

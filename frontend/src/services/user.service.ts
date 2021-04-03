@@ -160,6 +160,11 @@ export class UserService
         return this.http.get<User>(`${this.dataURL}/users/${id}`);
     }
 
+    changeUserById(id: number, data): void
+    {
+        this.http.patch(`${this.dataURL}/users/${id}`, data).subscribe();
+    }
+
     logout()
     {
         localStorage.removeItem("currentUser");

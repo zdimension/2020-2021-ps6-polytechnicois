@@ -23,9 +23,4 @@ export class GestionComponent implements OnInit
             this.users = users;
         });
     }
-
-    switchToSingleUserMode(id: number): void
-    {
-        console.log("single user mode");
-    }
 }
