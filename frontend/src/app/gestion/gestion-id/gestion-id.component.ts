@@ -14,7 +14,7 @@ export class GestionIdComponent implements OnInit
 {
     public userToModify: User=null;
     public changeUserForm: FormGroup;
-    public userRoleStr: string[]= ["Non autonome", "Autonome", "Administrateur"];
+    public userRoleStr: string[]= ["Autonome", "Non autonome", "Administrateur"];
     public userId: number=1;
 
     constructor(private userService: UserService, private route: ActivatedRoute, private router: Router)

@@ -5,9 +5,10 @@
     <title>Play</title>
 </head>
 <body>
-<div class="container">
+<div class="my-0 mx-auto " style="width: 80%; height: 70%;">
 
-    <div id="mainplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5" *ngIf="!quizTermine">
+    <div id="mainplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5 border-0 "
+         *ngIf="!quizTermine">
         <div id="playingheader" class="justify-content-between flex-row d-flex">
             <div>
                 <span>{{quizname}}</span>
@@ -18,26 +19,32 @@
             <div class="Stars">
             </div>
         </div>
-        <div id="playingcard" class="justify-content-between flex-row d-flex row">
-            <div id="playingquestion" class="container col d-flex align-items-center justify-content-center">
-                {{questionlabel}}
+        <div id="playingcard" class="justify-content-between flex-row d-flex p-3 w-100">
+            <div class="ml-3 flex-column d-flex justify-content-center w-50">
+                <span id="playingquestion" class="d-flex justify-content-center">
+                    {{questionlabel}}
+                </span>
+                <img *ngIf="urlImage != null" [src]="urlImage" class="mt-3"/>
             </div>
-            <img *ngIf="urlImage != null" [src]="urlImage" />
-            <div class="epsilon container col">
-                <div id="playinganswer" class="p-3">
-                    <button class="btn btn-bluejoel" *ngFor="let answer of answersDisplayed; let i=index;" [disabled]="(!firstStage || (trainMode && displayedInTrainMode[i])) && i != correctAnswer" (click)="reponseCliquee(i)">
+
+            <div class="d-flex ml-3 justify-content-center w-50">
+                <div id="playinganswer" class="px-3 epsilon py-5">
+                    <button class="btn btn-bluejoel " *ngFor="let answer of answersDisplayed; let i=index;"
+                            [disabled]="(!firstStage || (trainMode && displayedInTrainMode[i])) && i != correctAnswer"
+                            (click)="reponseCliquee(i)">
                         {{answer}}
                     </button>
                 </div>
             </div>
 
         </div>
-        <div>
+        <div class="ml-3 pl-3 pb-3 mb-3 text-center">
             {{displayedMessage}}
         </div>
     </div>
 
-    <div id="quiztermineplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5" *ngIf="quizTermine">
+    <div id="quiztermineplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5 "
+         *ngIf="quizTermine">
         <div id="playingtermineheader" class="justify-content-between flex-row d-flex">
             Quiz terminé !
         </div>

@@ -22,4 +22,10 @@ app-root > div {
   height: 100%;
 }
 
+button[disabled] {
+  cursor: not-allowed !important;
+}
 
+.btn.disabled, .btn:disabled {
+  opacity: 0.35;
+}
