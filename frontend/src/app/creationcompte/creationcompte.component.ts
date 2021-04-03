@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -29,6 +29,11 @@ export class CreationCompteComponent implements OnInit
         }
     }
 
+    get f()
+    {
+        return this.registerForm.controls;
+    }
+
     ngOnInit(): void
     {
         this.registerForm = this.formBuilder.group({
@@ -38,16 +43,15 @@ export class CreationCompteComponent implements OnInit
             autonomous: new FormControl(true)
         });
 
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
     }
-
-    get f() { return this.registerForm.controls; }
 
     onSubmit(): void
     {
         this.submitted = true;
 
-        if (this.registerForm.invalid) {
+        if (this.registerForm.invalid)
+        {
             return;
         }
 
@@ -55,10 +59,12 @@ export class CreationCompteComponent implements OnInit
         this.userService.register(this.registerForm.value)
             .pipe(first())
             .subscribe(
-                data => {
+                data =>
+                {
                     this.router.navigate([this.returnUrl]);
                 },
-                error => {
+                error =>
+                {
                     this.error = error;
                     this.loading = false;
                 });

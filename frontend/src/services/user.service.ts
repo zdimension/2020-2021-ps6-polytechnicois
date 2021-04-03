@@ -12,12 +12,7 @@ import { Observable } from "rxjs/Rx";
 
 export class UserService
 {
-    /*public user: User=null;
-    public errorConnect: boolean = false;
-
-    public user$ = new BehaviorSubject(this.user);
-    public errorConnect$ = new BehaviorSubject(this.errorConnect);*/
-    private dataURL = new URL("http://localhost:9428/auth");
+    public currentUser: Observable<User>;
 
     /*private handleError(error: HttpErrorResponse)
     {
@@ -82,8 +77,26 @@ export class UserService
         this.user$.next(this.user);
         this.http.patch(`${this.dataURL}/me/`, {fontSize: this.user.fontSize}).subscribe();
     }*/
+    /*public user: User=null;
+    public errorConnect: boolean = false;
+
+    public user$ = new BehaviorSubject(this.user);
+    public errorConnect$ = new BehaviorSubject(this.errorConnect);*/
+    private dataURL = new URL("http://localhost:9428/auth");
+    private currentUserSubject: BehaviorSubject<User>;
+
+    constructor(private http: HttpClient)
+    {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("currentUser")));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
 
     public get user(): User
+    {
+        return this.currentUserSubject.value;
+    }
+
+    public get currentUserValue(): User
     {
         return this.currentUserSubject.value;
     }
@@ -113,21 +126,6 @@ export class UserService
         }
         this.currentUserSubject.next(this.user);
         this.http.patch(`${this.dataURL}/me/`, { fontSize: this.user.fontSize }).subscribe();
-    }
-
-
-    private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
-
-    constructor(private http: HttpClient)
-    {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("currentUser")));
-        this.currentUser = this.currentUserSubject.asObservable();
-    }
-
-    public get currentUserValue(): User
-    {
-        return this.currentUserSubject.value;
     }
 
     login(username: string, password: string)
