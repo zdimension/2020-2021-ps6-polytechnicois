@@ -1,6 +1,6 @@
 <div id="gestion">
     管理職
-    <div *ngFor="let user of users" (click)="switchToSingleUserMode(user.id)" class="container card col">
+    <div *ngFor="let user of users" routerLink="/gestion/{{user.id}}" class="container card col">
         <p>
             {{user.name}}
         </p>
