@@ -11,7 +11,7 @@ export class GestionComponent implements OnInit
 {
 
     public users: User[] = [];
-    public userRoleStr: string[]= ["Non autonome", "Autonome", "Administrateur"];
+    public userRoleStr: string[]= ["Autonome", "Non autonome", "Administrateur"];
 
     constructor(private userService: UserService)
     {
