@@ -11,6 +11,7 @@ export class GestionComponent implements OnInit
 {
 
     public users: User[] = [];
+    public userRoleStr: string[]= ["Non autonome", "Autonome", "Administrateur"];
 
     constructor(private userService: UserService)
     {
@@ -18,9 +19,13 @@ export class GestionComponent implements OnInit
 
     ngOnInit(): void
     {
-        console.log("here");
         this.userService.getAllUsers().subscribe(users => {
             this.users = users;
         });
+    }
+
+    switchToSingleUserMode(id: number): void
+    {
+        console.log("single user mode");
     }
 }
