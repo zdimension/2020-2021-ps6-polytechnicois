@@ -10,6 +10,7 @@ import {
     Table,
     Unique
 } from "sequelize-typescript";
+import { Difficulty, TDifficulty } from "../utils/types";
 
 export enum UserRole
 {
@@ -35,6 +36,14 @@ export default class User extends Model
     @Default(1)
     @Column
     fontSize!: number;
+
+    @Default(5)
+    @Column(Difficulty)
+    maxDifficulty!: TDifficulty;
+
+    @Default(null)
+    @Column
+    maxQuestions?: number;
 
     @Default(UserRole.Regular)
     @Column
