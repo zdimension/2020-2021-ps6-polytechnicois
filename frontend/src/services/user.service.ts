@@ -110,7 +110,7 @@ export class UserService
 
         if (p)
         {
-            if (this.user.fontSize >= 10)
+            if (this.user.fontSize >= 2)
             {
                 return;
             }
@@ -118,7 +118,7 @@ export class UserService
         }
         else
         {
-            if (this.user.fontSize <= 1)
+            if (this.user.fontSize <= 0)
             {
                 return;
             }

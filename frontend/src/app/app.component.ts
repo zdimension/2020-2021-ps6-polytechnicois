@@ -1,4 +1,7 @@
 import { Component } from "@angular/core";
+import { UserService } from "../services/user.service";
+import { Inject } from "@angular/core";
+import { strict } from "assert";
 
 @Component({
     selector: "app-root",
@@ -8,4 +11,18 @@ import { Component } from "@angular/core";
 export class AppComponent
 {
     title = "starter-quiz";
+    fontSizes = ['16px', '20px', '24px'];
+    public fontSize: string;
+    constructor(private userService: UserService)
+    {
+    }
+
+    ngOnInit(){
+        this.userService.currentUser
+            .subscribe(user =>
+            {
+                this.fontSize = this.fontSizes[user.fontSize];
+                document.querySelector('html').style.fontSize = this.fontSize;
+            });
+    }
 }
