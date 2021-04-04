@@ -4,8 +4,8 @@ import { UserService } from "../../services/user.service";
 
 @Component({
     selector: "app-gestion",
-    templateUrl: "./gestion.component.html"/*,
-    styleUrls: ["./user.component.scss"]*/
+    templateUrl: "./gestion.component.html",
+    styleUrls: ["./gestion.component.scss"]
 })
 export class GestionComponent implements OnInit
 {

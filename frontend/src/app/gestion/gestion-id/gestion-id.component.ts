@@ -7,8 +7,8 @@ import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
     selector: "app-gestion-id",
-    templateUrl: "./gestion-id.component.html"/*,
-    styleUrls: ["./user.component.scss"]*/
+    templateUrl: "./gestion-id.component.html",
+    styleUrls: ["./gestion-id.component.scss"]
 })
 export class GestionIdComponent implements OnInit
 {

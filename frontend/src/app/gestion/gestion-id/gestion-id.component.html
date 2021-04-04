@@ -1,24 +1,62 @@
-<div id="gestionid" *ngIf="userToModify !== null">
-    <button routerLink="/gestion">Retour au menu de gestion</button>
-    <div>
-        {{userToModify.name}}
-    </div>
-    <div>
-        <form [formGroup]="changeUserForm">
-            <p>
-                <label for="roleUser">
-                    <select [formControlName]="'roleUser'" id="roleUser" (change)="changeUser()">
-                        <option *ngFor="let c of userRoleStr; let i=index" [ngValue]="i">{{c}}</option>
-                    </select>
-                    Statut d'utilisateur
-                </label>
-            </p>
-            <p>
-                <label for="highContrast">
-                    <input [formControlName]="'highContrast'" class="input-custom" id="highContrast" type="checkbox" (change)="changeUser()">
-                    Contraste élevé ?
-                </label>
-            </p>
-        </form>
+<div id="gestionid" *ngIf="userToModify !== null" class="h-100">
+    <div class="container card d-flex my-5">
+
+        <nav class="navbar justify-content-between">
+            <a class="navbar-brand" routerLink="../">Gestion Comptes</a>
+            <div class="d-flex row justify-content-end">
+                <i class="bi bi-person col"></i>
+                <p class="col">
+                    {{userToModify.name}}
+                </p>
+
+            </div>
+        </nav>
+
+        <div id="parametres" class="container d-flex justify-content-center flex-column col col w-100 h-100 p-2 m-2">
+            <div class="cpntainer p-5">
+                <form [formGroup]="changeUserForm" class="">
+                    <div class="d-flex justify-content-between">
+                        <label for="roleUser">
+                            Statut d'utilisateur
+                        </label>
+                        <select [formControlName]="'roleUser'" id="roleUser" (change)="changeUser()">
+                            <option *ngFor="let c of userRoleStr; let i=index" [ngValue]="i">{{c}}</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-between" *ngIf="userToModify.role == 1">
+                        <label for="scoreUser">
+                            Visualisation scord
+                        </label>
+                        <select id="scoreUser">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-between" *ngIf="userToModify.role == 1">
+                        <p>
+                            Imposer un recap
+                        </p>
+                        <div>
+
+                        <label for="recapy">
+                        <input type="radio" name="recap" id="recapy">
+                            Yes
+                        </label>
+                        <label for="recapn">
+                            <input type="radio" name="recap" id="recapn">
+                            No
+                        </label>
+                        </div>
+                    </div>
+                    <div>
+                        <input [formControlName]="'highContrast'" class="form-check-input" id="highContrast"
+                               type="checkbox"
+                               (change)="changeUser()">
+                        <label class="form-check-label" for="highContrast">
+                            Contraste élevé ?
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

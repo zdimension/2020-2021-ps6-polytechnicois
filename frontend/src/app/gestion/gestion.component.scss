@@ -1,0 +1,29 @@
+.compte:hover {
+  cursor: pointer;
+}
+
+#gestion > div {
+  max-width: 85%;
+  height: 70%;
+}
+
+.compte {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
+
+#comptes {
+  overflow-y: auto;
+  max-width: unset;
+}
+
+.compte > div > p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width:80px;
+  display:block;
+  text-align: center;
+  font-size: medium;
+}
