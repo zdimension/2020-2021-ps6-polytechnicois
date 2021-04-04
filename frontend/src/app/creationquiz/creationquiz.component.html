@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Création quiz</title>
-</head>
-<body>
-
-</body>
-</html>
+<div id="creationquizfirststep">
+    <form [formGroup]="creationQuizFirstStepForm">
+        <p>
+            <label for="nomquiz">
+                Nom du quiz<br>
+                <input type="text" [formControlName]="'nomquiz'" id="nomquiz" />
+            </label>
+        </p>
+        <p>
+            <label for="difficulte">
+                Difficulté<br>
+                <select [formControlName]="'difficulte'" id="difficulte">
+                    <option *ngFor="let c of listdifficulte" [ngValue]="c">{{c}}</option>
+                </select>
+            </label>
+        </p>
+    </form>
+</div>

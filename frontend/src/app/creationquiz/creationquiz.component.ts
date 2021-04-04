@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 
 @Component({
     selector: "app-creationquiz",
@@ -7,6 +8,9 @@ import { Component, OnInit } from "@angular/core";
 })
 export class CreationQuizComponent implements OnInit
 {
+
+    public creationQuizFirstStepForm: FormGroup;
+    public listdifficulte: number[];
 
     constructor()
     {
