@@ -6,6 +6,7 @@ export interface User extends BaseModel
     name: string;
     highContrast: boolean;
     fontSize: number;
+    font: string;
     role: number;
     token: string;
 }

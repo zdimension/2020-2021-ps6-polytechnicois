@@ -36,5 +36,39 @@
       padding-left: 0.6em;
     }
   }
+}
 
+#visualParams {
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  top: 4em;
+  right: 1em;
+  padding: 1em;
+  background: white;
+  border-radius: 1.1em;
+  border: solid grey .01em;
+  z-index: 1;
+  box-shadow: rgba(0,0,0,.2) 0 .1em .4em;
+}
+
+#visualParams button {
+  margin: 0 1.1em .5em 1.1em;
+  border-radius: .7em;
+  justify-content: center;
+  padding: .3em .7em;
+  width: fit-content;
+}
+
+#visualParams #closeParams {
+  margin-top: 1.5em;
+  font-size: .9em;
+}
+
+#visualParams .option {
+  margin-bottom: .8em;
+}
+
+.paramLabel {
+  font-weight: 600;
 }

@@ -37,6 +37,10 @@ export default class User extends Model
     @Column
     fontSize!: number;
 
+    @Default('Arial')
+    @Column
+    font!: string;
+
     @Default(5)
     @Column(Difficulty)
     maxDifficulty!: TDifficulty;
