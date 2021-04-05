@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
+import { FormControl } from "@angular/forms";
+import fonts from "../../fonts";
+import { gsap } from 'gsap';
 
 @Component({
     selector: "app-header",
@@ -12,18 +15,36 @@ export class HeaderComponent implements OnInit
 {
     public user: User;
 
+    favoriteFont: FormControl;
+    fonts;
+    paramsShow: boolean;
+
     constructor(public userService: UserService, private router: Router)
     {
         this.userService.currentUser.subscribe((user) => this.user = user);
+        this.fonts = fonts;
+        this.paramsShow = false;
     }
 
     ngOnInit(): void
     {
+        if (this.user.font) {
+            this.favoriteFont = new FormControl(this.user.font);
+            console.log(this.user.font);
+        } else {
+            this.favoriteFont = new FormControl(fonts[0]);
+            console.log('default');
+        }
     }
 
-    changeFont(p: boolean): void
+    changeFont(event: any): void {
+        let font = event.target.value;
+        this.userService.changeFont(font);
+    }
+
+    changeFontSize(p: boolean): void
     {
-        this.userService.changeFont(p);
+        this.userService.changeFontSize(p);
     }
 
     deconnexion(): void
@@ -35,5 +56,23 @@ export class HeaderComponent implements OnInit
     accueil(): void
     {
         this.router.navigate(["/"]);
+    }
+
+    toggleParams(): void
+    {
+        const tl = gsap.timeline({defaults: {ease: Power2.easeOut}}),
+              popup = document.getElementById('visualParams');
+        if (this.paramsShow)
+        {
+            tl.to('#visualParams', { opacity: 0 })
+            popup.style.display = 'none';
+            this.paramsShow = false;
+        }
+        else
+        {
+            tl.to('#visualParams', { opacity: 1 })
+            popup.style.display = 'flex';
+            this.paramsShow = true;
+        }
     }
 }

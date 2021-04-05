@@ -142,6 +142,7 @@ interface UserUpdateQuery
     password?: string,
     highContrast?: boolean,
     fontSize?: number,
+    font?: string,
     role?: UserRole,
     maxDifficulty?: TDifficulty;
     maxQuestions?: number;

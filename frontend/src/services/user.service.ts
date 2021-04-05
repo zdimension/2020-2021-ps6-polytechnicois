@@ -4,7 +4,7 @@ import { User } from "../models/user.model";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs/Rx";
-
+import fonts from "../fonts";
 
 @Injectable({
     providedIn: "root"
@@ -101,7 +101,7 @@ export class UserService
         return this.currentUserSubject.value;
     }
 
-    changeFont(p: boolean): void
+    changeFontSize(p: boolean): void
     {
         if (this.user == null)
         {
@@ -110,7 +110,7 @@ export class UserService
 
         if (p)
         {
-            if (this.user.fontSize >= 10)
+            if (this.user.fontSize >= 2)
             {
                 return;
             }
@@ -118,7 +118,7 @@ export class UserService
         }
         else
         {
-            if (this.user.fontSize <= 1)
+            if (this.user.fontSize <= 0)
             {
                 return;
             }
@@ -126,6 +126,22 @@ export class UserService
         }
         this.currentUserSubject.next(this.user);
         this.http.patch(`${this.dataURL}/me/`, { fontSize: this.user.fontSize }).subscribe();
+    }
+
+    changeFont(fontName: string): void {
+        if (this.user == null) {
+            return;
+        }
+        if (fonts.includes(fontName)) {
+            if (this.user.font != fontName) {
+                this.user.font = fontName;
+            }
+        }
+        else {
+            return;
+        }
+        this.currentUserSubject.next(this.user);
+        this.http.patch(`${this.dataURL}/me/`, { font: this.user.font }).subscribe();
     }
 
     login(username: string, password: string)

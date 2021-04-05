@@ -15,14 +15,47 @@
     </div>
 
     <div class="epsilon ml-auto p-2 d-flex align-items-center">
-        Changer la taille de police
-        <button class="btn btn-xs btn-green ml-3" (click)="changeFont(true)">
-            <i class="bi-plus"></i>
-            <span>Augmenter</span>
+<!--        Changer la taille de police-->
+<!--        <button class="btn btn-xs btn-green ml-3" (click)="changeFont(true)">-->
+<!--            <i class="bi-plus"></i>-->
+<!--            <span>Augmenter</span>-->
+<!--        </button>-->
+<!--        <button class="btn btn-xs btn-green" (click)="changeFont(false)">-->
+<!--            <i class="bi-dash"></i>-->
+<!--            <span>Diminuer</span>-->
+<!--        </button>-->
+        <button class="btn btn-xs btn-green" (click)="toggleParams()">
+            <i class="bi-file-earmark-font"></i>
+            <span>Taille et Police</span>
         </button>
-        <button class="btn btn-xs btn-green" (click)="changeFont(false)">
-            <i class="bi-dash"></i>
-            <span>Diminuer</span>
-        </button>
+
+        <div id="visualParams" class="d-flex flex-column justify-content-between">
+            <div id="visualParamsOptions" class="d-flex flex-column">
+                <div class="d-flex option">
+                    <label for="favoriteFont" class="paramLabel">Police : </label>
+                    <select name="favoriteFont" id="favoriteFont" [formControl]="favoriteFont"
+                            (change)="changeFont($event)">
+                        <option *ngFor="let font of fonts" [value]="font">{{font}}</option>
+                    </select>
+                </div>
+
+                <div id="fontSize" class="d-flex flex-row align-items-center option">
+                    <span class="paramLabel">Taille : </span>
+                    <div class="d-flex flex-column align-items-center">
+                        <button class="btn btn-light" style="font-size: 1em" (click)="changeFontSize(true)">A</button>
+                        <span style="font-size: .9em">Agrandir</span>
+                    </div>
+                    <div class="d-flex flex-column align-items-center" style="font-size: .8em">
+                        <button class="btn btn-light" (click)="changeFontSize(false)">A</button>
+                        <span>Rétrécir</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex align-self-center" >
+                <button id="closeParams" class="btn btn-light">Fermer</button>
+            </div>
+
+        </div>
     </div>
 </div>
