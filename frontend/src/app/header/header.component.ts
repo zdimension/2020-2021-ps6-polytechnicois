@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import fonts from "../../fonts";
 import { gsap } from 'gsap';
+const popup = document.getElementById('visualParams');
 
 @Component({
     selector: "app-header",
@@ -60,19 +61,18 @@ export class HeaderComponent implements OnInit
 
     toggleParams(): void
     {
-        const tl = gsap.timeline({defaults: {ease: Power2.easeOut}}),
-              popup = document.getElementById('visualParams');
+        const tl = gsap.timeline({defaults: {ease: Power2.easeOut}});
         if (this.paramsShow)
         {
+            this.paramsShow = false;
             tl.to('#visualParams', { opacity: 0 })
             popup.style.display = 'none';
-            this.paramsShow = false;
         }
         else
         {
+            this.paramsShow = true;
             tl.to('#visualParams', { opacity: 1 })
             popup.style.display = 'flex';
-            this.paramsShow = true;
         }
     }
 }
