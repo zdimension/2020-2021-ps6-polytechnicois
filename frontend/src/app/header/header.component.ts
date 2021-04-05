@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit
     favoriteFont: FormControl;
     fonts;
     paramsShow: boolean;
-    private popup: HTMLElement;
 
     constructor(public userService: UserService, private router: Router)
     {
@@ -40,8 +39,6 @@ export class HeaderComponent implements OnInit
             this.favoriteFont = new FormControl(fonts[0]);
             console.log("default");
         }
-
-        this.popup = document.getElementById("visualParams");
     }
 
     changeFont(event: any): void
@@ -73,13 +70,11 @@ export class HeaderComponent implements OnInit
         {
             this.paramsShow = false;
             tl.to("#visualParams", { opacity: 0 });
-            this.popup.style.display = "none";
         }
         else
         {
             this.paramsShow = true;
             tl.to("#visualParams", { opacity: 1 });
-            this.popup.style.display = "flex";
         }
     }
 }
