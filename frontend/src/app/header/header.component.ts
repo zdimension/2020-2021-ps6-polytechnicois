@@ -4,8 +4,8 @@ import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import fonts from "../../fonts";
-import { gsap } from 'gsap';
-const popup = document.getElementById('visualParams');
+import { gsap } from "gsap";
+
 
 @Component({
     selector: "app-header",
@@ -29,16 +29,20 @@ export class HeaderComponent implements OnInit
 
     ngOnInit(): void
     {
-        if (this.user.font) {
+        if (this.user.font)
+        {
             this.favoriteFont = new FormControl(this.user.font);
             console.log(this.user.font);
-        } else {
+        }
+        else
+        {
             this.favoriteFont = new FormControl(fonts[0]);
-            console.log('default');
+            console.log("default");
         }
     }
 
-    changeFont(event: any): void {
+    changeFont(event: any): void
+    {
         let font = event.target.value;
         this.userService.changeFont(font);
     }
@@ -61,18 +65,16 @@ export class HeaderComponent implements OnInit
 
     toggleParams(): void
     {
-        const tl = gsap.timeline({defaults: {ease: Power2.easeOut}});
+        const tl = gsap.timeline({ defaults: { ease: Power2.easeOut } });
         if (this.paramsShow)
         {
             this.paramsShow = false;
-            tl.to('#visualParams', { opacity: 0 })
-            popup.style.display = 'none';
+            tl.to("#visualParams", { opacity: 0 });
         }
         else
         {
             this.paramsShow = true;
-            tl.to('#visualParams', { opacity: 1 })
-            popup.style.display = 'flex';
+            tl.to("#visualParams", { opacity: 1 });
         }
     }
 }
