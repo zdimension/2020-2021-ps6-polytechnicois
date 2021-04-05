@@ -20,8 +20,9 @@ export class AppComponent
         this.userService.currentUser
             .subscribe(user =>
             {
-                this.fontSize = this.fontSizes[user.fontSize];
-                this.font = user.font;
+                this.fontSize = this.fontSizes[user?.fontSize ?? 1];
+                this.font = user?.font ?? "Arial";
+
                 document.querySelector('html').style.fontSize = this.fontSize;
                 document.querySelector('html').style.fontFamily = this.font;
             });
