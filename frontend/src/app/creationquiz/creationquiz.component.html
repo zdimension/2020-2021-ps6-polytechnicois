@@ -10,9 +10,27 @@
             <label for="difficulte">
                 Difficulté<br>
                 <select [formControlName]="'difficulte'" id="difficulte">
-                    <option *ngFor="let c of listdifficulte" [ngValue]="c">{{c}}</option>
+                    <option *ngFor="let c of listDifficulte; let i=index" [ngValue]="i">{{c}}</option>
                 </select>
             </label>
         </p>
+        <p>
+            <label for="theme">
+                Thème<br>
+                <select [formControlName]="'theme'" id="theme">
+                    <option *ngFor="let c of listThemes; let i=index" [ngValue]="i">{{c.name}}</option>
+                </select>
+            </label>
+            <button (click)="creerTheme=!creerTheme;">Créer un thème</button>
+        </p>
+        <div *ngIf="creerTheme">
+            <p>
+                <label for="nomnouveautheme">
+                    Nom du thème<br>
+                    <input type="text" [formControlName]="'nomnouveautheme'" id="nomnouveautheme" />
+                </label>
+                <button (click)="ajouterTheme()">Ajouter le thème</button>
+            </p>
+        </div>
     </form>
 </div>
