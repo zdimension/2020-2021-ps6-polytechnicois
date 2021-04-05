@@ -17,6 +17,11 @@ body {
   background-color: $app-background-color;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 app-root > div {
   height: 100%;
 }

@@ -65,16 +65,6 @@ export class HeaderComponent implements OnInit
 
     toggleParams(): void
     {
-        const tl = gsap.timeline({ defaults: { ease: Power2.easeOut } });
-        if (this.paramsShow)
-        {
-            this.paramsShow = false;
-            tl.to("#visualParams", { opacity: 0 });
-        }
-        else
-        {
-            this.paramsShow = true;
-            tl.to("#visualParams", { opacity: 1 });
-        }
+        this.paramsShow = !this.paramsShow;
     }
 }

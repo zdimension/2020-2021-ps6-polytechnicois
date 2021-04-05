@@ -29,7 +29,10 @@
             <span>Taille et Police</span>
         </button>
 
-        <div id="visualParams" class="d-flex flex-column justify-content-between">
+        <div id="visualParams" class="flex-column justify-content-between"
+             [style.visibility]="paramsShow ? 'visible' : 'hidden'"
+             [style.opacity]="paramsShow ? 1 : 0"
+        >
             <div id="visualParamsOptions" class="d-flex flex-column">
                 <div class="d-flex option">
                     <label for="favoriteFont" class="paramLabel">Police : </label>

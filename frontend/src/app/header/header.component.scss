@@ -40,7 +40,6 @@
 
 #visualParams {
   display: flex;
-  opacity: 0;
   position: absolute;
   top: 4em;
   right: 1em;
@@ -50,6 +49,7 @@
   border: solid grey .01em;
   z-index: 1;
   box-shadow: rgba(0,0,0,.2) 0 .1em .4em;
+  transition: all 0.2s ease-in-out;
 }
 
 #visualParams button {
