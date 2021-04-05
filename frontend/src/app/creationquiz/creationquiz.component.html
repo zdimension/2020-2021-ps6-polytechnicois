@@ -32,5 +32,9 @@
                 <button (click)="ajouterTheme()">Ajouter le thème</button>
             </p>
         </div>
+        <div *ngFor="let question in questions; let i=index">
+            {{question.label}}
+        </div>
+        <button>Ajouter une question</button>
     </form>
 </div>
