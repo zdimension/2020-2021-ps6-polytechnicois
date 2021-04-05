@@ -1,7 +1,5 @@
 import { Component } from "@angular/core";
 import { UserService } from "../services/user.service";
-import { Inject } from "@angular/core";
-import { strict } from "assert";
 
 @Component({
     selector: "app-root",
@@ -11,7 +9,7 @@ import { strict } from "assert";
 export class AppComponent
 {
     title = "starter-quiz";
-    fontSizes = ['16px', '20px', '24px'];
+    fontSizes = ['20px', '24px', '28px'];
     public fontSize: string;
     public font: string;
     constructor(private userService: UserService)
