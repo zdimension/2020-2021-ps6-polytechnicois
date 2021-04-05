@@ -9,7 +9,7 @@ import { UserService } from "../services/user.service";
 export class AppComponent
 {
     title = "starter-quiz";
-    fontSizes = ['20px', '24px', '28px'];
+    fontSizes = ['22px', '25px', '28px'];
     public fontSize: string;
     public font: string;
     constructor(private userService: UserService)

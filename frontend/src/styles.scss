@@ -17,6 +17,10 @@ body {
   background-color: $app-background-color;
 }
 
+app-header {
+  font-size: 1.1em;
+}
+
 html, body {
   height: 100%;
   overflow: hidden;

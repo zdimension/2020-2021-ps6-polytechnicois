@@ -3,12 +3,12 @@
         <div class="d-flex justify-content-center flex-column col">
 
             <div class="epsilon">
-                <button class="btn btn-lg btn-bluejoel col my-3" routerLink="/choisirquiz">Faire quiz
+                <button class="btn btn-md btn-bluejoel col my-3" routerLink="/choisirquiz">Faire quiz
                 </button>
                 <div *ngIf="user.role !== 1">
-                    <button class="btn btn-lg btn-bluejoel col my-3" routerLink="/score">Score</button>
-                    <button class="btn btn-lg btn-bluejoel col my-3" routerLink="/creationquiz">Créer un quiz</button>
-                    <button class="btn btn-lg btn-bluejoel col my-3" *ngIf="user.role === 2" routerLink="/gestion">Gestion des comptes</button>
+                    <button class="btn btn-md btn-bluejoel col my-3" routerLink="/score">Score</button>
+                    <button class="btn btn-md btn-bluejoel col my-3" routerLink="/creationquiz">Créer un quiz</button>
+                    <button class="btn btn-md btn-bluejoel col my-3" *ngIf="user.role === 2" routerLink="/gestion">Gestion des comptes</button>
                 </div>
             </div>
         </div>

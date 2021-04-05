@@ -4,7 +4,6 @@ import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import fonts from "../../fonts";
-import { gsap } from "gsap";
 
 
 @Component({
