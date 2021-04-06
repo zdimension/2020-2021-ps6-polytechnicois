@@ -1,6 +1,6 @@
 import morgan from "morgan";
 import logger from "./utils/logger";
-import { Action, createExpressServer, getMetadataArgsStorage } from "routing-controllers";
+import { Action, createExpressServer, getMetadataArgsStorage, UnauthorizedError } from "routing-controllers";
 import DBService from "./services/DBService";
 import AuthService from "./services/AuthService";
 import User, { UserRole } from "./models/User";
@@ -15,6 +15,9 @@ const app = createExpressServer({
     interceptors: [__dirname + "/interceptors/*.ts"],
     authorizationChecker: async (action: Action, roles: UserRole[]) =>
     {
+        if (!action.request.headers["authorization"])
+            throw new UnauthorizedError();
+
         try
         {
             const user = await User.findByPk(auth.verify(action.request.headers["authorization"]).id);
