@@ -15,7 +15,6 @@ export class CreationQuizComponent implements OnInit
     public creationQuizFirstStepForm: FormGroup;
     public listDifficulte: number[]=[1, 2, 3, 4, 5];
     public listThemes: QuizTheme[]=[];
-    public creerTheme: boolean=false;
     public questionsToAdd: QuestionToAdd[]=[];
     public isCollapsed = true;
     public creationQuizSecondStepForm: FormGroup[]=[];
@@ -35,14 +34,19 @@ export class CreationQuizComponent implements OnInit
     {
         this.quizService.themes$.subscribe((themes) =>
         {
-            return this.listThemes = themes;
+            this.listThemes = themes;
+            this.creationQuizFirstStepForm.get('theme').setValue(this.listThemes.length-1);
         });
     }
 
     ajouterTheme(): void
     {
-        console.log(this.creationQuizFirstStepForm.get('nomnouveautheme').value);
-        this.quizService.createTheme(this.creationQuizFirstStepForm.get('nomnouveautheme').value);
+        let newTheme: string=this.creationQuizFirstStepForm.get('nomnouveautheme').value;
+        if(newTheme === null) {
+            return;
+        }
+        this.quizService.createTheme(newTheme);
+        this.isCollapsed=true;
     }
 
     public addQuestion(): void
