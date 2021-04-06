@@ -54,6 +54,12 @@ export class CreationQuizComponent implements OnInit
         (component !== 'image' || this.questionsToAdd[id][component] !== "") ? this.questionsToAdd[id][component]=newValue : this.questionsToAdd[id][component]=null;
         console.log(this.questionsToAdd[0]);
     }
+
+    toJSON(form): string
+    {
+        console.log(form);
+        return JSON.stringify(form);
+    }
 }
 
 export class QuestionToAdd
