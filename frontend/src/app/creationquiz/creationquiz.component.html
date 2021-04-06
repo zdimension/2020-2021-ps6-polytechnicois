@@ -26,6 +26,8 @@
                         <label for="theme">
                             Thème
                         </label>
+                        <div class="d-flex justify-content-end align-items-center">
+
                         <select [formControlName]="'theme'" id="theme">
                             <option *ngFor="let c of listThemes; let i=index" [ngValue]="i">{{c.name}}</option>
                         </select>
@@ -36,6 +38,7 @@
                                     [attr.aria-expanded]="!isCollapsed"
                                     aria-controls="collapseCreerTheme">Créer un thème
                             </button>
+                        </div>
                         </div>
                     </div>
                     <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
@@ -78,7 +81,7 @@
 
             </form>
             <div *ngFor="let question of questionsToAdd; let i=index">
-                
+
                 <form (change)="changeField(i, 'answers', toJSON(this))">
                     <input type="text"/>
                     <input type="text"/>
