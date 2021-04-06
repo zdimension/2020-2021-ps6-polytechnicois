@@ -1,12 +1,13 @@
-<div id="creationquizfirststep">
-    <div class="container card">
+<div id="creationquizfirststep" class="h-100">
+    <div class="container card d-flex my-3">
         <nav class="navbar justify-content-between">
             <h4 class="navbar-brand">Création Quiz</h4>
         </nav>
 
-        <div>
+        <div class="container d-flex align-content-center  w-100 h-100 p-2 m-2">
 
-            <form [formGroup]="creationQuizFirstStepForm">
+            <form class="" [formGroup]="creationQuizFirstStepForm">
+
                 <div class="container card">
                     <div class="d-flex justify-content-between ">
                         <label for="nomquiz">
@@ -26,16 +27,19 @@
                         <label for="theme">
                             Thème
                         </label>
-                        <select [formControlName]="'theme'" id="theme">
-                            <option *ngFor="let c of listThemes; let i=index" [ngValue]="i">{{c.name}}</option>
-                        </select>
-                        <span>OU</span>
-                        <div class="epsilon">
-                            <button id="addtheme" class="btn btn-sm btn-yellow" type="button"
-                                    (click)="collapse.toggle()"
-                                    [attr.aria-expanded]="!isCollapsed"
-                                    aria-controls="collapseCreerTheme">Créer un thème
-                            </button>
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <select [formControlName]="'theme'" id="theme">
+                                <option *ngFor="let c of listThemes; let i=index" [ngValue]="i">{{c.name}}</option>
+                            </select>
+                            <span>OU</span>
+                            <div class="epsilon">
+                                <button id="addtheme" class="btn btn-sm btn-yellow" type="button"
+                                        (click)="collapse.toggle()"
+                                        [attr.aria-expanded]="!isCollapsed"
+                                        aria-controls="collapseCreerTheme">Créer un thème
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
@@ -53,34 +57,40 @@
                     </div>
 
                 </div>
-                <div class="container card" *ngFor="let question of questionsToAdd; let i=index">
-                    <div class="d-flex justify-content-between ">
-                        Question
-                        <input type="text" (change)="changeField(i, 'label', $event.target['value'])"
-                               value="{{question.label}}"/>
-                    </div>
-                    <div>
-                        <label for="image">
-                            Ajouter une image (facultatif)
-                        </label>
-                        <input type="file" id="image" (change)="changeField(i, 'image', $event.target['value'])"
-                               value="{{question.image}}"/>
-                    </div>
-                    <div class="col">
-                        Difficulté
-                        <select (change)="changeField(i, 'difficulty', +$event.target['value'])">
-                            <option *ngFor="let c of [1, 2, 3, 4, 5]" [ngValue]="c">{{c}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="epsilon d-flex justify-content-end">
+                <div>
 
-                    <button class="btn btn-bluejoel" (click)="addQuestion()">Ajouter une question</button>
+
+                    <div class="container card" *ngFor="let question of questionsToAdd; let i=index">
+                        <div class="d-flex justify-content-between ">
+                            Question
+                            <input type="text" (change)="changeField(i, 'label', $event.target['value'])"
+                                   value="{{question.label}}"/>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label for="image">
+                                Ajouter une image (facultatif)
+                            </label>
+                            <input type="file" id="image" (change)="changeField(i, 'image', $event.target['value'])"
+                                   value="{{question.image}}"/>
+                        </div>
+                        <div class="col">
+                            Difficulté
+                            <select (change)="changeField(i, 'difficulty', +$event.target['value'])">
+                                <option *ngFor="let c of [1, 2, 3, 4, 5]" [ngValue]="c">{{c}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="epsilon d-flex justify-content-end">
+
+                        <button class="btn btn-bluejoel" (click)="addQuestion()">Ajouter une question</button>
+                    </div>
                 </div>
 
             </form>
-            <div *ngFor="let question of questionsToAdd; let i=index">
-                
+
+<!--
+            <div class="" *ngFor="let question of questionsToAdd; let i=index">
+
                 <form (change)="changeField(i, 'answers', toJSON(this))">
                     <input type="text"/>
                     <input type="text"/>
@@ -92,6 +102,8 @@
                         <option *ngFor="let c of [1, 2, 3, 4]" [ngValue]="c">{{c}}</option>
                     </select>
                 </p>
-            </div>
+
+            </div>-->
         </div>
     </div>
+</div>
