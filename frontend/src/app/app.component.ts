@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { UserService } from "../services/user.service";
+import fonts from "../fonts";
 
 @Component({
     selector: "app-root",
@@ -24,7 +25,10 @@ export class AppComponent
                 this.font = user?.font ?? "Arial";
 
                 document.querySelector('html').style.fontSize = this.fontSize;
-                document.querySelector('html').style.fontFamily = this.font;
             });
+    }
+
+    setFont() {
+        return {'font-family': this.font};
     }
 }
