@@ -42,10 +42,21 @@
             Image:<br/>
             <input type="url" (change)="changeField(i, 'image', $event.target['value'])" value="{{question.image}}"/>
         </p>
-        <p class="col">
+        <p>
             Difficulté<br/>
             <select (change)="changeField(i, 'difficulty', +$event.target['value'])">
                 <option *ngFor="let c of [1, 2, 3, 4, 5]" [ngValue]="c">{{c}}</option>
+            </select>
+        </p>
+        <form (change)="changeField(i, 'answers', toJSON(this))">
+            <input type="text" />
+            <input type="text" />
+            <input type="text" />
+        </form>
+        <p>
+            Réponse correcte<br/>
+            <select (change)="changeField(i, 'correctAnswer', +$event.target['value'])">
+                <option *ngFor="let c of [1, 2, 3, 4]" [ngValue]="c">{{c}}</option>
             </select>
         </p>
     </div>
