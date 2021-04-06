@@ -85,6 +85,12 @@ export class QuizService
         });
     }
 
+    createTheme(theme: string): void
+    {
+        this.http.post(this.dataURL.toString()+"themes", {theme}).subscribe();
+        this.getThemes();
+    }
+
     addQuestionToQuiz(question: Question, quiz: Quiz): void
     {
         quiz.questions.push(question);

@@ -41,7 +41,8 @@ export class CreationQuizComponent implements OnInit
 
     ajouterTheme(): void
     {
-        //
+        console.log(this.creationQuizFirstStepForm.get('nomnouveautheme').value);
+        this.quizService.createTheme(this.creationQuizFirstStepForm.get('nomnouveautheme').value);
     }
 
     public addQuestion(): void
