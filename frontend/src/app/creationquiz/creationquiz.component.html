@@ -3,7 +3,7 @@
         <p>
             <label for="nomquiz">
                 Nom du quiz<br>
-                <input type="text" [formControlName]="'nomquiz'" id="nomquiz" />
+                <input type="text" [formControlName]="'nomquiz'" id="nomquiz"/>
             </label>
         </p>
         <p>
@@ -27,14 +27,27 @@
             <p>
                 <label for="nomnouveautheme">
                     Nom du thème<br>
-                    <input type="text" [formControlName]="'nomnouveautheme'" id="nomnouveautheme" />
+                    <input type="text" [formControlName]="'nomnouveautheme'" id="nomnouveautheme"/>
                 </label>
                 <button (click)="ajouterTheme()">Ajouter le thème</button>
             </p>
         </div>
-        <div *ngFor="let question in questions; let i=index">
-            {{question.label}}
-        </div>
-        <button>Ajouter une question</button>
     </form>
+    <div *ngFor="let question of questionsToAdd; let i=index">
+        <p>
+            Label:<br/>
+            <input type="text" (change)="changeField(i, 'label', $event.target['value'])" value="{{question.label}}"/>
+        </p>
+        <p>
+            Image:<br/>
+            <input type="url" (change)="changeField(i, 'image', $event.target['value'])" value="{{question.image}}"/>
+        </p>
+        <p class="col">
+            Difficulté<br/>
+            <select (change)="changeField(i, 'difficulty', +$event.target['value'])">
+                <option *ngFor="let c of [1, 2, 3, 4, 5]" [ngValue]="c">{{c}}</option>
+            </select>
+        </p>
+    </div>
+    <button (click)="addQuestion()">Ajouter une question</button>
 </div>

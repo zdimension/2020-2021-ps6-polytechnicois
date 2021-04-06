@@ -16,7 +16,7 @@ export class CreationQuizComponent implements OnInit
     public listDifficulte: number[]=[1, 2, 3, 4, 5];
     public listThemes: QuizTheme[]=[];
     public creerTheme: boolean=false;
-    public questions: Question[]=[];
+    public questionsToAdd: QuestionToAdd[]=[];
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService)
     {
@@ -26,8 +26,7 @@ export class CreationQuizComponent implements OnInit
             theme: new FormControl(0),
             nomnouveautheme: new FormControl()
         });
-        //let q: Question={id: 0, label: "", difficulty: 1, answers: [], correctAnswer: 0};
-        this.questions.push()
+        this.questionsToAdd.push({label: "55", difficulty: 1, answers: [], correctAnswer: 0});
     }
 
     ngOnInit(): void
@@ -42,4 +41,24 @@ export class CreationQuizComponent implements OnInit
     {
         //
     }
+
+    public addQuestion(): void
+    {
+        this.questionsToAdd.push({label: "", difficulty: 1, answers: [], correctAnswer: 0});
+    }
+
+    changeField(id: number, component: string, newValue, subid?: number): void
+    {
+        (component !== 'image' || this.questionsToAdd[id][component] !== "") ? this.questionsToAdd[id][component]=newValue : this.questionsToAdd[id][component]=null;
+        console.log(this.questionsToAdd[0]);
+    }
+}
+
+export class QuestionToAdd
+{
+    label: string;
+    image?: string;
+    difficulty: 1 | 2 | 3 | 4 | 5;
+    answers: string[];
+    correctAnswer: 0 | 1 | 2 | 3;
 }
