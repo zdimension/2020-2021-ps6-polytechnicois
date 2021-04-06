@@ -8,70 +8,89 @@
 
             <form [formGroup]="creationQuizFirstStepForm">
                 <div class="container card">
-                    <div class="d-flex justify-content-between ">
-                        <label for="nomquiz">
-                            Nom du quiz
-                        </label>
-                        <input type="text" [formControlName]="'nomquiz'" id="nomquiz"/>
-                    </div>
-                    <div class="d-flex justify-content-between ">
-                        <label for="difficulte">
-                            Difficulté
-                        </label>
-                        <select [formControlName]="'difficulte'" id="difficulte">
-                            <option *ngFor="let c of listDifficulte; let i=index" [ngValue]="i">{{c}}</option>
-                        </select>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <label for="theme">
-                            Thème
-                        </label>
-                        <div class="d-flex justify-content-end align-items-center">
+                    <div class="container">
 
-                        <select [formControlName]="'theme'" id="theme">
-                            <option *ngFor="let c of listThemes; let i=index" [ngValue]="i">{{c.name}}</option>
-                        </select>
-                        <span>OU</span>
-                        <div class="epsilon">
-                            <button id="addtheme" class="btn btn-sm btn-yellow" type="button"
-                                    (click)="collapse.toggle()"
-                                    [attr.aria-expanded]="!isCollapsed"
-                                    aria-controls="collapseCreerTheme">Créer un thème
-                            </button>
-                        </div>
-                        </div>
-                    </div>
-                    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-                        <div class="d-flex justify-content-end align-items-center">
-                            <label for="nomnouveautheme">
-                                Nom du thème
+
+                        <div class="d-flex justify-content-between ">
+                            <label for="nomquiz">
+                                Nom du quiz
                             </label>
-                            <input type="text" [formControlName]="'nomnouveautheme'" id="nomnouveautheme"/>
-                            <div class="epsilon">
+                            <input type="text" [formControlName]="'nomquiz'" id="nomquiz"/>
+                        </div>
+                        <div class="d-flex justify-content-between ">
+                            <label for="difficulte">
+                                Difficulté
+                            </label>
+                            <select [formControlName]="'difficulte'" id="difficulte">
+                                <option *ngFor="let c of listDifficulte; let i=index" [ngValue]="i">{{c}}</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label for="theme">
+                                Thème
+                            </label>
+                            <div class="d-flex justify-content-end align-items-center">
 
-                                <button class="btn btn-sm btn-bluejoel" (click)="ajouterTheme()">Ajouter le thème
-                                </button>
+                                <select [formControlName]="'theme'" id="theme">
+                                    <option *ngFor="let c of listThemes; let i=index" [ngValue]="i">{{c.name}}</option>
+                                </select>
+                                <span>OU</span>
+                                <div class="epsilon">
+                                    <button id="addtheme" class="btn btn-sm btn-yellow" type="button"
+                                            (click)="collapse.toggle()"
+                                            [attr.aria-expanded]="!isCollapsed"
+                                            aria-controls="collapseCreerTheme">Créer un thème
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <label for="nomnouveautheme">
+                                    Nom du thème
+                                </label>
+                                <input type="text" [formControlName]="'nomnouveautheme'" id="nomnouveautheme"/>
+                                <div class="epsilon">
+
+                                    <button class="btn btn-sm btn-bluejoel" (click)="ajouterTheme()">Ajouter le thème
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="container card" *ngFor="let questionForm of creationQuizSecondStepForm; let i=index">
-                    <div class="d-flex justify-content-between ">
-                        Question
-                        <input type="text" (change)="changeField(i, 'label', $event.target['value'])"/>
-                    </div>
-                    <div>
-                        <label for="image">
-                            Ajouter une image (facultatif)
-                        </label>
-                        <input type="file" id="image" (change)="changeField(i, 'image', $event.target['value'])"/>
-                    </div>
-                    <div class="col">
-                        Difficulté
-                        <select (change)="changeField(i, 'difficulty', +$event.target['value'])">
-                            <option *ngFor="let c of [1, 2, 3, 4, 5]" [ngValue]="c">{{c}}</option>
-                        </select>
+                    <div class="d-flex justify-content-center flex-wrap">
+
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between ">
+                                Question
+                                <input type="text" (change)="changeField(i, 'label', $event.target['value'])"/>
+                            </div>
+                            <div class="">
+                                Difficulté
+                                <select (change)="changeField(i, 'difficulty', +$event.target['value'])">
+                                    <option *ngFor="let c of [1, 2, 3, 4, 5]" [ngValue]="c">{{c}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="epsilon p-4">
+                            <button class="btn btn-tertiary">
+                                Supprimer Question
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-between p-4">
+                            <div class="p-4">
+                                <label for="image">
+                                    Ajouter une image (facultatif)
+                                </label>
+                            </div>
+                            <div class="p-4">
+                                <input type="file" id="image"
+                                       (change)="changeField(i, 'image', $event.target['value'])"/>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="epsilon d-flex justify-content-end">
