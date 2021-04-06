@@ -28,7 +28,7 @@ export class CreationQuizComponent implements OnInit
             theme: new FormControl(0),
             nomnouveautheme: new FormControl()
         });
-        this.questionsToAdd.push({label: "55", difficulty: 1, answers: [], correctAnswer: 0});
+        //this.questionsToAdd.push({label: "55", difficulty: 1, answers: [], correctAnswer: 0});
     }
 
     ngOnInit(): void
@@ -47,6 +47,9 @@ export class CreationQuizComponent implements OnInit
     public addQuestion(): void
     {
         this.questionsToAdd.push({label: "", difficulty: 1, answers: [], correctAnswer: 0});
+        this.creationQuizSecondStepForm.push(this.formBuilder.group({
+            //
+        }));
     }
 
     changeField(id: number, component: string, newValue, subid?: number): void
