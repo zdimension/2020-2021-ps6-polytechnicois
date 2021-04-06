@@ -17,8 +17,8 @@ export class CreationQuizComponent implements OnInit
     public listThemes: QuizTheme[]=[];
     public creerTheme: boolean=false;
     public questionsToAdd: QuestionToAdd[]=[];
-    //to collapse creer theme
     public isCollapsed = true;
+    public creationQuizSecondStepForm: FormGroup[]=[];
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService)
     {
