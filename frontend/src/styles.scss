@@ -17,6 +17,16 @@ body {
   background-color: $app-background-color;
 }
 
+app-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+app-root .content {
+  overflow-y: auto;
+}
+
 app-header {
   font-size: 1.1em;
 }
