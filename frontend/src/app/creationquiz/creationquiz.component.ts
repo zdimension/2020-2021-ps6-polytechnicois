@@ -6,8 +6,8 @@ import { Question } from "../../models/question.model";
 
 @Component({
     selector: "app-creationquiz",
-    templateUrl: "./creationquiz.component.html"/*,
-    styleUrls: ["./user.component.scss"]*/
+    templateUrl: "./creationquiz.component.html",
+    styleUrls: ["./creationquiz.component.scss"]
 })
 export class CreationQuizComponent implements OnInit
 {
@@ -17,6 +17,8 @@ export class CreationQuizComponent implements OnInit
     public listThemes: QuizTheme[]=[];
     public creerTheme: boolean=false;
     public questions: Question[]=[];
+    //to collapse creer theme
+    public isCollapsed = true;
 
     constructor(public formBuilder: FormBuilder, public quizService: QuizService)
     {
