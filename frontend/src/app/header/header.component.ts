@@ -3,7 +3,7 @@ import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
-import fonts from "../../fonts";
+import {fonts} from "../../fonts";
 
 
 @Component({

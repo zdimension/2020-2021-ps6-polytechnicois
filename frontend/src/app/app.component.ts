@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { UserService } from "../services/user.service";
-import fonts from "../fonts";
+import { BASE_FONT_SIZE, DEFAULT_FONT_SIZE } from "../fonts";
 
 @Component({
     selector: "app-root",
@@ -10,25 +10,26 @@ import fonts from "../fonts";
 export class AppComponent
 {
     title = "starter-quiz";
-    fontSizes = ['22px', '25px', '28px'];
     public fontSize: string;
     public font: string;
     constructor(private userService: UserService)
     {
     }
 
+    toPixels(n: number): string {
+        return n*3+BASE_FONT_SIZE+'px';
+    }
+
     ngOnInit(){
         this.userService.currentUser
             .subscribe(user =>
             {
-                this.fontSize = this.fontSizes[user?.fontSize ?? 1];
+                this.fontSize = this.toPixels(user?.fontSize ?? DEFAULT_FONT_SIZE);
                 this.font = user?.font ?? "Arial";
-
-                document.querySelector('html').style.fontSize = this.fontSize;
             });
     }
 
-    setFont() {
-        return {'font-family': this.font};
+    setStyle() {
+        return {'font-family': this.font, 'font-size': this.fontSize};
     }
 }
