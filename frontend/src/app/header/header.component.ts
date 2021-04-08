@@ -31,12 +31,10 @@ export class HeaderComponent implements OnInit
         if (this.user.font)
         {
             this.favoriteFont = new FormControl(this.user.font);
-            console.log(this.user.font);
         }
         else
         {
             this.favoriteFont = new FormControl(fonts[0]);
-            console.log("default");
         }
     }
 
