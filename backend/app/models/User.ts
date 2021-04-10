@@ -45,6 +45,10 @@ export default class User extends Model
     @Column(Difficulty)
     maxDifficulty!: TDifficulty;
 
+    @Default(false)
+    @Column
+    forceRecap!: boolean;
+
     @Default(null)
     @Column
     maxQuestions?: number;
