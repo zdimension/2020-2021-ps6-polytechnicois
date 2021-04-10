@@ -7,6 +7,9 @@ export interface User extends BaseModel
     highContrast: boolean;
     fontSize: number;
     font: string;
+    maxDifficulty: 1 | 2 | 3 | 4 | 5;
+    forceRecap: boolean;
+    maxQuestions: number;
     role: number;
     token: string;
 }
