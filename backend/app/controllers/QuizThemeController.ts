@@ -20,7 +20,6 @@ export default class QuizThemeController
 
     @Post("/")
     @HttpCode(201)
-    @Authorized(UserRole.Admin)
     async create(@Body() theme : { name: string }): Promise<QuizTheme>
     {
         const existing = await QuizTheme.findOne({

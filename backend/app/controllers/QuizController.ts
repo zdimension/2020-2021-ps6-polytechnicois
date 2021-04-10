@@ -1,8 +1,10 @@
-import { Body, Get, JsonController, OnNull, Param, Post } from "routing-controllers";
+import { Body, CurrentUser, Get, JsonController, OnNull, Param, Post } from "routing-controllers";
 import Quiz from "../models/Quiz";
 import Question from "../models/Question";
 import QuizTheme from "../models/QuizTheme";
 import sequelize from "sequelize";
+import QuizHistory from "../models/QuizHistory";
+import User from "../models/User";
 
 @JsonController("/quizzes")
 export default class QuizController
@@ -30,5 +32,19 @@ export default class QuizController
     @Post("/")
     async create(@Body() quiz: Quiz)
     {
+    }
+
+    @Post("/:id/attempt")
+    async createHistory(
+        @Param("id") id: number,
+        @Body() answers: QuizHistory["answers"],
+        @CurrentUser({required: false}) current: User)
+    {
+        const quiz = await Quiz.findByPk(id);
+        return await QuizHistory.create({
+            quizId: quiz.id,
+            userId: current?.id??1,
+            answers: answers
+        });
     }
 }

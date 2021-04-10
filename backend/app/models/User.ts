@@ -5,12 +5,14 @@ import {
     BeforeCreate,
     BeforeUpdate,
     Column,
-    Default,
+    Default, HasMany,
     Model,
     Table,
     Unique
 } from "sequelize-typescript";
 import { Difficulty, TDifficulty } from "../utils/types";
+import Question from "./Question";
+import QuizHistory from "./QuizHistory";
 
 export enum UserRole
 {
@@ -56,6 +58,9 @@ export default class User extends Model
     @Default(UserRole.Regular)
     @Column
     role!: UserRole;
+
+    @HasMany(() => QuizHistory)
+    attempts!: QuizHistory[];
 
     @BeforeBulkCreate
     static beforeBulkCreateHook(instances: User[]): void

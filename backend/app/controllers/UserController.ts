@@ -111,7 +111,7 @@ export default class UserController
     }
 
     @Get("/users")
-    @Authorized(UserRole.Admin)
+    //@Authorized(UserRole.Admin)
     async getAll()
     {
         return await User.findAll();
