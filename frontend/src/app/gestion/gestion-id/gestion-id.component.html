@@ -23,28 +23,30 @@
                             <option *ngFor="let c of userRoleStr; let i=index" [ngValue]="i">{{c}}</option>
                         </select>
                     </div>
-                    <div class="d-flex justify-content-between" *ngIf="userToModify.role == 1">
-                        <label for="scoreUser">
-                            Visualisation scord
-                        </label>
-                        <select id="scoreUser">
-                            <option></option>
-                        </select>
-                    </div>
-                    <div class="d-flex justify-content-between" *ngIf="userToModify.role == 1">
-                        <p>
-                            Imposer un recap
-                        </p>
-                        <div>
-
-                        <label for="recapy">
-                        <input type="radio" name="recap" id="recapy">
-                            Yes
-                        </label>
-                        <label for="recapn">
-                            <input type="radio" name="recap" id="recapn">
-                            No
-                        </label>
+                    <div *ngIf="userToModify.role == 1">
+                        <div class="d-flex justify-content-between">
+                            <label for="maxQuestions">
+                                Nombre maximum de questions
+                            </label>
+                            <select [formControlName]="'maxQuestions'" id="maxQuestions" (change)="changeUser()">
+                                <option *ngFor="let c of listMaxQuestions; let i=index" [ngValue]="i">{{c}}</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <label for="maxDifficulty">
+                                Difficulté maximale
+                            </label>
+                            <select [formControlName]="'maxDifficulty'" id="maxDifficulty" (change)="changeUser()">
+                                <option *ngFor="let c of listMaxDifficulty;let i=index" [ngValue]="i">{{c}}</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <input [formControlName]="'forceRecap'" class="form-check-input" id="forceRecap"
+                                   type="checkbox"
+                                   (change)="changeUser()">
+                            <label class="form-check-label" for="forceRecap">
+                                Imposer un recap après le quiz ?
+                            </label>
                         </div>
                     </div>
                     <div>
