@@ -4,7 +4,7 @@ import { User } from "../models/user.model";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs/Rx";
-import fonts from "../fonts";
+import { DEFAULT_FONT_SIZE, fonts, MAX_FONT_SIZE } from "../fonts";
 
 @Injectable({
     providedIn: "root"
@@ -110,7 +110,7 @@ export class UserService
 
         if (p)
         {
-            if (this.user.fontSize >= 2)
+            if (this.user.fontSize >= MAX_FONT_SIZE)
             {
                 return;
             }
@@ -118,7 +118,7 @@ export class UserService
         }
         else
         {
-            if (this.user.fontSize <= 0)
+        if (this.user.fontSize <= DEFAULT_FONT_SIZE)
             {
                 return;
             }

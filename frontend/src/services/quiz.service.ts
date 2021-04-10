@@ -6,6 +6,7 @@ import { Question } from "../models/question.model";
 import { UserService } from "./user.service";
 import { Router } from "@angular/router";
 import { User } from "../models/user.model";
+import { QuizTheme } from "../models/quiztheme.model";
 
 @Injectable({
     providedIn: "root"
@@ -78,10 +79,17 @@ export class QuizService
 
     getThemes(): void
     {
-        this.http.get<Quiz[]>(this.dataURL.toString() + "themes").subscribe((tickets) =>
+        this.http.get<QuizTheme[]>(this.dataURL.toString() + "themes").subscribe((tickets) =>
         {
             this.themes = tickets;
             this.themes$.next(tickets);
+        });
+    }
+
+    createTheme(theme: string): void
+    {
+        this.http.post(this.dataURL.toString()+"themes", {name: theme}).subscribe(x => {
+            this.getThemes();
         });
     }
 

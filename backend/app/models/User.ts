@@ -33,7 +33,7 @@ export default class User extends Model
     @Column
     highContrast!: boolean;
 
-    @Default(1)
+    @Default(0)
     @Column
     fontSize!: number;
 
