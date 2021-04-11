@@ -1,1 +1,26 @@
-recap
+<div>
+    <div *ngIf="quiz !== null">
+        <p>
+        {{quiz.name}}
+        </p>
+        <div>
+            <p>
+            {{question}}
+            </p>
+            <div *ngIf="urlImage !== null">
+                <p>
+                <img [src]="urlImage" />
+                </p>
+            </div>
+            <p>
+            {{goodAnswer}}
+            </p>
+        </div>
+        <button (click)="nextQestion()">Compris !</button>
+    </div>
+    <div *ngIf="quiz === null">
+        <button (click)="goToTrain()">S'entraîner</button>
+        <button routerLink="/choisirquiz">Faire un autre quiz</button>
+        <button routerLink="/">Retour à l'accueil</button>
+    </div>
+</div>
