@@ -28,7 +28,7 @@
                 <label for="difficulte">
                     Difficulté:<br>
                     <select [formControlName]="'difficulte'" id="difficulte" (change)="changeDisplay()">
-                        <option *ngFor="let c of listdifficulte" [ngValue]="c">{{c}}</option>
+                        <option *ngFor="let c of listdifficulte;let i=index" [ngValue]="i">{{c}}</option>
                     </select>
                 </label>
             </p>

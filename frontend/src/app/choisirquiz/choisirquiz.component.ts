@@ -6,6 +6,7 @@ import { QuizTheme } from "../../models/quiztheme.model";
 import { UserService } from "../../services/user.service";
 import { Router } from "@angular/router";
 import { User } from "../../models/user.model";
+import { min } from "rxjs/operators";
 
 @Component({
     selector: "app-choisirquiz",
@@ -24,7 +25,7 @@ export class ChoisirQuizComponent implements OnInit
     public listThemes: QuizTheme[];
     //to collapse filters
     public isCollapsed = true;
-    public user: User;
+    public user: User=null;
 
     constructor(public quizService: QuizService, public formBuilder: FormBuilder, public userService: UserService, private router: Router)
     {
@@ -38,7 +39,7 @@ export class ChoisirQuizComponent implements OnInit
         this.choisirQuizForm = this.formBuilder.group({
             theme: new FormControl("Peu importe"),
             dejafait: new FormControl(this.listdejafait[0]),
-            difficulte: new FormControl(this.listdifficulte[0]),
+            difficulte: new FormControl(0),
             nbquestions: new FormControl(this.listnbquestions[0]),
             trierauhasard: new FormControl(false)
         });
@@ -46,7 +47,12 @@ export class ChoisirQuizComponent implements OnInit
         {
             return this.listThemes = themes;
         });
-        this.userService.currentUser.subscribe((user) => this.user = user);
+        this.userService.currentUser.subscribe((user) => {
+            this.user = user;
+            if(this.user !== null && this.user.role === 1) {
+                this.listdifficulte=this.listdifficulte.slice(0, this.user.maxDifficulty.valueOf());
+            }
+        });
     }
 
     ngOnInit(): void
@@ -63,6 +69,9 @@ export class ChoisirQuizComponent implements OnInit
             });
         }
         this.quizListDisplayed = this.quizList;
+        if(this.user !== null && this.user.role==1) {
+            this.quizListDisplayed = this.quizList.filter(quiz => quiz.difficulty <= this.user.maxDifficulty.valueOf());
+        }
     }
 
     changeDisplay(): void
@@ -78,24 +87,7 @@ export class ChoisirQuizComponent implements OnInit
             this.quizListDisplayed = this.quizList.filter(quiz => quiz.theme.name === theme);
         }
         let difficulte = this.choisirQuizForm.get("difficulte").value;
-        switch (difficulte)
-        {
-            case ">=1":
-                this.quizListDisplayed = this.quizList.filter(quiz => quiz.difficulty >= 1);
-                break;
-            case ">=2":
-                this.quizListDisplayed = this.quizList.filter(quiz => quiz.difficulty >= 2);
-                break;
-            case ">=3":
-                this.quizListDisplayed = this.quizList.filter(quiz => quiz.difficulty >= 3);
-                break;
-            case ">=4":
-                this.quizListDisplayed = this.quizList.filter(quiz => quiz.difficulty >= 4);
-                break;
-            case ">=5":
-                this.quizListDisplayed = this.quizList.filter(quiz => quiz.difficulty >= 5);
-                break;
-        }
+        this.quizListDisplayed = this.quizListDisplayed.filter(quiz => quiz.difficulty >= difficulte);
         let nbquestions = this.choisirQuizForm.get("nbquestions").value;
         switch (nbquestions)
         {
@@ -108,6 +100,9 @@ export class ChoisirQuizComponent implements OnInit
             case "Beaucoup":
                 this.quizListDisplayed = this.quizList.filter(quiz => quiz.questionCount >= 7);
                 break;
+        }
+        if(this.user !== null && this.user.role==1) {
+            this.quizListDisplayed = this.quizListDisplayed.filter(quiz => quiz.difficulty <= this.user.maxDifficulty.valueOf());
         }
     }
 
