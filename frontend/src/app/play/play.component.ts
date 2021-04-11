@@ -2,6 +2,8 @@ import { Component, HostBinding, OnInit } from "@angular/core";
 import { Quiz } from "../../models/quiz.model";
 import { QuizService } from "../../services/quiz.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { User } from "../../models/user.model";
+import { UserService } from "../../services/user.service";
 
 @Component({
     selector: "app-play",
@@ -26,13 +28,18 @@ export class PlayComponent implements OnInit
     public urlImage: string = null;
     public trainMode: boolean = false;
     public displayedInTrainMode: boolean[] = [];
+    private user: User=null;
+    private id: number=1;
 
-    constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router)
+    constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService)
     {
     }
 
     ngOnInit(): void
     {
+        this.userService.currentUser.subscribe(user => {
+            this.user=user;
+        });
         this.route.queryParams.subscribe(params =>
         {
             this.trainMode = params.hasOwnProperty("trainmode");
@@ -46,8 +53,8 @@ export class PlayComponent implements OnInit
      */
     getQuiz(): void
     {
-        const id = +this.route.snapshot.paramMap.get("id");
-        this.quizService.getQuizById(id)
+        this.id = +this.route.snapshot.paramMap.get("id");
+        this.quizService.getQuizById(this.id)
             .subscribe(quiz =>
             {
                 this.quiz = quiz;
@@ -96,6 +103,9 @@ export class PlayComponent implements OnInit
                 this.displayedMessage = "Quiz terminé";
                 this.quizTermine = true;
                 this.numquestion--;
+                if(this.user !== null && this.user.role===1 && this.user.forceRecap) {
+                    this.router.navigate(['recap/'+this.id]);
+                }
                 return;
             }
             this.answersDisplayed = this.quiz.questions[this.numquestion - 1].answers;
