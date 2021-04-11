@@ -12,16 +12,16 @@ export class PlayComponent implements OnInit
 {
 
     quiz: Quiz;
-    public numquestion = 1;
+    public numquestion = 1; //the current question's number
     public firstStage = true;
-    public answersDisplayed: string[];
+    public answersDisplayed: string[]; //the current question's answers
     public quizname: string;
-    @HostBinding("style.--rating")
+    @HostBinding("style.--rating") //Binds the TS variable `quizdifficulty` to the scss variable `--rating`
     public quizdifficulty: number;
     public questionlabel: string;
     public questionCount = 0;
     public correctAnswer = 0;
-    public displayedMessage = "Selectionnez la bonne reponse";
+    public displayedMessage = "Séléctionnez la bonne réponse";
     public quizTermine = false;
     public urlImage: string = null;
     public trainMode: boolean = false;
@@ -40,6 +40,10 @@ export class PlayComponent implements OnInit
         this.getQuiz();
     }
 
+    /**
+     * Loads the quiz into the component and displays
+     * the first question
+     */
     getQuiz(): void
     {
         const id = +this.route.snapshot.paramMap.get("id");
@@ -58,6 +62,12 @@ export class PlayComponent implements OnInit
             });
     }
 
+    /**
+     * Callback function called whenever the user
+     * clicks on an answer
+     *
+     * @param n: the answer's number
+     */
     reponseCliquee(n): void
     {
         if (this.quizTermine)
@@ -92,12 +102,19 @@ export class PlayComponent implements OnInit
             this.questionlabel = this.quiz.questions[this.numquestion - 1].label;
             this.correctAnswer = this.quiz.questions[this.numquestion - 1].correctAnswer;
             this.urlImage = this.quiz.questions[this.numquestion - 1].image;
-            this.displayedMessage = "Selectionnez la bonne reponse";
+            this.displayedMessage = "Séléctionnez la bonne réponse";
             this.updateDisplayedInTrainMode();
         }
         this.firstStage = !this.firstStage;
     }
 
+    /**
+     * Returns a random floating number
+     * between min an max (min inclusive, max exclusive)
+     *
+     * @param min: minimum value (inclusive)
+     * @param max: maximum vale (exclusive)
+     */
     public getRandom(min: number, max: number): number
     {
         if (min > max)
