@@ -21,9 +21,6 @@ app-root {
   height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-app-root .content {
   overflow-y: auto;
 }
 
