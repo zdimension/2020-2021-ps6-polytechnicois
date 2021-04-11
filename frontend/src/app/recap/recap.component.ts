@@ -15,10 +15,10 @@ export class RecapComponent implements OnInit
 {
 
     private numQuestion: number=0;
-    private urlImage: string="";
-    private question: string="";
-    private goodAnswer: string="";
-    private quiz: Quiz=null;
+    public urlImage: string="";
+    public question: string="";
+    public goodAnswer: string="";
+    public quiz: Quiz=null;
     private id: number=1;
 
     constructor(public quizService: QuizService, public userService: UserService, private router: Router, private route: ActivatedRoute)
