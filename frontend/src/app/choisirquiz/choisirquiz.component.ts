@@ -51,6 +51,7 @@ export class ChoisirQuizComponent implements OnInit
             this.user = user;
             if(this.user !== null && this.user.role === 1) {
                 this.listdifficulte=this.listdifficulte.slice(0, this.user.maxDifficulty.valueOf());
+                this.parseQuizList();
             }
         });
     }
