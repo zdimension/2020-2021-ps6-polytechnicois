@@ -30,6 +30,7 @@ import { PlayComponent } from "./play/play.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AuthInterceptor } from "../interceptors/auth.interceptor";
 import { ErrorInterceptor } from "../interceptors/error.interceptor";
+import { RecapComponent } from "./recap/recap.component";
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import { ErrorInterceptor } from "../interceptors/error.interceptor";
         ScoreComponent,
         CreationQuizComponent,
         ChoisirQuizComponent,
-        PlayComponent
+        PlayComponent,
+        RecapComponent
     ],
     imports: [
         BrowserModule,
