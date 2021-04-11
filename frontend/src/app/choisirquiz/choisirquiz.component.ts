@@ -72,6 +72,7 @@ export class ChoisirQuizComponent implements OnInit
         this.quizListDisplayed = this.quizList;
         if(this.user !== null && this.user.role==1) {
             this.quizListDisplayed = this.quizList.filter(quiz => quiz.difficulty <= this.user.maxDifficulty.valueOf());
+            this.quizListDisplayed = this.quizListDisplayed.filter(quiz => quiz.questionCount <= this.user.maxQuestions.valueOf() || this.user.maxQuestions.valueOf() === 0);
         }
     }
 
@@ -104,6 +105,7 @@ export class ChoisirQuizComponent implements OnInit
         }
         if(this.user !== null && this.user.role==1) {
             this.quizListDisplayed = this.quizListDisplayed.filter(quiz => quiz.difficulty <= this.user.maxDifficulty.valueOf());
+            this.quizListDisplayed = this.quizListDisplayed.filter(quiz => quiz.questionCount <= this.user.maxQuestions.valueOf() || this.user.maxQuestions.valueOf() === 0);
         }
     }
 
