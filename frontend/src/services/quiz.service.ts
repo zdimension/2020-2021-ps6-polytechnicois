@@ -104,4 +104,9 @@ export class QuizService
         const indexQuiz = this.quizzes.findIndex((element) => element === quiz);
         this.quizzes[indexQuiz].questions.splice(indexQues, 1);
     }
+
+    uploadAttempt(idQuiz: number, history): void
+    {
+        this.http.post(this.dataURL.toString()+"quizzes/"+idQuiz+"/attempt", history).subscribe();
+    }
 }

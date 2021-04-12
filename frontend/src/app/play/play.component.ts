@@ -30,6 +30,7 @@ export class PlayComponent implements OnInit
     public displayedInTrainMode: boolean[] = [];
     private user: User=null;
     private id: number=1;
+    private history;
 
     constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService)
     {
@@ -67,6 +68,7 @@ export class PlayComponent implements OnInit
                 this.urlImage = this.quiz.questions[this.numquestion - 1].image;
                 this.updateDisplayedInTrainMode();
             });
+        this.history=new Map<string, number>();
     }
 
     /**
@@ -84,6 +86,7 @@ export class PlayComponent implements OnInit
         this.questionlabel = this.quiz.questions[this.numquestion - 1].label;
         if (this.firstStage)
         {
+            this.history.set((this.numquestion - 1).toString(), n);
             if (this.quiz.questions[this.numquestion - 1].correctAnswer == n)
             {
                 console.log("Correct");
@@ -102,6 +105,8 @@ export class PlayComponent implements OnInit
                 console.log("Quiz termine");
                 this.displayedMessage = "Quiz terminé";
                 this.quizTermine = true;
+                console.log(this.history)
+                this.quizService.uploadAttempt(this.id, this.history);
                 this.numquestion--;
                 if(this.user !== null && this.user.role===1 && this.user.forceRecap) {
                     this.router.navigate(['recap/'+this.id]);
