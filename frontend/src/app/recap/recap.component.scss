@@ -28,6 +28,12 @@ $img-dims: 15em;
   flex-direction: row;
 }
 
+#playingquestion {
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 1.5em;
+  text-align: center;
+}
+
 $percent: calc(var(--rating) / 5 * 100%);
 $starsize: 300px;
 $starcolor: #9d9b9b;
