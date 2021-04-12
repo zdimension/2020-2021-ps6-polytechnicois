@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, HostBinding, OnInit } from "@angular/core";
 import { QuizService } from "../../services/quiz.service";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { UserService } from "../../services/user.service";
@@ -8,8 +8,8 @@ import { Question } from "../../models/question.model";
 
 @Component({
     selector: "app-recap",
-    templateUrl: "./recap.component.html"/*,
-    styleUrls: ["./recap.component.scss"]*/
+    templateUrl: "./recap.component.html",
+    styleUrls: ["./recap.component.scss"]
 })
 export class RecapComponent implements OnInit
 {
@@ -71,5 +71,10 @@ export class RecapComponent implements OnInit
             replaceUrl: true,
             queryParams: { "trainmode": true }
         });
+    }
+
+    @HostBinding("style.--rating") //Binds the TS variable `quizdifficulty` to the scss variable `--rating`
+    getDifficulty(): number {
+        return this.quiz.difficulty;
     }
 }

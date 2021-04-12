@@ -1,26 +1,49 @@
-<div>
-    <div *ngIf="quiz !== null">
-        <p>
-        {{quiz.name}}
-        </p>
-        <div>
-            <p>
-            {{question}}
-            </p>
-            <div *ngIf="urlImage !== null">
-                <p>
-                <img [src]="urlImage" />
-                </p>
+<div class="my-0 mx-auto " style="width: 80%; height: 70%;">
+    <div>
+
+        <div id="mainplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5 border-0 "
+             *ngIf="quiz !== null">
+            <div id="playingheader" class="justify-content-between flex-row d-flex">
+                <div>
+                    <span>{{quiz.name}}</span>
+                </div>
+                <div>
+                    <span>Question {{numQuestion + 1}} sur {{quiz.questions.length}}</span>
+                </div>
+                <div class="Stars">
+                </div>
             </div>
-            <p>
-            {{goodAnswer}}
-            </p>
+            <div id="playingcard" class="justify-content-between flex-row d-flex p-3 w-100 h-100">
+                <div class="questioncontainer ml-3 flex-column d-flex justify-content-center w-50">
+                    <span id="playingquestion" class="d-flex justify-content-center">
+                    {{question}}
+                </span>
+                    <div id="questionPicture" class="d-flex justify-content-center">
+                        <img alt="Image relative à la question" *ngIf="urlImage != null" [src]="urlImage"/>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        {{goodAnswer}}
+                    </div>
+                    <div class="epsilon">
+                        <button class="btn btn-bluejoel" (click)="nextQestion()">Compris !</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button (click)="nextQestion()">Compris !</button>
+
     </div>
-    <div *ngIf="quiz === null">
-        <button (click)="goToTrain()">S'entraîner</button>
-        <button routerLink="/choisirquiz">Faire un autre quiz</button>
-        <button routerLink="/">Retour à l'accueil</button>
+    <div id="quiztermineplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5 "
+         *ngIf="quiz === null">
+        <div id="playingtermineheader" class="justify-content-between flex-row d-flex">
+            Quiz terminé ! Félicitations !
+        </div>
+        <div id="buttonsquiztermine" class="epsilon justify-content-between flex-row d-flex row">
+
+            <button class="btn btn-bluejoel"  (click)="goToTrain()">S'entraîner</button>
+            <button class="btn btn-bluejoel"  routerLink="/choisirquiz">Faire un autre quiz</button>
+            <button class="btn btn-bluejoel"  routerLink="/">Retour à l'accueil</button>
+        </div>
     </div>
 </div>

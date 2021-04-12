@@ -1,0 +1,29 @@
+$img-dims: 15em;
+
+#questionPicture img{
+  height:$img-dims;
+  width:$img-dims;
+  display: block;
+  object-fit: contain;
+
+}
+
+#mainplayingcard {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+}
+
+#playingheader {
+  //try this :
+  //https://css-tricks.com/restricting-a-pseudo-element-to-its-parents-border-box/
+  background: linear-gradient(to bottom, #fef086, #fde635);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  padding: 0.4em 1em;
+  width: 100%;
+}
+
+#playingcard {
+  display:flex;
+  flex-direction: row;
+}
