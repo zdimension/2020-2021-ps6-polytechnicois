@@ -68,7 +68,7 @@ export class PlayComponent implements OnInit
                 this.urlImage = this.quiz.questions[this.numquestion - 1].image;
                 this.updateDisplayedInTrainMode();
             });
-        this.history=new Map<string, number>();
+        this.history={};
     }
 
     /**
@@ -86,7 +86,7 @@ export class PlayComponent implements OnInit
         this.questionlabel = this.quiz.questions[this.numquestion - 1].label;
         if (this.firstStage)
         {
-            this.history.set((this.numquestion - 1).toString(), n);
+            this.history[(this.numquestion - 1).toString()]= n;
             if (this.quiz.questions[this.numquestion - 1].correctAnswer == n)
             {
                 console.log("Correct");
