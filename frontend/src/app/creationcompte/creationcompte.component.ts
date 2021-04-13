@@ -46,6 +46,9 @@ export class CreationCompteComponent implements OnInit
         this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
     }
 
+    /**
+     * On form Submit
+     */
     onSubmit(): void
     {
         this.submitted = true;

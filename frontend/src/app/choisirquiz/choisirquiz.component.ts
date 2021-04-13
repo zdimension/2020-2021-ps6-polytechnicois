@@ -60,6 +60,9 @@ export class ChoisirQuizComponent implements OnInit
     {
     }
 
+    /**
+     * For each quiz, gather questions. And remove specific user forbidden quizzes
+     */
     parseQuizList(): void
     {
         for (const quiz of this.quizList)
@@ -76,6 +79,9 @@ export class ChoisirQuizComponent implements OnInit
         }
     }
 
+    /**
+     * Change displayed quizzes when filters are triggered
+     */
     changeDisplay(): void
     {
         this.quizListDisplayed = this.quizList;
@@ -109,6 +115,11 @@ export class ChoisirQuizComponent implements OnInit
         }
     }
 
+    /**
+     * Shuffle an array
+     * @param array
+     * @private
+     */
     private shuffle(array)
     {
         let currentIndex = array.length, temporaryValue, randomIndex;

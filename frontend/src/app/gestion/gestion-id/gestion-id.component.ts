@@ -19,6 +19,12 @@ export class GestionIdComponent implements OnInit
     public listMaxQuestions: string[]=["infini", "5", "10", "15"];
     public listMaxDifficulty: string[]=["1", "2", "3", "4", "5"];
 
+    /**
+     * Gather user's infos
+     * @param userService
+     * @param route
+     * @param router
+     */
     constructor(private userService: UserService, private route: ActivatedRoute, private router: Router)
     {
         this.userId = +this.route.snapshot.paramMap.get("id");
@@ -31,6 +37,9 @@ export class GestionIdComponent implements OnInit
         });
     }
 
+    /**
+     * Set displayed fields to user's infos
+     */
     ngOnInit(): void
     {
         this.userService.getUserById(this.userId).subscribe(user => {
@@ -47,6 +56,9 @@ export class GestionIdComponent implements OnInit
         })
     }
 
+    /**
+     * When a field is changed, modify user's infos
+     */
     changeUser(): void
     {
         let role=this.changeUserForm.controls['roleUser'].value;
