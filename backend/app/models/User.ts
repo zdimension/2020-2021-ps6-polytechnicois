@@ -13,6 +13,7 @@ import {
 import { Difficulty, TDifficulty } from "../utils/types";
 import Question from "./Question";
 import QuizHistory from "./QuizHistory";
+import QuizRecap from "./QuizRecap";
 
 export enum UserRole
 {
@@ -61,6 +62,9 @@ export default class User extends Model
 
     @HasMany(() => QuizHistory)
     attempts!: QuizHistory[];
+
+    @HasMany(() => QuizRecap)
+    recaps!: QuizRecap[];
 
     @BeforeBulkCreate
     static beforeBulkCreateHook(instances: User[]): void
