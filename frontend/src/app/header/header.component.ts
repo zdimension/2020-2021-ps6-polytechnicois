@@ -38,28 +38,45 @@ export class HeaderComponent implements OnInit
         }
     }
 
+    /**
+     * On font changed
+     * @param event triggering event
+     */
     changeFont(event: any): void
     {
         let font = event.target.value;
         this.userService.changeFont(font);
     }
 
+    /**
+     * On font size changed
+     * @param p True if + button, false otherwise
+     */
     changeFontSize(p: boolean): void
     {
         this.userService.changeFontSize(p);
     }
 
+    /**
+     * On disconnect button triggered
+     */
     deconnexion(): void
     {
         this.userService.logout();
         this.router.navigate(["/connexion"]);
     }
 
+    /**
+     * On "Retour a l'accueil" button triggered
+     */
     accueil(): void
     {
         this.router.navigate(["/"]);
     }
 
+    /**
+     * Display or hide visual params
+     */
     toggleParams(): void
     {
         this.paramsShow = !this.paramsShow;

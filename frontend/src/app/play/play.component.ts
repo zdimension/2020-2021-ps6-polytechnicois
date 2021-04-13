@@ -36,6 +36,9 @@ export class PlayComponent implements OnInit
     {
     }
 
+    /**
+     * Gather user's infos and check if we are in train mode
+     */
     ngOnInit(): void
     {
         this.userService.currentUser.subscribe(user => {
@@ -141,6 +144,9 @@ export class PlayComponent implements OnInit
         return min + Math.round(Math.random() * (max - min));
     }
 
+    /**
+     * On "S'entrainer" button triggered
+     */
     public goToTrain(): void
     {
         this.trainMode = true;
@@ -156,6 +162,10 @@ export class PlayComponent implements OnInit
         });
     }
 
+    /**
+     * Set disabled choices in train mode
+     * @private
+     */
     private updateDisplayedInTrainMode(): void
     {
         this.displayedInTrainMode = [];

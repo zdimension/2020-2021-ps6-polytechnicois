@@ -31,6 +31,9 @@ export class RecapComponent implements OnInit
         this.numQuestion=0;
     }
 
+    /**
+     * Get the quiz corresponding at the id given on the URL
+     */
     getQuiz(): void
     {
         this.id = +this.route.snapshot.paramMap.get("id");
@@ -42,6 +45,10 @@ export class RecapComponent implements OnInit
             });
     }
 
+    /**
+     * Update displayed question with corresponding quizz question
+     * @private
+     */
     private showQuestion(): void {
         if(this.quiz === null) {
             return;
@@ -55,6 +62,11 @@ export class RecapComponent implements OnInit
         this.goodAnswer=question.answers[question.correctAnswer];
     }
 
+    /**
+     * Switch to next question.
+     * Then call showQuestion() to change displayed question.
+     * If we finish the recap, set class field quiz to null, indicating we have to display the ending message.
+     */
     nextQestion(): void {
         this.numQuestion++;
         if(this.numQuestion >= this.quiz.questions.length) {
@@ -65,6 +77,9 @@ export class RecapComponent implements OnInit
         this.showQuestion();
     }
 
+    /**
+     * On "S'entrainer" button triggered
+     */
     goToTrain(): void {
         this.router.navigate(['play/'+this.id], {
             skipLocationChange: false,
