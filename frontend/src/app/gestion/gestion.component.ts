@@ -23,6 +23,9 @@ export class GestionComponent implements OnInit
         });
     }
 
+    /**
+     * Display all users
+     */
     ngOnInit(): void
     {
         this.userService.getAllUsers().subscribe(users => {
@@ -31,6 +34,9 @@ export class GestionComponent implements OnInit
         });
     }
 
+    /**
+     * If field "Search user" as changed
+     */
     onChangeSearchUser(): void
     {
         let searchValue=this.searchUserForm.get('searchUserField').value;
