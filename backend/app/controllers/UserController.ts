@@ -146,4 +146,5 @@ interface UserUpdateQuery
     role?: UserRole,
     maxDifficulty?: TDifficulty;
     maxQuestions?: number;
+    ignoredQuestions?: number[];
 }

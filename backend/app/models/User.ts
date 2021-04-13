@@ -4,7 +4,7 @@ import {
     BeforeBulkCreate,
     BeforeCreate,
     BeforeUpdate,
-    Column,
+    Column, DataType,
     Default, HasMany,
     Model,
     Table,
@@ -65,6 +65,9 @@ export default class User extends Model
 
     @HasMany(() => QuizRecap)
     recaps!: QuizRecap[];
+
+    @Column(DataType.JSON)
+    ignoredQuestions!: number[];
 
     @BeforeBulkCreate
     static beforeBulkCreateHook(instances: User[]): void
