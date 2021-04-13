@@ -21,7 +21,7 @@
         <div *ngIf="resultsDisplayed[i]">
             <div *ngFor="let a of attempts"
                  [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'">
-                A répondu {{question.answers[a.answers[i]]}} le {{a.createdAt}}
+                A répondu {{question.answers[a.answers[i]]}} le {{a.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
             </div>
             <div *ngIf="attempts.length === 0" class="pasrepondu">
                 N'a pas encore répondu
