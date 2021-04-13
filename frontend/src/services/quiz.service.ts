@@ -109,4 +109,9 @@ export class QuizService
     {
         this.http.post(this.dataURL.toString()+"quizzes/"+idQuiz+"/attempt", history).subscribe();
     }
+
+    uploadRecap(idQuiz: number, history): void
+    {
+        this.http.post(this.dataURL.toString()+"quizzes/"+idQuiz+"/recaps", history).subscribe();
+    }
 }

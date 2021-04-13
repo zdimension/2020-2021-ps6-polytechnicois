@@ -20,6 +20,7 @@ export class RecapComponent implements OnInit
     public goodAnswer: string="";
     public quiz: Quiz=null;
     private id: number=1;
+    private history={};
 
     constructor(public quizService: QuizService, public userService: UserService, private router: Router, private route: ActivatedRoute)
     {
@@ -29,6 +30,7 @@ export class RecapComponent implements OnInit
     {
         this.getQuiz();
         this.numQuestion=0;
+        this.history={};
     }
 
     /**
@@ -67,11 +69,13 @@ export class RecapComponent implements OnInit
      * Then call showQuestion() to change displayed question.
      * If we finish the recap, set class field quiz to null, indicating we have to display the ending message.
      */
-    nextQestion(): void {
+    nextQestion(compris: boolean): void {
         this.numQuestion++;
+        this.history[(this.numQuestion-1).toString()]=compris;
         if(this.numQuestion >= this.quiz.questions.length) {
             console.log("here")
             this.quiz=null;
+            this.quizService.uploadRecap(this.id, this.history);
             return;
         }
         this.showQuestion();
