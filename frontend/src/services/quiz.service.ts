@@ -7,6 +7,7 @@ import { UserService } from "./user.service";
 import { Router } from "@angular/router";
 import { User } from "../models/user.model";
 import { QuizTheme } from "../models/quiztheme.model";
+import { AttemptResult } from "../models/attemptresult.model";
 
 @Injectable({
     providedIn: "root"
@@ -108,6 +109,11 @@ export class QuizService
     uploadAttempt(idQuiz: number, history): void
     {
         this.http.post(this.dataURL.toString()+"quizzes/"+idQuiz+"/attempt", history).subscribe();
+    }
+
+    getAttempts(idQuiz: number, idUser: number): Observable<AttemptResult[]>
+    {
+        return this.http.get<AttemptResult[]>(this.dataURL.toString()+"quizzes/" + idQuiz + "/attempts/" + idUser);
     }
 
     uploadRecap(idQuiz: number, history): void
