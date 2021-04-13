@@ -1,0 +1,18 @@
+<a (click)="returnToParams()">Retour aux paramètres de l'utilisateur</a>
+
+<div *ngIf="user !== null">
+    Résultats de {{user.name}}:
+</div>
+
+<div *ngIf="quiz===null">
+    <button *ngFor="let q of quizList" (click)="setQuiz(q.id)">
+        {{q.name}}
+    </button>
+</div>
+
+<div *ngIf="quiz!==null">
+    <button (click)="resetQuiz()">Retour</button>
+    <div *ngFor="let question of quiz.questions">
+        {{question.label}}
+    </div>
+</div>
