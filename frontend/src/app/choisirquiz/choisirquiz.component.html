@@ -1,6 +1,6 @@
 <div>
     <div class="epsilon container d-flex justify-content-center">
-        <button id="filters" class="btn btn-yellow" type="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+        <button id="filters" class="btn" [ngClass]="user.highContrast ? 'btn-yellowcontrast' : 'btn-yellow'" type="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
                 aria-controls="collapseExample">
             Filtres
         </button>
@@ -60,8 +60,8 @@
         <div>Difficulté {{quiz.difficulty}}</div>
         {{quiz.theme.name}}
         <div class="epsilon d-flex justify-content-center flex-column">
-            <button class="btn btn-bluejoel" routerLink="/play/{{quiz.id}}">Faire le quiz</button>
-        <button class="btn btn-yellow" *ngIf="user.role !== 1">Modifier</button>
+            <button class="btn" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" routerLink="/play/{{quiz.id}}">Faire le quiz</button>
+        <button class="btn" [ngClass]="user.highContrast ? 'btn-yellowcontrast' : 'btn-yellow'" *ngIf="user.role !== 1">Modifier</button>
         </div>
 
 

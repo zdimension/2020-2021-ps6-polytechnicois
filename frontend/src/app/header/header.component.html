@@ -1,20 +1,20 @@
 <div class="header d-flex justify-content-between " *ngIf="user != null">
 
     <div class="epsilon p-2">
-        <button class="btn btn-xs btn-green" (click)="accueil()">
+        <button class="btn btn-xs" [ngClass]="user.highContrast ? 'btn-greencontrast' : 'btn-green'" (click)="accueil()">
             <i class="bi-house"></i>
             <span>Retour à l'accueil</span>
         </button>
     </div>
     <div class="epsilon p-2">
-        <button class="btn btn-xs btn-tertiary" (click)="deconnexion()">
+        <button class="btn btn-xs" [ngClass]="user.highContrast ? 'btn-redcontrast' : 'btn-red'"  (click)="deconnexion()">
             <i class="bi-power"></i>
             <span>Déconnexion</span>
         </button>
     </div>
 
     <div class="epsilon ml-auto p-2 d-flex align-items-center">
-        <button class="btn btn-xs btn-green" (click)="toggleParams()">
+        <button class="btn btn-xs" [ngClass]="user.highContrast ? 'btn-greencontrast' : 'btn-green'" (click)="toggleParams()">
             <i class="bi-file-earmark-font"></i>
             <span>Taille et Police</span>
         </button>

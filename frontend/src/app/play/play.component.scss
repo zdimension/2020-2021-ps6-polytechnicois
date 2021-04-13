@@ -23,6 +23,14 @@ $img-dims: 15em;
   width: 100%;
 }
 
+.headercontrast {
+  background: linear-gradient(to bottom, #fef086, #fde635);
+}
+
+.headernocontrast {
+  background: linear-gradient(to bottom, #cbbc4d, #F2CA19);
+}
+
 #playingcard {
   display:flex;
   flex-direction: row;

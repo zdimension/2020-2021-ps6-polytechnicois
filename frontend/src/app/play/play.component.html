@@ -2,7 +2,7 @@
 
     <div id="mainplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5 border-0 "
          *ngIf="!quizTermine">
-        <div id="playingheader" class="justify-content-between flex-row d-flex">
+        <div id="playingheader" class="justify-content-between flex-row d-flex" [ngClass]="user.highContrast ? 'headercontrast' : 'headernocontrast'" >
             <div>
                 <span>{{quizname}}</span>
             </div>
@@ -24,7 +24,7 @@
 
             <div class="d-flex ml-3 justify-content-center w-50">
                 <div id="playinganswer" class="d-flex flex-row flex-wrap epsilon justify-content-center">
-                    <button class="btn btn-bluejoel" *ngFor="let answer of answersDisplayed; let i=index;"
+                    <button class="btn" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'"  *ngFor="let answer of answersDisplayed; let i=index;"
                             [disabled]="(!firstStage || (trainMode && displayedInTrainMode[i])) && i != correctAnswer"
                             (click)="reponseCliquee(i)">
                         {{answer}}
@@ -44,9 +44,9 @@
             Quiz terminé !
         </div>
         <div id="buttonsquiztermine" class="epsilon justify-content-between flex-row d-flex row">
-            <button class="btn btn-bluejoel" (click)="goToTrain()">S'entraîner</button>
-            <button class="btn btn-bluejoel" routerLink="/choisirquiz">Faire un autre quiz</button>
-            <button class="btn btn-bluejoel" routerLink="/">Retour à l'accueil</button>
+            <button class="btn " [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" (click)="goToTrain()">S'entraîner</button>
+            <button class="btn " [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" routerLink="/choisirquiz">Faire un autre quiz</button>
+            <button class="btn " [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" routerLink="/">Retour à l'accueil</button>
         </div>
     </div>
 </div>
