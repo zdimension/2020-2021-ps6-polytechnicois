@@ -47,4 +47,16 @@ export default class QuizController
             answers: answers
         });
     }
+
+    @Get("/:id/attempts")
+    async getHistory(
+        @Param("id") id: number)
+    {
+        const quiz = await Quiz.findByPk(id);
+        return await QuizHistory.findAll({
+            where: {
+                quizId: quiz.id
+            }
+        });
+    }
 }

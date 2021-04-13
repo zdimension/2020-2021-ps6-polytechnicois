@@ -30,6 +30,9 @@ export class CreationQuizComponent implements OnInit
         //this.questionsToAdd.push({label: "55", difficulty: 1, answers: [], correctAnswer: 0});
     }
 
+    /**
+     * Gather all themes, to put theme in the list choice
+     */
     ngOnInit(): void
     {
         this.quizService.themes$.subscribe((themes) =>
@@ -39,6 +42,9 @@ export class CreationQuizComponent implements OnInit
         });
     }
 
+    /**
+     * Add theme to list of themes
+     */
     ajouterTheme(): void
     {
         let newTheme: string=this.creationQuizFirstStepForm.get('nomnouveautheme').value;
@@ -49,6 +55,9 @@ export class CreationQuizComponent implements OnInit
         this.isCollapsed=true;
     }
 
+    /**
+     * Add question field to form
+     */
     public addQuestion(): void
     {
         this.questionsToAdd.push({label: "", difficulty: 1, answers: [], correctAnswer: 0});
@@ -57,12 +66,23 @@ export class CreationQuizComponent implements OnInit
         }));
     }
 
+    /**
+     * Set the correct value to field. Eg: tranform "" to null
+     * @param id
+     * @param component
+     * @param newValue
+     * @param subid
+     */
     changeField(id: number, component: string, newValue, subid?: number): void
     {
         (component !== 'image' || this.questionsToAdd[id][component] !== "") ? this.questionsToAdd[id][component]=newValue : this.questionsToAdd[id][component]=null;
         console.log(this.questionsToAdd[0]);
     }
 
+    /**
+     * JSONify a form
+     * @param form
+     */
     toJSON(form): string
     {
         console.log(form);
@@ -70,6 +90,9 @@ export class CreationQuizComponent implements OnInit
     }
 }
 
+/**
+ * Temporary object, a question without id, creationtime etc...
+ */
 export class QuestionToAdd
 {
     label: string;
