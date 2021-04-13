@@ -5,6 +5,7 @@ import { UserService } from "../../../services/user.service";
 import { Quiz } from "../../../models/quiz.model";
 import { User } from "../../../models/user.model";
 import { AttemptResult } from "../../../models/attemptresult.model";
+import { RecapResult } from "../../../models/recapresult.model";
 
 @Component({
     selector: "app-gestion-id-scores",
@@ -19,6 +20,7 @@ export class GestionIdScoresComponent implements OnInit
     public user: User=null;
     private userId: number=1;
     public attempts: AttemptResult[]=[];
+    public recaps: RecapResult[]=[];
     public resultsDisplayed: boolean[]=[];
 
     constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService)
@@ -43,6 +45,9 @@ export class GestionIdScoresComponent implements OnInit
             this.quizService.getAttempts(idQuiz, this.userId).subscribe(a => {
                 this.attempts=a;
             });
+            this.quizService.getRecaps(idQuiz, this.userId).subscribe(r => {
+                this.recaps=r;
+            });
             this.quiz.questions.forEach(q => {
                 this.resultsDisplayed.push(false);
             });
@@ -52,6 +57,7 @@ export class GestionIdScoresComponent implements OnInit
     resetQuiz(): void {
         this.quiz=null;
         this.attempts=[];
+        this.recaps=[];
     }
 
     returnToParams(): void {

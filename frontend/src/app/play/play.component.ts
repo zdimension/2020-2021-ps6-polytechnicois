@@ -108,8 +108,10 @@ export class PlayComponent implements OnInit
                 console.log("Quiz termine");
                 this.displayedMessage = "Quiz terminé";
                 this.quizTermine = true;
-                console.log(this.history)
-                this.quizService.uploadAttempt(this.id, this.history);
+                console.log(this.history);
+                if(!this.trainMode) { // Doesn't upload results in train mode
+                    this.quizService.uploadAttempt(this.id, this.history);
+                }
                 this.numquestion--;
                 if(this.user !== null && this.user.role===1 && this.user.forceRecap) {
                     this.router.navigate(['recap/'+this.id]);

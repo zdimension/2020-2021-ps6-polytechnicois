@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 import { User } from "../models/user.model";
 import { QuizTheme } from "../models/quiztheme.model";
 import { AttemptResult } from "../models/attemptresult.model";
+import { RecapResult } from "../models/recapresult.model";
 
 @Injectable({
     providedIn: "root"
@@ -114,6 +115,11 @@ export class QuizService
     getAttempts(idQuiz: number, idUser: number): Observable<AttemptResult[]>
     {
         return this.http.get<AttemptResult[]>(this.dataURL.toString()+"quizzes/" + idQuiz + "/attempts/" + idUser);
+    }
+
+    getRecaps(idQuiz: number, idUser: number): Observable<RecapResult[]>
+    {
+        return this.http.get<AttemptResult[]>(this.dataURL.toString()+"quizzes/" + idQuiz + "/recaps/" + idUser);
     }
 
     uploadRecap(idQuiz: number, history): void

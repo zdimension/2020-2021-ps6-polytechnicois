@@ -26,6 +26,14 @@
             <div *ngIf="attempts.length === 0" class="pasrepondu">
                 N'a pas encore répondu
             </div>
+            <hr />
+            <div *ngFor="let r of recaps"
+                 [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'">
+                A répondu {{r.answers[i] ? "vrai": "faux"}} au recap le {{r.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
+            </div>
+            <div *ngIf="recaps.length === 0" class="pasrepondu">
+                N'a pas fait de recap
+            </div>
         </div>
     </div>
 </div>
