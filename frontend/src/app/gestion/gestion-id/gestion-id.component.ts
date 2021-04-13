@@ -73,4 +73,8 @@ export class GestionIdComponent implements OnInit
         this.userToModify.maxDifficulty=maxDifficulty;
         this.userService.changeUserById(this.userId, {role, highContrast, forceRecap, maxQuestions, maxDifficulty})
     }
+
+    goToScores(): void {
+        this.router.navigate(['gestion/scores/'+this.userId]);
+    }
 }

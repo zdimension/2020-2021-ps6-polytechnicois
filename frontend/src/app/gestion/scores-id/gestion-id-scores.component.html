@@ -1,0 +1,9 @@
+<div *ngIf="user !== null">
+    Résultats de {{user.name}}:
+</div>
+
+<div *ngIf="quiz===null">
+    <button *ngFor="let q of quizList">
+        {{q.name}}
+    </button>
+</div>
