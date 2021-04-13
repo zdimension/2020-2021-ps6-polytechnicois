@@ -60,6 +60,10 @@ align-self: center;
   height: 100%;
 }
 
+.btn:disabled {
+  visibility: hidden;
+}
+
 $percent: calc(var(--rating) / 5 * 100%);
 $starsize: 300px;
 $starcolor: #9d9b9b;
