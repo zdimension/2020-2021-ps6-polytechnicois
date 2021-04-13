@@ -49,16 +49,16 @@ export default class QuizController
         });
     }
 
-    @Get("/:id/attempts")
+    @Get("/:id/attempts/:uid")
     async getHistory(
         @Param("id") id: number,
-        @CurrentUser() current: User)
+        @Param("uid") uid: number)
     {
         const quiz = await Quiz.findByPk(id);
         return await QuizHistory.findAll({
             where: {
                 quizId: quiz.id,
-                userId: current.id
+                userId: uid
             }
         });
     }
@@ -77,16 +77,16 @@ export default class QuizController
         });
     }
 
-    @Get("/:id/recaps")
+    @Get("/:id/recaps/:uid")
     async getRecaps(
         @Param("id") id: number,
-        @CurrentUser() current: User)
+        @Param("uid") uid: number)
     {
         const quiz = await Quiz.findByPk(id);
         return await QuizRecap.findAll({
             where: {
                 quizId: quiz.id,
-                userId: current.id
+                userId: uid
             }
         });
     }
