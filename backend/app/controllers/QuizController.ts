@@ -5,6 +5,7 @@ import QuizTheme from "../models/QuizTheme";
 import sequelize from "sequelize";
 import QuizHistory from "../models/QuizHistory";
 import User from "../models/User";
+import QuizRecap from "../models/QuizRecap";
 
 @JsonController("/quizzes")
 export default class QuizController
@@ -38,24 +39,54 @@ export default class QuizController
     async createHistory(
         @Param("id") id: number,
         @Body() answers: QuizHistory["answers"],
-        @CurrentUser({required: false}) current: User)
+        @CurrentUser() current: User)
     {
         const quiz = await Quiz.findByPk(id);
         return await QuizHistory.create({
             quizId: quiz.id,
-            userId: current?.id??1,
+            userId: current.id,
             answers: answers
         });
     }
 
     @Get("/:id/attempts")
     async getHistory(
-        @Param("id") id: number)
+        @Param("id") id: number,
+        @CurrentUser() current: User)
     {
         const quiz = await Quiz.findByPk(id);
         return await QuizHistory.findAll({
             where: {
-                quizId: quiz.id
+                quizId: quiz.id,
+                userId: current.id
+            }
+        });
+    }
+
+    @Post("/:id/recaps")
+    async createRecap(
+        @Param("id") id: number,
+        @Body() answers: QuizRecap["answers"],
+        @CurrentUser() current: User)
+    {
+        const quiz = await Quiz.findByPk(id);
+        return await QuizRecap.create({
+            quizId: quiz.id,
+            userId: current.id,
+            answers: answers
+        });
+    }
+
+    @Get("/:id/recaps")
+    async getRecaps(
+        @Param("id") id: number,
+        @CurrentUser() current: User)
+    {
+        const quiz = await Quiz.findByPk(id);
+        return await QuizRecap.findAll({
+            where: {
+                quizId: quiz.id,
+                userId: current.id
             }
         });
     }
