@@ -33,4 +33,18 @@ export class GestionIdScoresComponent implements OnInit
         });
     }
 
+    setQuiz(idQuiz: number): void {
+        this.quizService.getQuizById(idQuiz).subscribe(q => {
+            this.quiz=q;
+        });
+    }
+
+    resetQuiz(): void {
+        this.quiz=null;
+    }
+
+    returnToParams(): void {
+        this.router.navigate(['gestion/'+this.userId]);
+    }
+
 }
