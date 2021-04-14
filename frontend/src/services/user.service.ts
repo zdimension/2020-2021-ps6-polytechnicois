@@ -150,6 +150,7 @@ export class UserService
         }
         this.user.highContrast=highContrast;
         this.currentUserSubject.next(this.user);
+        this.currentUser = this.currentUserSubject.asObservable();
         this.http.patch(`${this.dataURL}/me/`, { highContrast: this.user.highContrast }).subscribe();
     }
 

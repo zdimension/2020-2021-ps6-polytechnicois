@@ -23,6 +23,10 @@ export class HeaderComponent implements OnInit
 
     constructor(public userService: UserService, private router: Router)
     {
+    }
+
+    ngOnInit(): void
+    {
         this.userService.currentUser.subscribe((user) => {
             if(user === null) {
                 return;
@@ -40,10 +44,6 @@ export class HeaderComponent implements OnInit
         });
         this.fonts = fonts;
         this.paramsShow = false;
-    }
-
-    ngOnInit(): void
-    {
     }
 
     /**
