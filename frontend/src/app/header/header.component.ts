@@ -93,8 +93,7 @@ export class HeaderComponent implements OnInit
 
     changeContrastedMode(): void
     {
-        this.isContrastedChecked$.next(!this.isContrastedChecked$.value)
-        console.log(this.isContrastedChecked$.value)
+        this.isContrastedChecked$.next(!this.isContrastedChecked$.value);
         this.userService.changeHighContrast(this.isContrastedChecked$.value);
     }
 }
