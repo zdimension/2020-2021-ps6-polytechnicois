@@ -144,6 +144,15 @@ export class UserService
         this.http.patch(`${this.dataURL}/me/`, { font: this.user.font }).subscribe();
     }
 
+    changeHighContrast(highContrast: boolean): void {
+        if (this.user == null) {
+            return;
+        }
+        this.user.highContrast=highContrast;
+        this.currentUserSubject.next(this.user);
+        this.http.patch(`${this.dataURL}/me/`, { highContrast: this.user.highContrast }).subscribe();
+    }
+
     login(username: string, password: string)
     {
         return this.http.post<User>(`${this.dataURL}/login`, { username, password })

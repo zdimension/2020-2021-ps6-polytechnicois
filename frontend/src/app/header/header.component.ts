@@ -4,6 +4,7 @@ import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import {fonts} from "../../fonts";
+import { BehaviorSubject } from "rxjs/Rx";
 
 
 @Component({
@@ -18,24 +19,31 @@ export class HeaderComponent implements OnInit
     favoriteFont: FormControl;
     fonts;
     paramsShow: boolean;
+    public isContrastedChecked$ = new BehaviorSubject(false);
 
     constructor(public userService: UserService, private router: Router)
     {
-        this.userService.currentUser.subscribe((user) => this.user = user);
+        this.userService.currentUser.subscribe((user) => {
+            if(user === null) {
+                return;
+            }
+            this.user = user;
+            this.isContrastedChecked$.next(user.highContrast);
+            if (this.user.font)
+            {
+                this.favoriteFont = new FormControl(this.user.font);
+            }
+            else
+            {
+                this.favoriteFont = new FormControl(fonts[0]);
+            }
+        });
         this.fonts = fonts;
         this.paramsShow = false;
     }
 
     ngOnInit(): void
     {
-        if (this.user.font)
-        {
-            this.favoriteFont = new FormControl(this.user.font);
-        }
-        else
-        {
-            this.favoriteFont = new FormControl(fonts[0]);
-        }
     }
 
     /**
@@ -63,6 +71,7 @@ export class HeaderComponent implements OnInit
     deconnexion(): void
     {
         this.userService.logout();
+        this.user=null;
         this.router.navigate(["/connexion"]);
     }
 
@@ -80,5 +89,12 @@ export class HeaderComponent implements OnInit
     toggleParams(): void
     {
         this.paramsShow = !this.paramsShow;
+    }
+
+    changeContrastedMode(): void
+    {
+        this.isContrastedChecked$.next(!this.isContrastedChecked$.value)
+        console.log(this.isContrastedChecked$.value)
+        this.userService.changeHighContrast(this.isContrastedChecked$.value);
     }
 }

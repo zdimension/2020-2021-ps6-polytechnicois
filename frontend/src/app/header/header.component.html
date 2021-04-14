@@ -45,6 +45,13 @@
                 </div>
             </div>
 
+            <div>
+                <label for="changeHeaderContrastedMode">
+                    Mode contrasté:
+                    <input type="checkbox" id="changeHeaderContrastedMode" [checked]="isContrastedChecked$ | async" (change)="changeContrastedMode()">
+                </label>
+            </div>
+
             <div class="d-flex align-self-center" >
                 <button id="closeParams" class="btn btn-light" (click)="toggleParams()">Fermer</button>
             </div>
