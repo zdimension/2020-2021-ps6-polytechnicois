@@ -15,6 +15,10 @@ import { RecapResult } from "../../../models/recapresult.model";
 export class GestionIdScoresComponent implements OnInit
 {
 
+    /**
+     * If null, all quizzes will be displayed.
+     * Else, the questions of selected quiz will be displayed
+     */
     public quiz: Quiz=null;
     public quizList: Quiz[]=[];
     public user: User=null;
@@ -27,6 +31,11 @@ export class GestionIdScoresComponent implements OnInit
     {
     }
 
+    /**
+     * Get userId by URL
+     * Get all quizzes
+     * Get user
+     */
     ngOnInit(): void
     {
         this.userId = +this.route.snapshot.paramMap.get("id");
@@ -35,12 +44,17 @@ export class GestionIdScoresComponent implements OnInit
         });
         this.userService.getUserById(this.userId).subscribe(u => {
             this.user=u;
+            /** Prevent accessing attribute of null Object */
             if(this.user.ignoredQuestions === null) {
                 this.user.ignoredQuestions=[];
             }
         });
     }
 
+    /**
+     * On First stage, you can click on a quiz.
+     * @param idQuiz
+     */
     setQuiz(idQuiz: number): void {
         this.resultsDisplayed=[];
         this.quizService.getQuizById(idQuiz).subscribe(q => {
@@ -57,16 +71,28 @@ export class GestionIdScoresComponent implements OnInit
         });
     }
 
+    /**
+     * Set quiz to null
+     * Will come back to first stage
+     */
     resetQuiz(): void {
         this.quiz=null;
         this.attempts=[];
         this.recaps=[];
     }
 
+    /**
+     * Go to GestionComponent
+     */
     returnToParams(): void {
         this.router.navigate(['gestion/'+this.userId]);
     }
 
+    /**
+     * Enable or disable a question for the user
+     * @param questionId
+     * @param enabled
+     */
     enableDisableQuestion(questionId: number, enabled: boolean): void {
         this.userService.enableQuestionForUser(questionId, this.user.id, enabled);
         if(this.user.ignoredQuestions===null) {
