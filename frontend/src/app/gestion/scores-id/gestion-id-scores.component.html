@@ -18,15 +18,16 @@
         <p>Bonne réponse: {{question.answers[question.correctAnswer]}}</p>
         <a (click)="resultsDisplayed[i]=!resultsDisplayed[i]">{{resultsDisplayed[i] ? "(Masquer)" : "(Afficher)"}}</a>
         <div *ngIf="resultsDisplayed[i]">
-            <div *ngFor="let a of attempts"
-                 [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'">
-                A répondu {{question.answers[a.answers[i]]}} le {{a.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
+            <div *ngFor="let a of attempts">
+                <div *ngIf="a.answers[i].valueOf() !== -1" [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'">
+                    A répondu {{question.answers[a.answers[i]]}} le {{a.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
+                </div>
             </div>
             <div *ngIf="attempts.length === 0" class="pasrepondu">
                 N'a pas encore répondu
             </div>
             <hr />
-            <div *ngFor="let r of recaps"
+            <div *ngFor="let r of recaps">
                  [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'">
                 A répondu {{r.answers[i] ? "vrai": "faux"}} au recap le {{r.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
             </div>

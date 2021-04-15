@@ -71,6 +71,7 @@ export class PlayComponent implements OnInit
                 this.quizname = this.quiz.name;
                 while(this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id))
                 {
+                    this.history[this.numquestion]=-1;
                     this.numquestion++;
                 }
                 this.answersDisplayed = this.quiz.questions[this.numquestion].answers;
@@ -112,10 +113,12 @@ export class PlayComponent implements OnInit
         }
         else
         {
-            do
+            this.numquestion++;
+            while(this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id))
             {
+                this.history[this.numquestion]=-1;
                 this.numquestion++;
-            } while(this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id));
+            }
             if (this.numquestion >= this.questionCount)
             {
                 console.log("Quiz termine");
