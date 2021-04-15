@@ -31,6 +31,9 @@ export class ChoisirQuizComponent implements OnInit
     {
         this.quizService.quizzes$.subscribe((quiz) =>
         {
+            if(quiz === null) {
+                return;
+            }
             this.quizList = quiz;
             this.quizListDisplayed = this.quizList;
             this.parseQuizList();
