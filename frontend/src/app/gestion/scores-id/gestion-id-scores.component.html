@@ -13,22 +13,28 @@
 <div *ngIf="quiz!==null">
     <button (click)="resetQuiz()">Retour</button>
     <div *ngFor="let question of quiz.questions; let i=index">
-        <p class="labelQuestion">{{question.label}}  <button (click)="enableDisableQuestion(question.id, user.ignoredQuestions.includes(question.id))">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button></p>
-        <p *ngIf="question.image !== null"><img [src]="question.image"/></p>
+        <div class="labelQuestion">{{question.label}}
+            <button (click)="enableDisableQuestion(question.id, user.ignoredQuestions.includes(question.id))">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button>
+        </div>
+        <div *ngIf="question.image !== null">
+            <img [src]="question.image"/>
+        </div>
         <p>Bonne réponse: {{question.answers[question.correctAnswer]}}</p>
         <a (click)="resultsDisplayed[i]=!resultsDisplayed[i]">{{resultsDisplayed[i] ? "(Masquer)" : "(Afficher)"}}</a>
         <div *ngIf="resultsDisplayed[i]">
             <div *ngFor="let a of attempts">
-                <div *ngIf="a.answers[i].valueOf() !== -1" [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'">
+                <div *ngIf="a.answers[i].valueOf() !== -1"
+                     [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'">
                     A répondu {{question.answers[a.answers[i]]}} le {{a.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
                 </div>
             </div>
             <div *ngIf="attempts.length === 0" class="pasrepondu">
                 N'a pas encore répondu
             </div>
-            <hr />
+            <hr/>
             <div *ngFor="let r of recaps" [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'">
-                A répondu {{r.answers[i] ? "vrai": "faux"}} au recap le {{r.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
+                A répondu {{r.answers[i] ? "vrai" : "faux"}} au recap
+                le {{r.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
             </div>
             <div *ngIf="recaps.length === 0" class="pasrepondu">
                 N'a pas fait de recap
