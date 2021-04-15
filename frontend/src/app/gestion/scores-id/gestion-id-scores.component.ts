@@ -63,4 +63,8 @@ export class GestionIdScoresComponent implements OnInit
     returnToParams(): void {
         this.router.navigate(['gestion/'+this.userId]);
     }
+
+    enableDisableQuestion(questionId: number, enabled: boolean): void {
+        //
+    }
 }

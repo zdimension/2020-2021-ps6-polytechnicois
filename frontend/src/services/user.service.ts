@@ -125,6 +125,7 @@ export class UserService
             this.user.fontSize--;
         }
         this.currentUserSubject.next(this.user);
+        localStorage.setItem("currentUser", JSON.stringify(this.user));
         this.http.patch(`${this.dataURL}/me/`, { fontSize: this.user.fontSize }).subscribe();
     }
 
@@ -141,6 +142,7 @@ export class UserService
             return;
         }
         this.currentUserSubject.next(this.user);
+        localStorage.setItem("currentUser", JSON.stringify(this.user));
         this.http.patch(`${this.dataURL}/me/`, { font: this.user.font }).subscribe();
     }
 
@@ -151,6 +153,7 @@ export class UserService
         this.user.highContrast=highContrast;
         this.currentUserSubject.next(this.user);
         this.currentUser = this.currentUserSubject.asObservable();
+        localStorage.setItem("currentUser", JSON.stringify(this.user));
         this.http.patch(`${this.dataURL}/me/`, { highContrast: this.user.highContrast }).subscribe();
     }
 
