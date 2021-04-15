@@ -1,55 +1,90 @@
-<a (click)="returnToParams()">Retour aux paramètres de l'utilisateur</a> <!--- retour a gestion-id --->
-
-<div *ngIf="user !== null">
-    Résultats de {{user.name}}:
-</div>
-
-<div *ngIf="quiz===null"> <!--- Afficher tous les quizs si aucun quiz n'est selectionne (quiz = null) --->
-    <button *ngFor="let q of quizList" (click)="setQuiz(q.id)">
-        {{q.name}}
-    </button>
-</div>
-
-<div *ngIf="quiz!==null"> <!--- Si un quiz est selectionne --->
-
-    <button (click)="resetQuiz()">Retour</button> <!--- Deselectionner le quiz --->
-
-    <section *ngFor="let question of quiz.questions; let i=index"><!--- Pour chaque question du quiz selectionne --->
-        <div class="labelQuestion">
-            {{question.label}} <!--- Affiche la question --->
-            <!--- Activer ou desactiver le quiz --->
-            <button (click)="enableDisableQuestion(question.id, user.ignoredQuestions.includes(question.id))">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button>
-        </div>
-
-        <div *ngIf="question.image !== null"> <!--- Si l'image existe, l'afficher --->
-            <img [src]="question.image"/>
-        </div>
-
-        <p>Bonne réponse: {{question.answers[question.correctAnswer]}}</p> <!--- La reponse attendue --->
-
-        <a (click)="resultsDisplayed[i]=!resultsDisplayed[i]">{{resultsDisplayed[i] ? "(Masquer)" : "(Afficher)"}}</a> <!--- Afficher / masquer la question --->
-
-        <div *ngIf="resultsDisplayed[i]"> <!--- Si on affiche la question --->
-            <div *ngFor="let a of attempts"> <!--- Pour chacune des tentatives sur ce quiz --->
-                <!--- S'il a repondu (ie la question n'etait pas desactivee), reponse != -1 --->
-                <div *ngIf="a.answers[i].valueOf() !== -1"
-                     [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'"> <!--- Met la bonne couleur en fonction de la reponse donnee --->
-                    A répondu {{question.answers[a.answers[i]]}} le {{a.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}} <!--- Quelle reponse donnee, a quelle heure --->
+<div id="gestionid" class="h-100 w-100 ">
+    <div id="gestionidcard" class="card container d-flex my-5 d-flex justify-self-center">
+        <nav class="navbar justify-content-between">
+            <div>
+                <a class="navbar-brand" routerLink="../../">Gestion Comptes</a>
+                <span class="navbar-brand">Résultats</span>
+            </div>
+            <div class="d-flex row justify-content-end">
+                <i class="bi bi-person col"></i>
+                <a class="col" routerLink="../../{{user.id}}">{{user.name}}</a>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="">
+                <div class="row-mx-2 d-flex flex-column justify-content-center epsilon">
+                    <button class="btn btn-sm btn-light col" (click)="goToGeneral()">Général</button>
+                    <button class="btn btn-sm btn-light col" disabled>Résultats</button>
+                    <button class="btn btn-sm btn-light col">Suivi</button>
+                    <button class="btn btn-sm btn-light col">Paramètres</button>
                 </div>
             </div>
-            <div *ngIf="attempts.length === 0" class="pasrepondu"> <!--- Aucune tentative de la personne agee --->
-                N'a pas encore répondu
-            </div>
+            <div class="container d-flex justify-content-center flex-column  col-10 w-100 h-100 p-2 m-2">
+                <div class="container p-5">
 
-            <hr/>
 
-            <div *ngFor="let r of recaps" [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'"> <!--- Pour chaque recap --->
-                A répondu {{r.answers[i] ? "vrai" : "faux"}} au recap <!--- Qu a t il repondu au recap, a quelle heure --->
-                le {{r.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
-            </div>
-            <div *ngIf="recaps.length === 0" class="pasrepondu"> <!--- N'a pas fait ce recap --->
-                N'a pas fait de recap
+                    <div *ngIf="quiz===null">
+                        <!--- Afficher tous les quizs si aucun quiz n'est selectionne (quiz = null) --->
+                        <button *ngFor="let q of quizList" (click)="setQuiz(q.id)">
+                            {{q.name}}
+                        </button>
+                    </div>
+
+                    <div *ngIf="quiz!==null"> <!--- Si un quiz est selectionne --->
+
+                        <button (click)="resetQuiz()">Retour</button> <!--- Deselectionner le quiz --->
+
+                        <section *ngFor="let question of quiz.questions; let i=index">
+                            <!--- Pour chaque question du quiz selectionne --->
+                            <div class="labelQuestion">
+                                {{question.label}} <!--- Affiche la question --->
+                                <!--- Activer ou desactiver le quiz --->
+                                <button (click)="enableDisableQuestion(question.id, user.ignoredQuestions.includes(question.id))">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button>
+                            </div>
+
+                            <div *ngIf="question.image !== null"> <!--- Si l'image existe, l'afficher --->
+                                <img [src]="question.image"/>
+                            </div>
+
+                            <p>Bonne réponse: {{question.answers[question.correctAnswer]}}</p>
+                            <!--- La reponse attendue --->
+
+                            <a (click)="resultsDisplayed[i]=!resultsDisplayed[i]">{{resultsDisplayed[i] ? "(Masquer)" : "(Afficher)"}}</a>
+                            <!--- Afficher / masquer la question --->
+
+                            <div *ngIf="resultsDisplayed[i]"> <!--- Si on affiche la question --->
+                                <div *ngFor="let a of attempts"> <!--- Pour chacune des tentatives sur ce quiz --->
+                                    <!--- S'il a repondu (ie la question n'etait pas desactivee), reponse != -1 --->
+                                    <div *ngIf="a.answers[i].valueOf() !== -1"
+                                         [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'">
+                                        <!--- Met la bonne couleur en fonction de la reponse donnee --->
+                                        A répondu {{question.answers[a.answers[i]]}}
+                                        le {{a.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
+                                        <!--- Quelle reponse donnee, a quelle heure --->
+                                    </div>
+                                </div>
+                                <div *ngIf="attempts.length === 0" class="pasrepondu">
+                                    <!--- Aucune tentative de la personne agee --->
+                                    N'a pas encore répondu
+                                </div>
+
+                                <hr/>
+
+                                <div *ngFor="let r of recaps"
+                                     [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'">
+                                    <!--- Pour chaque recap --->
+                                    A répondu {{r.answers[i] ? "vrai" : "faux"}} au recap
+                                    <!--- Qu a t il repondu au recap, a quelle heure --->
+                                    le {{r.createdAt | date:'EEEE dd MMMM YYYY HH:mm:ss'}}
+                                </div>
+                                <div *ngIf="recaps.length === 0" class="pasrepondu"> <!--- N'a pas fait ce recap --->
+                                    N'a pas fait de recap
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>

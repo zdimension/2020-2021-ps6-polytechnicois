@@ -104,4 +104,8 @@ export class GestionIdScoresComponent implements OnInit
             this.user.ignoredQuestions.push(questionId);
         }
     }
+
+    goToGeneral(): void {
+        this.router.navigate(['gestion/'+this.userId]);
+    }
 }
