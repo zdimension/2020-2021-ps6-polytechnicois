@@ -64,7 +64,7 @@
 .btn-bluejoel { @include btn-epsilon($bluejoel); }
 .btn-green { @include btn-epsilon($green); }
 .btn-yellow { @include btn-epsilon($yellow, $gray-darker); }
-.btn-red { @include btn-epsilon($red, $gray-darker); }
+.btn-red { @include btn-epsilon($red); }
 .btn-yellowcontrast { @include btn-epsilon($yellowcontrast, $gray-darker); }
 .btn-greencontrast { @include btn-epsilon($greencontrast, $gray-darker); }
 .btn-bluecontrast { @include btn-epsilon($bluecontrast,); }
