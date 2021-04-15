@@ -1,5 +1,5 @@
-<div id="gestionid" *ngIf="userToModify !== null" class="h-100">
-    <div class="container card d-flex my-5">
+<div id="gestionid" *ngIf="userToModify !== null" class="h-100 w-100 ">
+    <div id="gestionidcard" class="card container d-flex my-5 d-flex justify-self-center">
 
         <nav class="navbar justify-content-between">
             <a class="navbar-brand" routerLink="../">Gestion Comptes</a>
@@ -11,55 +11,65 @@
 
             </div>
         </nav>
+        <div class="row">
+            <div class="">
+                <div class="row-mx-2 d-flex flex-column justify-content-center epsilon">
+                    <button class="btn btn-sm btn-light col" disabled>Général</button>
+                    <button class="btn btn-sm btn-light col" (click)="goToScores()">Résultats</button>
+                    <button class="btn btn-sm btn-light col" disabled>Suivi</button>
+                    <button class="btn btn-sm btn-light col" disabled>Paramètres</button>
+                </div>
+            </div>
 
-        <div id="parametres" class="container d-flex justify-content-center flex-column col col w-100 h-100 p-2 m-2">
-            <div class="cpntainer p-5">
-                <form [formGroup]="changeUserForm" class="">
-                    <div class="d-flex justify-content-between">
-                        <label for="roleUser">
-                            Statut d'utilisateur
-                        </label>
-                        <select [formControlName]="'roleUser'" id="roleUser" (change)="changeUser()">
-                            <option *ngFor="let c of userRoleStr; let i=index" [ngValue]="i">{{c}}</option>
-                        </select>
-                    </div>
-                    <div *ngIf="userToModify.role == 1">
+            <div id="parametres"
+                 class="container d-flex justify-content-center flex-column  col-10 w-100 h-100 p-2 m-2">
+                <div class="container p-5">
+                    <form [formGroup]="changeUserForm" class="">
                         <div class="d-flex justify-content-between">
-                            <label for="maxQuestions">
-                                Nombre maximum de questions
+                            <label for="roleUser">
+                                Statut d'utilisateur
                             </label>
-                            <select [formControlName]="'maxQuestions'" id="maxQuestions" (change)="changeUser()">
-                                <option *ngFor="let c of listMaxQuestions; let i=index" [ngValue]="i">{{c}}</option>
+                            <select [formControlName]="'roleUser'" id="roleUser" (change)="changeUser()">
+                                <option *ngFor="let c of userRoleStr; let i=index" [ngValue]="i">{{c}}</option>
                             </select>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <label for="maxDifficulty">
-                                Difficulté maximale
-                            </label>
-                            <select [formControlName]="'maxDifficulty'" id="maxDifficulty" (change)="changeUser()">
-                                <option *ngFor="let c of listMaxDifficulty;let i=index" [ngValue]="i">{{c}}</option>
-                            </select>
+                        <div *ngIf="userToModify.role == 1">
+                            <div class="d-flex justify-content-between">
+                                <label for="maxQuestions">
+                                    Nombre maximum de questions
+                                </label>
+                                <select [formControlName]="'maxQuestions'" id="maxQuestions" (change)="changeUser()">
+                                    <option *ngFor="let c of listMaxQuestions; let i=index" [ngValue]="i">{{c}}</option>
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <label for="maxDifficulty">
+                                    Difficulté maximale
+                                </label>
+                                <select [formControlName]="'maxDifficulty'" id="maxDifficulty" (change)="changeUser()">
+                                    <option *ngFor="let c of listMaxDifficulty;let i=index" [ngValue]="i">{{c}}</option>
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <input [formControlName]="'forceRecap'" class="form-check-input" id="forceRecap"
+                                       type="checkbox"
+                                       (change)="changeUser()">
+                                <label class="form-check-label" for="forceRecap">
+                                    Imposer un recap après le quiz ?
+                                </label>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <input [formControlName]="'forceRecap'" class="form-check-input" id="forceRecap"
+                        <div>
+                            <input [formControlName]="'highContrast'" class="form-check-input" id="highContrast"
                                    type="checkbox"
                                    (change)="changeUser()">
-                            <label class="form-check-label" for="forceRecap">
-                                Imposer un recap après le quiz ?
+                            <label class="form-check-label" for="highContrast">
+                                Contraste élevé ?
                             </label>
                         </div>
-                    </div>
-                    <div>
-                        <input [formControlName]="'highContrast'" class="form-check-input" id="highContrast"
-                               type="checkbox"
-                               (change)="changeUser()">
-                        <label class="form-check-label" for="highContrast">
-                            Contraste élevé ?
-                        </label>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-        <button (click)="goToScores()">Résultats</button>
     </div>
 </div>
