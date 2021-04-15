@@ -72,15 +72,15 @@ export class PlayComponent implements OnInit
                 }
                 this.quiz = quiz;
                 this.quizname = this.quiz.name;
+                this.quizdifficulty = this.quiz.difficulty;
+                this.questionCount = this.quiz.questions.length;
                 while(this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id))
                 {
                     this.history[this.numquestion]=-1;
                     this.numquestion++;
                 }
                 this.answersDisplayed = this.quiz.questions[this.numquestion].answers;
-                this.quizdifficulty = this.quiz.difficulty;
                 this.questionlabel = this.quiz.questions[this.numquestion].label;
-                this.questionCount = this.quiz.questions.length;
                 this.correctAnswer = this.quiz.questions[this.numquestion].correctAnswer;
                 this.urlImage = this.quiz.questions[this.numquestion].image;
                 this.updateDisplayedInTrainMode();
