@@ -2,7 +2,10 @@
     <div id="gestionidcard" class="card container d-flex my-5 d-flex justify-self-center">
 
         <nav class="navbar justify-content-between">
-            <a class="navbar-brand" routerLink="../">Gestion Comptes</a>
+            <div>
+                <a class="navbar-brand" routerLink="../">Gestion Comptes</a>
+                <span class="navbar-brand">Général</span>
+            </div>
             <div class="d-flex row justify-content-end">
                 <i class="bi bi-person col"></i>
                 <p class="col">
@@ -16,8 +19,8 @@
                 <div class="row-mx-2 d-flex flex-column justify-content-center epsilon">
                     <button class="btn btn-sm btn-light col" disabled>Général</button>
                     <button class="btn btn-sm btn-light col" (click)="goToScores()">Résultats</button>
-                    <button class="btn btn-sm btn-light col" disabled>Suivi</button>
-                    <button class="btn btn-sm btn-light col" disabled>Paramètres</button>
+                    <button class="btn btn-sm btn-light col">Suivi</button>
+                    <button class="btn btn-sm btn-light col">Paramètres</button>
                 </div>
             </div>
 
