@@ -14,7 +14,7 @@ export class PlayComponent implements OnInit
 {
 
     quiz: Quiz;
-    public numquestion = 1; //the current question's number
+    public numquestion = 0; //the current question's number
     public firstStage = true;
     public answersDisplayed: string[]; //the current question's answers
     public quizname: string;
@@ -42,13 +42,19 @@ export class PlayComponent implements OnInit
     ngOnInit(): void
     {
         this.userService.currentUser.subscribe(user => {
+            if(user === null) {
+                return;
+            }
             this.user=user;
+            if(this.user.ignoredQuestions===null) {
+                this.user.ignoredQuestions=[];
+            }
+            this.getQuiz();
         });
         this.route.queryParams.subscribe(params =>
         {
             this.trainMode = params.hasOwnProperty("trainmode");
         });
-        this.getQuiz();
     }
 
     /**
@@ -63,12 +69,16 @@ export class PlayComponent implements OnInit
             {
                 this.quiz = quiz;
                 this.quizname = this.quiz.name;
-                this.answersDisplayed = this.quiz.questions[this.numquestion - 1].answers;
+                while(this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id))
+                {
+                    this.numquestion++;
+                }
+                this.answersDisplayed = this.quiz.questions[this.numquestion].answers;
                 this.quizdifficulty = this.quiz.difficulty;
-                this.questionlabel = this.quiz.questions[this.numquestion - 1].label;
+                this.questionlabel = this.quiz.questions[this.numquestion].label;
                 this.questionCount = this.quiz.questions.length;
-                this.correctAnswer = this.quiz.questions[this.numquestion - 1].correctAnswer;
-                this.urlImage = this.quiz.questions[this.numquestion - 1].image;
+                this.correctAnswer = this.quiz.questions[this.numquestion].correctAnswer;
+                this.urlImage = this.quiz.questions[this.numquestion].image;
                 this.updateDisplayedInTrainMode();
             });
         this.history={};
@@ -86,11 +96,11 @@ export class PlayComponent implements OnInit
         {
             return;
         }
-        this.questionlabel = this.quiz.questions[this.numquestion - 1].label;
+        this.questionlabel = this.quiz.questions[this.numquestion].label;
         if (this.firstStage)
         {
-            this.history[(this.numquestion - 1).toString()]= n;
-            if (this.quiz.questions[this.numquestion - 1].correctAnswer == n)
+            this.history[(this.numquestion).toString()]= n;
+            if (this.quiz.questions[this.numquestion].correctAnswer == n)
             {
                 console.log("Correct");
             }
@@ -102,8 +112,11 @@ export class PlayComponent implements OnInit
         }
         else
         {
-            this.numquestion++;
-            if (this.numquestion > this.questionCount)
+            do
+            {
+                this.numquestion++;
+            } while(this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id));
+            if (this.numquestion >= this.questionCount)
             {
                 console.log("Quiz termine");
                 this.displayedMessage = "Quiz terminé";
@@ -112,16 +125,16 @@ export class PlayComponent implements OnInit
                 if(!this.trainMode) { // Doesn't upload results in train mode
                     this.quizService.uploadAttempt(this.id, this.history);
                 }
-                this.numquestion--;
+                this.numquestion = this.questionCount-1;
                 if(this.user !== null && this.user.role===1 && this.user.forceRecap) {
                     this.router.navigate(['recap/'+this.id]);
                 }
                 return;
             }
-            this.answersDisplayed = this.quiz.questions[this.numquestion - 1].answers;
-            this.questionlabel = this.quiz.questions[this.numquestion - 1].label;
-            this.correctAnswer = this.quiz.questions[this.numquestion - 1].correctAnswer;
-            this.urlImage = this.quiz.questions[this.numquestion - 1].image;
+            this.answersDisplayed = this.quiz.questions[this.numquestion].answers;
+            this.questionlabel = this.quiz.questions[this.numquestion].label;
+            this.correctAnswer = this.quiz.questions[this.numquestion].correctAnswer;
+            this.urlImage = this.quiz.questions[this.numquestion].image;
             this.displayedMessage = "Séléctionnez la bonne réponse";
             this.updateDisplayedInTrainMode();
         }
@@ -152,7 +165,7 @@ export class PlayComponent implements OnInit
     public goToTrain(): void
     {
         this.trainMode = true;
-        this.numquestion = 1;
+        this.numquestion = 0;
         this.quizTermine = false;
         this.getQuiz();
         this.firstStage = true;
