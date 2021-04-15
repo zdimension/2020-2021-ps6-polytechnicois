@@ -12,4 +12,5 @@ export interface User extends BaseModel
     maxQuestions: number;
     role: number;
     token: string;
+    ignoredQuestions: number[];
 }

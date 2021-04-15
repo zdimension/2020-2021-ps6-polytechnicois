@@ -35,6 +35,9 @@ export class GestionIdScoresComponent implements OnInit
         });
         this.userService.getUserById(this.userId).subscribe(u => {
             this.user=u;
+            if(this.user.ignoredQuestions === null) {
+                this.user.ignoredQuestions=[];
+            }
         });
     }
 
@@ -65,6 +68,14 @@ export class GestionIdScoresComponent implements OnInit
     }
 
     enableDisableQuestion(questionId: number, enabled: boolean): void {
-        //
+        this.userService.enableQuestionForUser(questionId, this.user.id, enabled);
+        if(this.user.ignoredQuestions===null) {
+            this.user.ignoredQuestions=[];
+        }
+        if(enabled) {
+            this.user.ignoredQuestions=this.user.ignoredQuestions.filter(q => q !== questionId);
+        }else {
+            this.user.ignoredQuestions.push(questionId);
+        }
     }
 }

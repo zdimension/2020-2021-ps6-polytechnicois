@@ -194,6 +194,20 @@ export class UserService
         this.http.patch(`${this.dataURL}/users/${id}`, data).subscribe();
     }
 
+    enableQuestionForUser(questionId: number, userId: number, enabled: boolean): void {
+        this.http.get<User>(`${this.dataURL}/users/${userId}`).subscribe(user => {
+            if(user.ignoredQuestions===null) {
+                user.ignoredQuestions=[];
+            }
+            if(enabled) {
+                user.ignoredQuestions=user.ignoredQuestions.filter(q => q !== questionId);
+            }else {
+                user.ignoredQuestions.push(questionId);
+            }
+            this.http.patch(`${this.dataURL}/users/${userId}`, {ignoredQuestions: user.ignoredQuestions}).subscribe();
+        });
+    }
+
     logout()
     {
         localStorage.removeItem("currentUser");
