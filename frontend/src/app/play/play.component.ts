@@ -67,6 +67,9 @@ export class PlayComponent implements OnInit
         this.quizService.getQuizById(this.id)
             .subscribe(quiz =>
             {
+                if(quiz === null) {
+                    return;
+                }
                 this.quiz = quiz;
                 this.quizname = this.quiz.name;
                 while(this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id))
