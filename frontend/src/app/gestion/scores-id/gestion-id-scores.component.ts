@@ -6,6 +6,9 @@ import { Quiz } from "../../../models/quiz.model";
 import { User } from "../../../models/user.model";
 import { AttemptResult } from "../../../models/attemptresult.model";
 import { RecapResult } from "../../../models/recapresult.model";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { Time } from "@angular/common";
+import DateTimeFormat = Intl.DateTimeFormat;
 
 @Component({
     selector: "app-gestion-id-scores",
@@ -23,12 +26,21 @@ export class GestionIdScoresComponent implements OnInit
     public quizList: Quiz[]=[];
     public user: User=null;
     private userId: number=1;
-    public attempts: AttemptResult[]=[];
-    public recaps: RecapResult[]=[];
+    private attempts: AttemptResult[]=[];
+    public attemptsDisplayed: AttemptResult[]=[];
+    private recaps: RecapResult[]=[];
+    public recapsDisplayed: RecapResult[]=[];
     public resultsDisplayed: boolean[]=[];
+    public changeFilterScores: FormGroup;
 
-    constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService)
+    constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService, private formBuilder: FormBuilder)
     {
+        this.changeFilterScores=this.formBuilder.group({
+            scoresformdatedebut: new FormControl(),
+            scoresformdatefin: new FormControl(),
+            scoresformheuredebut: new FormControl(),
+            scoresformheurefin: new FormControl()
+        });
     }
 
     /**
@@ -61,9 +73,11 @@ export class GestionIdScoresComponent implements OnInit
             this.quiz=q;
             this.quizService.getAttempts(idQuiz, this.userId).subscribe(a => {
                 this.attempts=a;
+                this.attemptsDisplayed=a;
             });
             this.quizService.getRecaps(idQuiz, this.userId).subscribe(r => {
                 this.recaps=r;
+                this.recapsDisplayed=r;
             });
             this.quiz.questions.forEach(q => {
                 this.resultsDisplayed.push(false);
@@ -78,7 +92,9 @@ export class GestionIdScoresComponent implements OnInit
     resetQuiz(): void {
         this.quiz=null;
         this.attempts=[];
+        this.attemptsDisplayed=[];
         this.recaps=[];
+        this.recapsDisplayed=[];
     }
 
     /**
@@ -107,5 +123,51 @@ export class GestionIdScoresComponent implements OnInit
 
     goToGeneral(): void {
         this.router.navigate(['gestion/'+this.userId]);
+    }
+
+    changeScoresDisplayedDateHours(): void {
+        this.attemptsDisplayed=this.attempts;
+        this.recapsDisplayed=this.recaps;
+        let dates: Date[]=[];
+        let hours: number[][]=[];
+        dates.push(this.changeFilterScores.get("scoresformdatedebut").value);
+        dates.push(this.changeFilterScores.get("scoresformdatefin").value);
+        if(this.changeFilterScores.get("scoresformheuredebut").value !== null) {
+            let hm=this.changeFilterScores.get("scoresformheuredebut").value.split(":");
+            hours.push([Number(hm[0]), Number(hm[1])]);
+        } else {
+            hours.push([0, 0]);
+        }
+        if(this.changeFilterScores.get("scoresformheurefin").value !== null) {
+            let hm=this.changeFilterScores.get("scoresformheurefin").value.split(":");
+            hours.push([Number(hm[0]), Number(hm[1])]);
+        } else {
+            hours.push([0, 0]);
+        }
+        if(dates[0] !== null) {
+            this.attemptsDisplayed=this.attempts.filter(a => a.createdAt >= dates[0]);
+        }
+        if(dates[1] !== null) {
+            this.attemptsDisplayed=this.attempts.filter(a => a.createdAt <= dates[1]);
+        }
+        if(hours[0][0] !== 0 && hours[0][1] !== 0) {
+            console.log("here");
+            this.attemptsDisplayed=this.attempts.filter(a => {
+                let creationDate: Date=new Date(a.createdAt);
+                return creationDate.getMinutes() + (creationDate.getHours()*60) >= hours[0][1] + (hours[0][0]*60);
+            });
+        }
+        if(hours[1][0] !== 0 && hours[1][1] !== 0) {
+            this.attemptsDisplayed=this.attempts.filter(a => {
+                let creationDate: Date=new Date(a.createdAt);
+                return creationDate.getMinutes() + (creationDate.getHours()*60) <= hours[1][1] + (hours[1][0]*60)
+            });
+        }
+
+    }
+
+    reset(form: FormGroup): void {
+        form.reset();
+        this.changeScoresDisplayedDateHours();
     }
 }

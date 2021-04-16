@@ -7,7 +7,7 @@
             </div>
             <div class="d-flex row justify-content-end">
                 <i class="bi bi-person col"></i>
-                <a class="col" routerLink="../../{{user.id}}">{{user.name}}</a>
+                <a class="col" *ngIf="user !== null" routerLink="../../{{user.id}}">{{user.name}}</a>
             </div>
         </nav>
         <div class="row">
@@ -18,6 +18,35 @@
                     <button class="btn btn-sm btn-light col">Score</button>
                     <button class="btn btn-sm btn-light col">Suivi</button>
                     <button class="btn btn-sm btn-light col">Paramètres</button>
+                </div>
+                <div class="form-filter-scores" *ngIf="quiz !== null">
+                    <form [formGroup]="changeFilterScores" (change)="changeScoresDisplayedDateHours()">
+                        <b>Trier par dates</b>
+                        <br/>
+                        <label for="scoresformdatedebut">
+                            Date de début:<br/>
+                            <input type="date" id="scoresformdatedebut" [formControlName]="'scoresformdatedebut'">
+                        </label>
+                        <br/>
+                        <label for="scoresformdatefin">
+                            Date de fin:<br/>
+                            <input type="date" id="scoresformdatefin" [formControlName]="'scoresformdatefin'">
+                        </label>
+                        <br/>
+                        <b>Trier par plages horaires</b>
+                        <br/>
+                        <label for="scoresformheuredebut">
+                            Heure de début:<br/>
+                            <input type="time" id="scoresformheuredebut" [formControlName]="'scoresformheuredebut'">
+                        </label>
+                        <br/>
+                        <label for="scoresformheurefin">
+                            Heure de fin:<br/>
+                            <input type="time" id="scoresformheurefin" [formControlName]="'scoresformheurefin'">
+                        </label>
+                        <br/>
+                        <input type="reset" value="Tout afficher" (click)="reset(changeFilterScores)">
+                    </form>
                 </div>
             </div>
             <div class="container d-flex justify-content-center flex-column  col-10 w-100 h-100 p-2 m-2">
@@ -61,7 +90,7 @@
                             <!--- Afficher / masquer la question --->
 
                             <div *ngIf="resultsDisplayed[i]"> <!--- Si on affiche la question --->
-                                <div *ngFor="let a of attempts"> <!--- Pour chacune des tentatives sur ce quiz --->
+                                <div *ngFor="let a of attemptsDisplayed"> <!--- Pour chacune des tentatives sur ce quiz --->
                                     <!--- S'il a repondu (ie la question n'etait pas desactivee), reponse != -1 --->
                                     <div *ngIf="a.answers[i].valueOf() !== -1"
                                          [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'">
@@ -71,21 +100,21 @@
                                         <!--- Quelle reponse donnee, a quelle heure --->
                                     </div>
                                 </div>
-                                <div *ngIf="attempts.length === 0" class="pasrepondu">
+                                <div *ngIf="attemptsDisplayed.length === 0" class="pasrepondu">
                                     <!--- Aucune tentative de la personne agee --->
                                     N'a pas encore répondu
                                 </div>
 
                                 <hr/>
                                 <span class="align-self-center">Récap de {{user.name}}:</span>
-                                <div *ngFor="let r of recaps"
+                                <div *ngFor="let r of recapsDisplayed"
                                      [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'">
                                     <!--- Pour chaque recap --->
                                     Répondu {{r.answers[i] ? "VRAI" : "FAUX"}} au recap
                                     <!--- Qu a t il repondu au recap, a quelle heure --->
                                     le {{r.createdAt | date:' dd MMMM YYYY HH:mm:ss'}}
                                 </div>
-                                <div *ngIf="recaps.length === 0" class="pasrepondu"> <!--- N'a pas fait ce recap --->
+                                <div *ngIf="recapsDisplayed.length === 0" class="pasrepondu"> <!--- N'a pas fait ce recap --->
                                     N'a pas fait de recap
                                 </div>
                             </div>
