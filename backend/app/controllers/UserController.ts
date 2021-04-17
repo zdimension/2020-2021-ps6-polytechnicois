@@ -17,6 +17,9 @@ import AuthService from "../services/AuthService";
 import BcryptService from "../services/BcryptService";
 import { TDifficulty } from "../utils/types";
 import QuizHistory from "../models/QuizHistory";
+import QuizRecap from "../models/QuizRecap";
+import Question from "../models/Question";
+import Quiz from "../models/Quiz";
 
 @JsonController("/auth")
 export default class UserController
@@ -140,11 +143,49 @@ export default class UserController
     @Get("/users/:id/attempts")
     async getAttempts(@Param("id") id: number)
     {
-        return await QuizHistory.findAll({
-            where: {
-                userId: id
+        const quizzes = await Quiz.findAll({
+            include: {
+                model: Question,
+                attributes: ["id", "label", "correctAnswer"]
             }
         });
+        let quizzesById = [];
+        for (const q of quizzes)
+        {
+            quizzesById[q.id] = q;
+        }
+        let attempts = {};
+        for (let x of await QuizHistory.findAll({ where: { userId: id } }))
+        {
+            const quiz = quizzesById[x.quizId];
+            for (const [q, a] of Object.entries(x.answers))
+            {
+                const qo = quiz.questions[+q];
+                if (!(q in attempts))
+                {
+                    attempts[q] = {
+                        id: q,
+                        name: qo.label,
+                        stats: { correct: 0, total: 0 },
+                        recap: { correct: 0, total: 0 }
+                    };
+                }
+                attempts[q].stats.total++;
+                attempts[q].stats.correct += (a == qo.correctAnswer);
+            }
+        }
+        for (let x of await QuizRecap.findAll({ where: { userId: id } }))
+        {
+            const quiz = quizzesById[x.quizId];
+            for (const [q, a] of Object.entries(x.answers))
+            {
+                const qo = quiz.questions[+q];
+
+                attempts[q].recap.total++;
+                attempts[q].recap.correct += a;
+            }
+        }
+        return Object.values(attempts);
     }
 }
 
