@@ -16,7 +16,7 @@
     <div class="epsilon ml-auto p-2 d-flex align-items-center">
         <button class="btn btn-xs" [ngClass]="user.highContrast ? 'btn-greencontrast' : 'btn-green'" (click)="toggleParams()">
             <i class="bi-file-earmark-font"></i>
-            <span>Taille, Police <br/>Contraste</span>
+            <span>Taille, Police, Contraste</span>
         </button>
 
         <div id="visualParams" class="flex-column justify-content-between"
@@ -47,7 +47,7 @@
 
             <div>
                 <label for="changeHeaderContrastedMode">
-                    Mode contrasté:
+                    <span class="paramLabel">Mode contrasté :&nbsp;</span>
                     <input type="checkbox" id="changeHeaderContrastedMode" [checked]="isContrastedChecked$ | async" (change)="changeContrastedMode()">
                 </label>
             </div>
