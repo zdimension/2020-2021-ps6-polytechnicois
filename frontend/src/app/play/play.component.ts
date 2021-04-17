@@ -192,15 +192,17 @@ export class PlayComponent implements OnInit
         this.displayedInTrainMode = [];
         let randomBoolean: boolean[]=[true, false, false];
         randomBoolean.sort(() => Math.random() - 0.5);
-        for (let i = 0; i < this.questionCount; i++)
+        for (let i = 0; i < 4; i++)
         {
-            if(i == this.correctAnswer) {
+            if(i == this.correctAnswer.valueOf()) {
                 this.displayedInTrainMode.push(true);
             } else {
                 this.displayedInTrainMode.push(randomBoolean.pop());
             }
             //this.displayedInTrainMode.push(i != this.correctAnswer && this.getRandom(0, 1) === 1);
         }
+
+        console.log(this.displayedInTrainMode + " " + this.correctAnswer)
     }
 
 }
