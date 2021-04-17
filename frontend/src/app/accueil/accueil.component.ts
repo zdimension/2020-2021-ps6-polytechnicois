@@ -18,13 +18,16 @@ export class AccueilComponent implements OnInit
 
     ngOnInit(): void
     {
-        this.userService.currentUser.subscribe((user) => {
-            if(user === null) {
+        this.userService.currentUser.subscribe((user) =>
+        {
+            if (user === null)
+            {
                 return;
             }
             this.user = user;
-            if(this.user.role.valueOf() === 1 && this.router.url==="/") {
-                this.router.navigate(['choisirquiz']);
+            if (this.user.role.valueOf() === 1 && this.router.url === "/")
+            {
+                this.router.navigate(["choisirquiz"]);
             }
         });
     }

@@ -1,8 +1,8 @@
 $img-dims: 15em;
 
-#questionPicture img{
-  height:$img-dims;
-  width:$img-dims;
+#questionPicture img {
+  height: $img-dims;
+  width: $img-dims;
   display: block;
   object-fit: contain;
 
@@ -24,7 +24,7 @@ $img-dims: 15em;
 }
 
 #playingcard {
-  display:flex;
+  display: flex;
   flex-direction: row;
 }
 
@@ -37,7 +37,7 @@ $img-dims: 15em;
 $percent: calc(var(--rating) / 5 * 100%);
 $starsize: 300px;
 $starcolor: #9d9b9b;
-$starback:black;
+$starback: black;
 
 
 //https://css-tricks.com/five-methods-for-five-star-ratings/

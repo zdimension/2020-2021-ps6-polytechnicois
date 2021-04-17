@@ -118,7 +118,7 @@ export class UserService
         }
         else
         {
-        if (this.user.fontSize <= DEFAULT_FONT_SIZE)
+            if (this.user.fontSize <= DEFAULT_FONT_SIZE)
             {
                 return;
             }
@@ -129,16 +129,21 @@ export class UserService
         this.http.patch(`${this.dataURL}/me/`, { fontSize: this.user.fontSize }).subscribe();
     }
 
-    changeFont(fontName: string): void {
-        if (this.user == null) {
+    changeFont(fontName: string): void
+    {
+        if (this.user == null)
+        {
             return;
         }
-        if (fonts.includes(fontName)) {
-            if (this.user.font != fontName) {
+        if (fonts.includes(fontName))
+        {
+            if (this.user.font != fontName)
+            {
                 this.user.font = fontName;
             }
         }
-        else {
+        else
+        {
             return;
         }
         this.currentUserSubject.next(this.user);
@@ -146,11 +151,13 @@ export class UserService
         this.http.patch(`${this.dataURL}/me/`, { font: this.user.font }).subscribe();
     }
 
-    changeHighContrast(highContrast: boolean): void {
-        if (this.user == null) {
+    changeHighContrast(highContrast: boolean): void
+    {
+        if (this.user == null)
+        {
             return;
         }
-        this.user.highContrast=highContrast;
+        this.user.highContrast = highContrast;
         this.currentUserSubject.next(this.user);
         this.currentUser = this.currentUserSubject.asObservable();
         localStorage.setItem("currentUser", JSON.stringify(this.user));
@@ -194,17 +201,23 @@ export class UserService
         this.http.patch(`${this.dataURL}/users/${id}`, data).subscribe();
     }
 
-    enableQuestionForUser(questionId: number, userId: number, enabled: boolean): void {
-        this.http.get<User>(`${this.dataURL}/users/${userId}`).subscribe(user => {
-            if(user.ignoredQuestions===null) {
-                user.ignoredQuestions=[];
+    enableQuestionForUser(questionId: number, userId: number, enabled: boolean): void
+    {
+        this.http.get<User>(`${this.dataURL}/users/${userId}`).subscribe(user =>
+        {
+            if (user.ignoredQuestions === null)
+            {
+                user.ignoredQuestions = [];
             }
-            if(enabled) {
-                user.ignoredQuestions=user.ignoredQuestions.filter(q => q !== questionId);
-            }else {
+            if (enabled)
+            {
+                user.ignoredQuestions = user.ignoredQuestions.filter(q => q !== questionId);
+            }
+            else
+            {
                 user.ignoredQuestions.push(questionId);
             }
-            this.http.patch(`${this.dataURL}/users/${userId}`, {ignoredQuestions: user.ignoredQuestions}).subscribe();
+            this.http.patch(`${this.dataURL}/users/${userId}`, { ignoredQuestions: user.ignoredQuestions }).subscribe();
         });
     }
 

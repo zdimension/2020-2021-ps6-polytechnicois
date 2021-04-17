@@ -90,7 +90,8 @@ export class QuizService
 
     createTheme(theme: string): void
     {
-        this.http.post(this.dataURL.toString()+"themes", {name: theme}).subscribe(x => {
+        this.http.post(this.dataURL.toString() + "themes", { name: theme }).subscribe(x =>
+        {
             this.getThemes();
         });
     }
@@ -109,21 +110,21 @@ export class QuizService
 
     uploadAttempt(idQuiz: number, history): void
     {
-        this.http.post(this.dataURL.toString()+"quizzes/"+idQuiz+"/attempt", history).subscribe();
+        this.http.post(this.dataURL.toString() + "quizzes/" + idQuiz + "/attempt", history).subscribe();
     }
 
     getAttempts(idQuiz: number, idUser: number): Observable<AttemptResult[]>
     {
-        return this.http.get<AttemptResult[]>(this.dataURL.toString()+"quizzes/" + idQuiz + "/attempts/" + idUser);
+        return this.http.get<AttemptResult[]>(this.dataURL.toString() + "quizzes/" + idQuiz + "/attempts/" + idUser);
     }
 
     getRecaps(idQuiz: number, idUser: number): Observable<RecapResult[]>
     {
-        return this.http.get<AttemptResult[]>(this.dataURL.toString()+"quizzes/" + idQuiz + "/recaps/" + idUser);
+        return this.http.get<AttemptResult[]>(this.dataURL.toString() + "quizzes/" + idQuiz + "/recaps/" + idUser);
     }
 
     uploadRecap(idQuiz: number, history): void
     {
-        this.http.post(this.dataURL.toString()+"quizzes/"+idQuiz+"/recaps", history).subscribe();
+        this.http.post(this.dataURL.toString() + "quizzes/" + idQuiz + "/recaps", history).subscribe();
     }
 }

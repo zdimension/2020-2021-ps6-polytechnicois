@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { QuizService } from "../../../services/quiz.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "../../../services/user.service";
@@ -6,9 +6,7 @@ import { Quiz } from "../../../models/quiz.model";
 import { User } from "../../../models/user.model";
 import { AttemptResult } from "../../../models/attemptresult.model";
 import { RecapResult } from "../../../models/recapresult.model";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { Time } from "@angular/common";
-import DateTimeFormat = Intl.DateTimeFormat;
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 export interface attemptTable
 {
@@ -37,16 +35,16 @@ export class GestionIdSuiviComponent implements OnInit
     public quiz: Quiz = null;
     public quizList: Quiz[] = [];
     public user: User = null;
-    private userId: number = 1;
     public attemptsDisplayed: AttemptResult[] = [];
-    private recaps: RecapResult[] = [];
     public recapsDisplayed: RecapResult[] = [];
     public resultsDisplayed: boolean[] = [];
     public changeFilterScores: FormGroup;
-    private attempts: AttemptResult[] = [];
     public allAttempts: { [quizId: number]: AttemptResult[] } = {};
     public elements: attemptTable[] = [];
     public headElements = ["Question", "Échecs/tentatives", "Échecs/tentatives récap", "Retirer"];
+    private userId: number = 1;
+    private recaps: RecapResult[] = [];
+    private attempts: AttemptResult[] = [];
 
     constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService, private formBuilder: FormBuilder)
     {

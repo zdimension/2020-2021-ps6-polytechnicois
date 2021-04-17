@@ -6,7 +6,6 @@ import { QuizTheme } from "../../models/quiztheme.model";
 import { UserService } from "../../services/user.service";
 import { Router } from "@angular/router";
 import { User } from "../../models/user.model";
-import { min } from "rxjs/operators";
 
 @Component({
     selector: "app-choisirquiz",
@@ -25,13 +24,14 @@ export class ChoisirQuizComponent implements OnInit
     public listThemes: QuizTheme[];
     //to collapse filters
     public isCollapsed = true;
-    public user: User=null;
+    public user: User = null;
 
     constructor(public quizService: QuizService, public formBuilder: FormBuilder, public userService: UserService, private router: Router)
     {
         this.quizService.quizzes$.subscribe((quiz) =>
         {
-            if(quiz === null) {
+            if (quiz === null)
+            {
                 return;
             }
             this.quizList = quiz;
@@ -50,10 +50,12 @@ export class ChoisirQuizComponent implements OnInit
         {
             return this.listThemes = themes;
         });
-        this.userService.currentUser.subscribe((user) => {
+        this.userService.currentUser.subscribe((user) =>
+        {
             this.user = user;
-            if(this.user !== null && this.user.role === 1) {
-                this.listdifficulte=this.listdifficulte.slice(0, this.user.maxDifficulty.valueOf());
+            if (this.user !== null && this.user.role === 1)
+            {
+                this.listdifficulte = this.listdifficulte.slice(0, this.user.maxDifficulty.valueOf());
                 this.parseQuizList();
             }
         });
@@ -76,7 +78,8 @@ export class ChoisirQuizComponent implements OnInit
             });
         }
         this.quizListDisplayed = this.quizList;
-        if(this.user !== null && this.user.role==1) {
+        if (this.user !== null && this.user.role == 1)
+        {
             this.quizListDisplayed = this.quizList.filter(quiz => quiz.difficulty <= this.user.maxDifficulty.valueOf());
             this.quizListDisplayed = this.quizListDisplayed.filter(quiz => this.user.maxQuestions === null || quiz.questionCount <= this.user.maxQuestions.valueOf() || this.user.maxQuestions.valueOf() === 0);
         }
@@ -112,7 +115,8 @@ export class ChoisirQuizComponent implements OnInit
                 this.quizListDisplayed = this.quizList.filter(quiz => quiz.questionCount >= 7);
                 break;
         }
-        if(this.user !== null && this.user.role==1) {
+        if (this.user !== null && this.user.role == 1)
+        {
             this.quizListDisplayed = this.quizListDisplayed.filter(quiz => quiz.difficulty <= this.user.maxDifficulty.valueOf());
             this.quizListDisplayed = this.quizListDisplayed.filter(quiz => quiz.questionCount <= this.user.maxQuestions.valueOf() || this.user.maxQuestions.valueOf() === 0);
         }

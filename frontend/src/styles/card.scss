@@ -12,7 +12,7 @@
 
 .card > h2 {
   background-color: $yellow;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.15));
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
   padding-left: 2%;
@@ -22,7 +22,7 @@
 
 .button-card {
   background-color: $blue;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
   //border: solid 1px $blue;
   border-radius: 25px;
   color: white;
@@ -32,13 +32,12 @@
 
 .button-card:hover {
   cursor: pointer;
-  background-image: linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.5));
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 }
 
 .button-card:active {
   cursor: pointer;
-  background:
-          linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.4)),
-          radial-gradient(lighten($blue, 20%), transparent 70%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)),
+  radial-gradient(lighten($blue, 20%), transparent 70%);
   background-color: $blue;
 }

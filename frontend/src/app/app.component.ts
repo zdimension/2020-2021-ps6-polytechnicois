@@ -12,15 +12,18 @@ export class AppComponent
     title = "starter-quiz";
     public fontSize: string;
     public font: string;
+
     constructor(private userService: UserService)
     {
     }
 
-    toPixels(n: number): string {
-        return n*3+BASE_FONT_SIZE+'px';
+    toPixels(n: number): string
+    {
+        return n * 3 + BASE_FONT_SIZE + "px";
     }
 
-    ngOnInit(){
+    ngOnInit()
+    {
         this.userService.currentUser
             .subscribe(user =>
             {
@@ -29,7 +32,8 @@ export class AppComponent
             });
     }
 
-    setStyle() {
-        return {'font-family': this.font, 'font-size': this.fontSize};
+    setStyle()
+    {
+        return { "font-family": this.font, "font-size": this.fontSize };
     }
 }

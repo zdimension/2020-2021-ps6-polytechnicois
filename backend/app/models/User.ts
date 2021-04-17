@@ -4,14 +4,15 @@ import {
     BeforeBulkCreate,
     BeforeCreate,
     BeforeUpdate,
-    Column, DataType,
-    Default, HasMany,
+    Column,
+    DataType,
+    Default,
+    HasMany,
     Model,
     Table,
     Unique
 } from "sequelize-typescript";
 import { Difficulty, TDifficulty } from "../utils/types";
-import Question from "./Question";
 import QuizHistory from "./QuizHistory";
 import QuizRecap from "./QuizRecap";
 
@@ -40,7 +41,7 @@ export default class User extends Model
     @Column
     fontSize!: number;
 
-    @Default('Arial')
+    @Default("Arial")
     @Column
     font!: string;
 

@@ -1,7 +1,8 @@
 <div>
     <div class="epsilon container d-flex justify-content-center">
-        <button id="filters" class="btn" [ngClass]="user.highContrast ? 'btn-yellowcontrast' : 'btn-yellow'" type="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
-                aria-controls="collapseExample">
+        <button (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" [ngClass]="user.highContrast ? 'btn-yellowcontrast' : 'btn-yellow'"
+                aria-controls="collapseExample" class="btn" id="filters"
+                type="button">
             Filtres
         </button>
     </div>
@@ -10,7 +11,7 @@
             <p class="col">
                 <label for="theme">
                     Thème<br>
-                    <select [formControlName]="'theme'" id="theme" (change)="changeDisplay()">
+                    <select (change)="changeDisplay()" [formControlName]="'theme'" id="theme">
                         <option value="Peu importe">Peu importe</option>
                         <option *ngFor="let c of listThemes" [ngValue]="c.name">{{ c.name }}</option>
                     </select>
@@ -19,7 +20,7 @@
             <p class="col">
                 <label for="dejafait">
                     Quiz déjà fait ?<br>
-                    <select [formControlName]="'dejafait'" id="dejafait" (change)="changeDisplay()">
+                    <select (change)="changeDisplay()" [formControlName]="'dejafait'" id="dejafait">
                         <option *ngFor="let c of listdejafait" [ngValue]="c">{{c}}</option>
                     </select>
                 </label>
@@ -27,7 +28,7 @@
             <p class="col">
                 <label for="difficulte">
                     Difficulté:<br>
-                    <select [formControlName]="'difficulte'" id="difficulte" (change)="changeDisplay()">
+                    <select (change)="changeDisplay()" [formControlName]="'difficulte'" id="difficulte">
                         <option *ngFor="let c of listdifficulte;let i=index" [ngValue]="i">{{c}}</option>
                     </select>
                 </label>
@@ -35,15 +36,15 @@
             <p class="col">
                 <label for="nbquestions">
                     Nombre de questions:<br>
-                    <select [formControlName]="'nbquestions'" id="nbquestions" (change)="changeDisplay()">
+                    <select (change)="changeDisplay()" [formControlName]="'nbquestions'" id="nbquestions">
                         <option *ngFor="let c of listnbquestions" [ngValue]="c">{{c}}</option>
                     </select>
                 </label>
             </p>
             <p class="col">
                 <label for="trierauhasard">
-                    <input [formControlName]="'trierauhasard'" class="input-custom" id="trierauhasard" type="checkbox"
-                           (change)="changeDisplay()">
+                    <input (change)="changeDisplay()" [formControlName]="'trierauhasard'" class="input-custom" id="trierauhasard"
+                           type="checkbox">
                     Trier au hasard ?
                 </label>
             </p>
@@ -60,8 +61,12 @@
         <div>Difficulté {{quiz.difficulty}}</div>
         {{quiz.theme.name}}
         <div class="epsilon d-flex justify-content-center flex-column">
-            <button class="btn" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" routerLink="/play/{{quiz.id}}">Faire le quiz</button>
-        <button class="btn" [ngClass]="user.highContrast ? 'btn-yellowcontrast' : 'btn-yellow'" *ngIf="user.role !== 1">Modifier</button>
+            <button [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" class="btn"
+                    routerLink="/play/{{quiz.id}}">Faire le quiz
+            </button>
+            <button *ngIf="user.role !== 1" [ngClass]="user.highContrast ? 'btn-yellowcontrast' : 'btn-yellow'"
+                    class="btn">Modifier
+            </button>
         </div>
 
 

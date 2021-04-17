@@ -1,5 +1,5 @@
-<div id="gestionid" class="h-100 w-100 ">
-    <div id="gestionidcard" class="card container d-flex my-5 d-flex justify-self-center">
+<div class="h-100 w-100 " id="gestionid">
+    <div class="card container d-flex my-5 d-flex justify-self-center" id="gestionidcard">
         <nav class="navbar justify-content-between">
             <div>
                 <a class="navbar-brand" routerLink="../../">Gestion Comptes</a>
@@ -7,43 +7,43 @@
             </div>
             <div class="d-flex row justify-content-end">
                 <i class="bi bi-person col"></i>
-                <a class="col" *ngIf="user !== null" routerLink="../../{{user.id}}">{{user.name}}</a>
+                <a *ngIf="user !== null" class="col" routerLink="../../{{user.id}}">{{user.name}}</a>
             </div>
         </nav>
         <div class="row">
             <div class="">
                 <div class="row-mx-2 d-flex flex-column justify-content-center epsilon">
-                    <button class="btn btn-sm btn-light col" (click)="goToGeneral()">Général</button>
+                    <button (click)="goToGeneral()" class="btn btn-sm btn-light col">Général</button>
                     <button class="btn btn-sm btn-light col" disabled>Score</button>
-                    <button class="btn btn-sm btn-light col" (click)="goToSuivi()">Suivi</button>
+                    <button (click)="goToSuivi()" class="btn btn-sm btn-light col">Suivi</button>
                 </div>
-                <div class="form-filter-scores" *ngIf="quiz !== null">
-                    <form [formGroup]="changeFilterScores" (change)="changeScoresDisplayedDateHours()">
+                <div *ngIf="quiz !== null" class="form-filter-scores">
+                    <form (change)="changeScoresDisplayedDateHours()" [formGroup]="changeFilterScores">
                         <b>Trier par dates</b>
                         <br/>
                         <label for="scoresformdatedebut">
                             Date de début:<br/>
-                            <input type="date" id="scoresformdatedebut" [formControlName]="'scoresformdatedebut'">
+                            <input [formControlName]="'scoresformdatedebut'" id="scoresformdatedebut" type="date">
                         </label>
                         <br/>
                         <label for="scoresformdatefin">
                             Date de fin:<br/>
-                            <input type="date" id="scoresformdatefin" [formControlName]="'scoresformdatefin'">
+                            <input [formControlName]="'scoresformdatefin'" id="scoresformdatefin" type="date">
                         </label>
                         <br/>
                         <b>Trier par plages horaires</b>
                         <br/>
                         <label for="scoresformheuredebut">
                             Heure de début:<br/>
-                            <input type="time" id="scoresformheuredebut" [formControlName]="'scoresformheuredebut'">
+                            <input [formControlName]="'scoresformheuredebut'" id="scoresformheuredebut" type="time">
                         </label>
                         <br/>
                         <label for="scoresformheurefin">
                             Heure de fin:<br/>
-                            <input type="time" id="scoresformheurefin" [formControlName]="'scoresformheurefin'">
+                            <input [formControlName]="'scoresformheurefin'" id="scoresformheurefin" type="time">
                         </label>
                         <br/>
-                        <input type="reset" value="Tout afficher" (click)="reset(changeFilterScores)">
+                        <input (click)="reset(changeFilterScores)" type="reset" value="Tout afficher">
                     </form>
                 </div>
             </div>
@@ -51,9 +51,9 @@
                 <div class="container p-5">
 
 
-                    <div class="epsilon" *ngIf="quiz===null">
+                    <div *ngIf="quiz===null" class="epsilon">
                         <!--- Afficher tous les quizs si aucun quiz n'est selectionne (quiz = null) --->
-                        <button class="btn btn-sm btn-yellow" *ngFor="let q of quizList" (click)="setQuiz(q.id)">
+                        <button (click)="setQuiz(q.id)" *ngFor="let q of quizList" class="btn btn-sm btn-yellow">
                             {{q.name}}
                         </button>
                     </div>
@@ -61,12 +61,14 @@
                     <div *ngIf="quiz!==null"> <!--- Si un quiz est selectionne --->
                         <div class="epsilon">
 
-                        <button class="btn btn-sm btn-yellow" (click)="resetQuiz()">Cacher</button> <!--- Deselectionner le quiz --->
+                            <button (click)="resetQuiz()" class="btn btn-sm btn-yellow">Cacher</button>
+                            <!--- Deselectionner le quiz --->
                         </div>
 
-                        <div class="card m-2 p-2" *ngFor="let question of quiz.questions; let i=index">
+                        <div *ngFor="let question of quiz.questions; let i=index" class="card m-2 p-2">
                             <div class="epsilon">
-                                <button class="btn btn-sm btn-red" (click)="enableDisableQuestion(question.id, user.ignoredQuestions.includes(question.id))">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button>
+                                <button (click)="enableDisableQuestion(question.id, user.ignoredQuestions.includes(question.id))"
+                                        class="btn btn-sm btn-red">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button>
                             </div>
                             <!--- Pour chaque question du quiz selectionne --->
                             <div class="labelQuestion">
@@ -82,13 +84,14 @@
                             <!--- La reponse attendue --->
                             <div class="epsilon d-flex justify-content-between">
                                 <span class="align-self-center">Réponses de {{user.name}}:</span>
-                                <button class="btn btn-yellow btn-sm"
-                                        (click)="resultsDisplayed[i]=!resultsDisplayed[i]">{{resultsDisplayed[i] ? "Masquer" : "Afficher"}}</button>
+                                <button (click)="resultsDisplayed[i]=!resultsDisplayed[i]"
+                                        class="btn btn-yellow btn-sm">{{resultsDisplayed[i] ? "Masquer" : "Afficher"}}</button>
                             </div>
                             <!--- Afficher / masquer la question --->
 
                             <div *ngIf="resultsDisplayed[i]"> <!--- Si on affiche la question --->
-                                <div *ngFor="let a of attemptsDisplayed"> <!--- Pour chacune des tentatives sur ce quiz --->
+                                <div *ngFor="let a of attemptsDisplayed">
+                                    <!--- Pour chacune des tentatives sur ce quiz --->
                                     <!--- S'il a repondu (ie la question n'etait pas desactivee), reponse != -1 --->
                                     <div *ngIf="a.answers[i].valueOf() !== -1"
                                          [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'">
@@ -112,7 +115,8 @@
                                     <!--- Qu a t il repondu au recap, a quelle heure --->
                                     le {{r.createdAt | date:' dd MMMM YYYY HH:mm:ss'}}
                                 </div>
-                                <div *ngIf="recapsDisplayed.length === 0" class="pasrepondu"> <!--- N'a pas fait ce recap --->
+                                <div *ngIf="recapsDisplayed.length === 0" class="pasrepondu">
+                                    <!--- N'a pas fait ce recap --->
                                     N'a pas fait de recap
                                 </div>
                             </div>

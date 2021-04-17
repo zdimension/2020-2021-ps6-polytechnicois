@@ -28,8 +28,8 @@ export class PlayComponent implements OnInit
     public urlImage: string = null;
     public trainMode: boolean = false;
     public displayedInTrainMode: boolean[] = [];
-    private user: User=null;
-    private id: number=1;
+    private user: User = null;
+    private id: number = 1;
     private history;
 
     constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService)
@@ -41,13 +41,16 @@ export class PlayComponent implements OnInit
      */
     ngOnInit(): void
     {
-        this.userService.currentUser.subscribe(user => {
-            if(user === null) {
+        this.userService.currentUser.subscribe(user =>
+        {
+            if (user === null)
+            {
                 return;
             }
-            this.user=user;
-            if(this.user.ignoredQuestions===null) {
-                this.user.ignoredQuestions=[];
+            this.user = user;
+            if (this.user.ignoredQuestions === null)
+            {
+                this.user.ignoredQuestions = [];
             }
             this.getQuiz();
         });
@@ -67,16 +70,17 @@ export class PlayComponent implements OnInit
         this.quizService.getQuizById(this.id)
             .subscribe(quiz =>
             {
-                if(quiz === null) {
+                if (quiz === null)
+                {
                     return;
                 }
                 this.quiz = quiz;
                 this.quizname = this.quiz.name;
                 this.quizdifficulty = this.quiz.difficulty;
                 this.questionCount = this.quiz.questions.length;
-                while(this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id))
+                while (this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id))
                 {
-                    this.history[this.numquestion]=-1;
+                    this.history[this.numquestion] = -1;
                     this.numquestion++;
                 }
                 this.answersDisplayed = this.quiz.questions[this.numquestion].answers;
@@ -85,7 +89,7 @@ export class PlayComponent implements OnInit
                 this.urlImage = this.quiz.questions[this.numquestion].image;
                 this.updateDisplayedInTrainMode();
             });
-        this.history={};
+        this.history = {};
     }
 
     /**
@@ -103,7 +107,7 @@ export class PlayComponent implements OnInit
         this.questionlabel = this.quiz.questions[this.numquestion].label;
         if (this.firstStage)
         {
-            this.history[(this.numquestion).toString()]= n;
+            this.history[(this.numquestion).toString()] = n;
             if (this.quiz.questions[this.numquestion].correctAnswer == n)
             {
                 console.log("Correct");
@@ -117,9 +121,9 @@ export class PlayComponent implements OnInit
         else
         {
             this.numquestion++;
-            while(this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id))
+            while (this.numquestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numquestion].id))
             {
-                this.history[this.numquestion]=-1;
+                this.history[this.numquestion] = -1;
                 this.numquestion++;
             }
             if (this.numquestion >= this.questionCount)
@@ -128,12 +132,14 @@ export class PlayComponent implements OnInit
                 this.displayedMessage = "Quiz terminé";
                 this.quizTermine = true;
                 console.log(this.history);
-                if(!this.trainMode) { // Doesn't upload results in train mode
+                if (!this.trainMode)
+                { // Doesn't upload results in train mode
                     this.quizService.uploadAttempt(this.id, this.history);
                 }
-                this.numquestion = this.questionCount-1;
-                if(this.user !== null && this.user.role===1 && this.user.forceRecap) {
-                    this.router.navigate(['recap/'+this.id]);
+                this.numquestion = this.questionCount - 1;
+                if (this.user !== null && this.user.role === 1 && this.user.forceRecap)
+                {
+                    this.router.navigate(["recap/" + this.id]);
                 }
                 return;
             }
@@ -190,19 +196,22 @@ export class PlayComponent implements OnInit
     private updateDisplayedInTrainMode(): void
     {
         this.displayedInTrainMode = [];
-        let randomBoolean: boolean[]=[true, false, false];
+        let randomBoolean: boolean[] = [true, false, false];
         randomBoolean.sort(() => Math.random() - 0.5);
         for (let i = 0; i < 4; i++)
         {
-            if(i == this.correctAnswer.valueOf()) {
+            if (i == this.correctAnswer.valueOf())
+            {
                 this.displayedInTrainMode.push(true);
-            } else {
+            }
+            else
+            {
                 this.displayedInTrainMode.push(randomBoolean.pop());
             }
             //this.displayedInTrainMode.push(i != this.correctAnswer && this.getRandom(0, 1) === 1);
         }
 
-        console.log(this.displayedInTrainMode + " " + this.correctAnswer)
+        console.log(this.displayedInTrainMode + " " + this.correctAnswer);
     }
 
 }

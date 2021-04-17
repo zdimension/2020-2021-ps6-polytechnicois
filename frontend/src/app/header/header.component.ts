@@ -3,7 +3,7 @@ import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
-import {fonts} from "../../fonts";
+import { fonts } from "../../fonts";
 import { BehaviorSubject } from "rxjs/Rx";
 
 
@@ -27,8 +27,10 @@ export class HeaderComponent implements OnInit
 
     ngOnInit(): void
     {
-        this.userService.currentUser.subscribe((user) => {
-            if(user === null) {
+        this.userService.currentUser.subscribe((user) =>
+        {
+            if (user === null)
+            {
                 return;
             }
             this.user = user;
@@ -71,7 +73,7 @@ export class HeaderComponent implements OnInit
     deconnexion(): void
     {
         this.userService.logout();
-        this.user=null;
+        this.user = null;
         this.router.navigate(["/connexion"]);
     }
 

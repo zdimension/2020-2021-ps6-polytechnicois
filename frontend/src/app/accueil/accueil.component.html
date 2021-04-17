@@ -1,14 +1,24 @@
-<div id="connecte" class="flex-column">
+<div class="flex-column" id="connecte">
     <div class="container">
         <div class="d-flex justify-content-center flex-column col">
 
             <div class="epsilon">
-                <button class="btn btn-md col my-3" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'"  routerLink="/choisirquiz">Faire quiz
+                <button [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" class="btn btn-md col my-3"
+                        routerLink="/choisirquiz">Faire quiz
                 </button>
                 <div *ngIf="user.role !== 1">
-                    <button class="btn btn-md col my-3" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" *ngIf="user.role === 2" routerLink="/score">Scores</button>
-                    <button class="btn btn-md col my-3" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'"  routerLink="/creationquiz">Créer un quiz</button>
-                    <button class="btn btn-md col my-3" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" *ngIf="user.role === 2" routerLink="/gestion">Gestion des comptes</button>
+                    <button *ngIf="user.role === 2"
+                            [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" class="btn btn-md col my-3"
+                            routerLink="/score">Scores
+                    </button>
+                    <button [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'"
+                            class="btn btn-md col my-3"
+                            routerLink="/creationquiz">Créer un quiz
+                    </button>
+                    <button *ngIf="user.role === 2"
+                            [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" class="btn btn-md col my-3"
+                            routerLink="/gestion">Gestion des comptes
+                    </button>
                 </div>
             </div>
         </div>

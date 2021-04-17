@@ -2,36 +2,36 @@
 // --------------------------------------------------------------------
 
 // Colors
-$color-primary:                   #52C11F;
-$color-secondary:                 #0B44EF;
-$color-tertiary:                  #d62828;
-$color-tetrary:                   #991BE2;
+$color-primary: #52C11F;
+$color-secondary: #0B44EF;
+$color-tertiary: #d62828;
+$color-tetrary: #991BE2;
 
-$gray-lighter:                    #E6EAEF;
-$gray-light:                      #CED0DB;
-$gray:                            #6D6F7F;
-$gray-dark:                       #3F4351;
-$gray-darker:                     #252730;
+$gray-lighter: #E6EAEF;
+$gray-light: #CED0DB;
+$gray: #6D6F7F;
+$gray-dark: #3F4351;
+$gray-darker: #252730;
 
-$azure:                           #0077B6;
-$yellow:                          #FDE635;
-$bluejoel:                        #00A0DD;
-$green:                           #BED981;
-$red:                             #d62828;
-$bluecontrast:                    #0900E0;
-$yellowcontrast:                  #E0BB00;
-$greencontrast:                   #00E05D;
-$redcontrast:                     #930b01;
+$azure: #0077B6;
+$yellow: #FDE635;
+$bluejoel: #00A0DD;
+$green: #BED981;
+$red: #d62828;
+$bluecontrast: #0900E0;
+$yellowcontrast: #E0BB00;
+$greencontrast: #00E05D;
+$redcontrast: #930b01;
 
-$font-size:                       16px;
-$font-family:                     'Booster Next FY', 'Avenir Next', Avenir, sans-serif;
-$font-family-heading:             $font-family;
-$line-height:                     1.42;
+$font-size: 16px;
+$font-family: 'Booster Next FY', 'Avenir Next', Avenir, sans-serif;
+$font-family-heading: $font-family;
+$line-height: 1.42;
 
 // Easings
-$ease-in-cubic:                   cubic-bezier(0.55, 0.055, 0.675, 0.19);
-$ease-out-cubic:                  cubic-bezier(0.215, 0.61, 0.355, 1);
-$ease-in-out-cubic:               cubic-bezier(0.645, 0.045, 0.355, 1);
-$ease-in-out-expo:                cubic-bezier(1, 0, 0, 1);
-$ease-out-back:                   cubic-bezier(0.175, 0.885, 0.32, 1.275);
-$ease-out-quint:                  cubic-bezier(.23,1,.32,1);
+$ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+$ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+$ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$ease-out-quint: cubic-bezier(.23, 1, .32, 1);

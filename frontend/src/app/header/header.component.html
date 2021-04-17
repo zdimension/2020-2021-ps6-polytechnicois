@@ -1,45 +1,48 @@
-<div class="header d-flex justify-content-between " *ngIf="user != null">
+<div *ngIf="user != null" class="header d-flex justify-content-between ">
 
     <div class="epsilon p-2">
-        <button class="btn btn-xs" [ngClass]="user.highContrast ? 'btn-greencontrast' : 'btn-green'" (click)="accueil()">
+        <button (click)="accueil()" [ngClass]="user.highContrast ? 'btn-greencontrast' : 'btn-green'"
+                class="btn btn-xs">
             <i class="bi-house"></i>
             <span>Retour à l'accueil</span>
         </button>
     </div>
     <div class="epsilon p-2">
-        <button class="btn btn-xs" [ngClass]="user.highContrast ? 'btn-redcontrast' : 'btn-red'"  (click)="deconnexion()">
+        <button (click)="deconnexion()" [ngClass]="user.highContrast ? 'btn-redcontrast' : 'btn-red'"
+                class="btn btn-xs">
             <i class="bi-power"></i>
             <span>Déconnexion</span>
         </button>
     </div>
 
     <div class="epsilon ml-auto p-2 d-flex align-items-center">
-        <button class="btn btn-xs" [ngClass]="user.highContrast ? 'btn-greencontrast' : 'btn-green'" (click)="toggleParams()">
+        <button (click)="toggleParams()" [ngClass]="user.highContrast ? 'btn-greencontrast' : 'btn-green'"
+                class="btn btn-xs">
             <i class="bi-file-earmark-font"></i>
             <span>Taille, Police, Contraste</span>
         </button>
 
-        <div id="visualParams" class="flex-column justify-content-between"
-             [style.visibility]="paramsShow ? 'visible' : 'hidden'"
-             [style.opacity]="paramsShow ? 1 : 0"
+        <div [style.opacity]="paramsShow ? 1 : 0" [style.visibility]="paramsShow ? 'visible' : 'hidden'"
+             class="flex-column justify-content-between"
+             id="visualParams"
         >
-            <div id="visualParamsOptions" class="d-flex flex-column">
+            <div class="d-flex flex-column" id="visualParamsOptions">
                 <div class="d-flex option align-items-center">
-                    <label for="favoriteFont" class="paramLabel">Police : </label>
-                    <select name="favoriteFont" id="favoriteFont" [formControl]="favoriteFont"
-                            (change)="changeFont($event)">
+                    <label class="paramLabel" for="favoriteFont">Police : </label>
+                    <select (change)="changeFont($event)" [formControl]="favoriteFont" id="favoriteFont"
+                            name="favoriteFont">
                         <option *ngFor="let font of fonts" [value]="font">{{font}}</option>
                     </select>
                 </div>
 
-                <div id="fontSize" class="d-flex flex-row align-items-center option">
+                <div class="d-flex flex-row align-items-center option" id="fontSize">
                     <span class="paramLabel">Taille : </span>
                     <div class="d-flex flex-column align-items-center">
-                        <button class="btn btn-light" style="font-size: 1em" (click)="changeFontSize(true)">A</button>
+                        <button (click)="changeFontSize(true)" class="btn btn-light" style="font-size: 1em">A</button>
                         <span style="font-size: .9em">Agrandir</span>
                     </div>
                     <div class="d-flex flex-column align-items-center" style="font-size: .8em">
-                        <button class="btn btn-light" (click)="changeFontSize(false)">A</button>
+                        <button (click)="changeFontSize(false)" class="btn btn-light">A</button>
                         <span>Rétrécir</span>
                     </div>
                 </div>
@@ -48,12 +51,13 @@
             <div>
                 <label for="changeHeaderContrastedMode">
                     <span class="paramLabel">Mode contrasté :&nbsp;</span>
-                    <input type="checkbox" id="changeHeaderContrastedMode" [checked]="isContrastedChecked$ | async" (change)="changeContrastedMode()">
+                    <input (change)="changeContrastedMode()" [checked]="isContrastedChecked$ | async" id="changeHeaderContrastedMode"
+                           type="checkbox">
                 </label>
             </div>
 
-            <div class="d-flex align-self-center" >
-                <button id="closeParams" class="btn btn-light" (click)="toggleParams()">Fermer</button>
+            <div class="d-flex align-self-center">
+                <button (click)="toggleParams()" class="btn btn-light" id="closeParams">Fermer</button>
             </div>
 
         </div>

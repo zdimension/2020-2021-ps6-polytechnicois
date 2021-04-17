@@ -1,17 +1,18 @@
-<div id="gestion" class="h-100">
+<div class="h-100" id="gestion">
     <div class="container card d-flex my-5">
 
         <nav class="navbar justify-content-between">
             <h4 class="navbar-brand">Gestion Comptes</h4>
-            <form class="form-inline" [formGroup]="searchUserForm">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [formControlName]="'searchUserField'" (ngModelChange)="onChangeSearchUser()">
+            <form [formGroup]="searchUserForm" class="form-inline">
+                <input (ngModelChange)="onChangeSearchUser()" [formControlName]="'searchUserField'" aria-label="Search" class="form-control mr-sm-2"
+                       placeholder="Search" type="search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </nav>
 
-        <div id="comptes" class="container d-flex align-content-start flex-wrap col w-100 h-100 p-2 m-2">
-            <div *ngFor="let user of usersDisplayed" routerLink="/gestion/{{user.id}}"
-                 class="compte container card row d-flex justify-content-center">
+        <div class="container d-flex align-content-start flex-wrap col w-100 h-100 p-2 m-2" id="comptes">
+            <div *ngFor="let user of usersDisplayed" class="compte container card row d-flex justify-content-center"
+                 routerLink="/gestion/{{user.id}}">
                 <div class="d-flex flex-column row align-items-center">
                     <i class="bi bi-person "></i>
                     <p class="">

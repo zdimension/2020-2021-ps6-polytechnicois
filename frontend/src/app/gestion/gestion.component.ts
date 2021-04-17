@@ -11,14 +11,14 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 export class GestionComponent implements OnInit
 {
 
-    private users: User[] = [];
-    public usersDisplayed: User[]=[];
-    public userRoleStr: string[]= ["Autonome", "Non autonome", "Administrateur"];
+    public usersDisplayed: User[] = [];
+    public userRoleStr: string[] = ["Autonome", "Non autonome", "Administrateur"];
     public searchUserForm: FormGroup;
+    private users: User[] = [];
 
     constructor(private userService: UserService, private formBuilder: FormBuilder)
     {
-        this.searchUserForm=this.formBuilder.group({
+        this.searchUserForm = this.formBuilder.group({
             searchUserField: new FormControl()
         });
     }
@@ -28,9 +28,10 @@ export class GestionComponent implements OnInit
      */
     ngOnInit(): void
     {
-        this.userService.getAllUsers().subscribe(users => {
+        this.userService.getAllUsers().subscribe(users =>
+        {
             this.users = users;
-            this.usersDisplayed=users;
+            this.usersDisplayed = users;
         });
     }
 
@@ -39,14 +40,17 @@ export class GestionComponent implements OnInit
      */
     onChangeSearchUser(): void
     {
-        let searchValue=this.searchUserForm.get('searchUserField').value;
-        if(searchValue.toString().isEmpty) {
-            this.usersDisplayed=this.users;
+        let searchValue = this.searchUserForm.get("searchUserField").value;
+        if (searchValue.toString().isEmpty)
+        {
+            this.usersDisplayed = this.users;
             return;
         }
-        this.usersDisplayed=[];
-        this.users.forEach(user => {
-            if(user.name.toString().toLowerCase().includes(searchValue.toLowerCase())) {
+        this.usersDisplayed = [];
+        this.users.forEach(user =>
+        {
+            if (user.name.toString().toLowerCase().includes(searchValue.toLowerCase()))
+            {
                 this.usersDisplayed.push(user);
             }
         });

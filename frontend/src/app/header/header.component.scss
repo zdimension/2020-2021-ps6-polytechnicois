@@ -1,7 +1,6 @@
 @import "../../styles/variables";
 
 
-
 /**
  Use :host to apply some style to your entire component #24c6dc, #514a9d
  #0f0c29, #302b63, #24243e linear-gradient(to right,#302b63, #0f0c29, #302b63);
@@ -48,7 +47,7 @@
   border-radius: 1.1em;
   border: solid grey .01em;
   z-index: 1;
-  box-shadow: rgba(0,0,0,.2) 0 .1em .4em;
+  box-shadow: rgba(0, 0, 0, .2) 0 .1em .4em;
   transition: all 0.2s ease-in-out;
 }
 

@@ -52,23 +52,23 @@
             <div class="card-header"><h4 class="mb-0">Créer un compte</h4></div>
 
             <div class="card-body">
-                <form [formGroup]="registerForm" class="login-form" (ngSubmit)="onSubmit()">
+                <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="login-form">
                     <div class="form-group">
-                        <label for="username" class="sr-only">Nom d'utilisateur</label>
-                        <input id="username" type="text" class="form-control" placeholder="Nom d'utilisateur"
-                               formControlName="username" value="" required autofocus
-                               [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                        <label class="sr-only" for="username">Nom d'utilisateur</label>
+                        <input [ngClass]="{ 'is-invalid': submitted && f.username.errors }" autofocus class="form-control" formControlName="username"
+                               id="username" placeholder="Nom d'utilisateur" required type="text"
+                               value="">
                         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                             <div *ngIf="f.username.errors.required">Nom d'utilisateur manquant</div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="sr-only">Mot de passe</label>
-                        <input id="password" type="password" class="form-control" required
-                               formControlName="password"
-                               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                        <label class="sr-only" for="password">Mot de passe</label>
+                        <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }" class="form-control" formControlName="password" id="password"
                                placeholder="Mot de passe"
+                               required
+                               type="password"
                         >
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Mot de passe manquant</div>
@@ -76,11 +76,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password2" class="sr-only">Confirmer le mot de passe</label>
-                        <input id="password2" type="password" class="form-control" required
-                               formControlName="password2"
-                               [ngClass]="{ 'is-invalid': submitted && f.password2.errors }"
+                        <label class="sr-only" for="password2">Confirmer le mot de passe</label>
+                        <input [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" class="form-control" formControlName="password2" id="password2"
                                placeholder="Confirmer le mot de passe"
+                               required
+                               type="password"
                         >
                         <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
                             <div *ngIf="f.password2.errors.required">Confirmation manquante</div>
@@ -89,8 +89,8 @@
 
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox"
-                                   [formControlName]="'autonomous'" id="autonomous" checked>
+                            <input [formControlName]="'autonomous'" checked
+                                   class="custom-control-input" id="autonomous" type="checkbox">
                             <label class="custom-control-label" for="autonomous">
                                 Autonome
                             </label>

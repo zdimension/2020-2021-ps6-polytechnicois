@@ -15,7 +15,7 @@
                             <label for="nomquiz">
                                 Nom du quiz
                             </label>
-                            <input type="text" [formControlName]="'nomquiz'" id="nomquiz"/>
+                            <input [formControlName]="'nomquiz'" id="nomquiz" type="text"/>
                         </div>
                         <div class="d-flex justify-content-between ">
                             <label for="difficulte">
@@ -36,10 +36,10 @@
                                 </select>
                                 <span>OU</span>
                                 <div class="epsilon">
-                                    <button id="addtheme" class="btn btn-sm btn-yellow" type="button"
-                                            (click)="collapse.toggle()"
-                                            [attr.aria-expanded]="!isCollapsed"
-                                            aria-controls="collapseCreerTheme">Créer un thème
+                                    <button (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseCreerTheme"
+                                            class="btn btn-sm btn-yellow"
+                                            id="addtheme"
+                                            type="button">Créer un thème
                                     </button>
                                 </div>
                             </div>
@@ -49,23 +49,23 @@
                                 <label for="nomnouveautheme">
                                     Nom du thème
                                 </label>
-                                <input type="text" [formControlName]="'nomnouveautheme'" id="nomnouveautheme"/>
+                                <input [formControlName]="'nomnouveautheme'" id="nomnouveautheme" type="text"/>
                                 <div class="epsilon">
 
-                                    <button class="btn btn-sm btn-bluejoel" (click)="ajouterTheme()">Ajouter le thème
+                                    <button (click)="ajouterTheme()" class="btn btn-sm btn-bluejoel">Ajouter le thème
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container card" *ngFor="let questionForm of creationQuizSecondStepForm; let i=index">
+                <div *ngFor="let questionForm of creationQuizSecondStepForm; let i=index" class="container card">
                     <div class="d-flex justify-content-between flex-wrap p-4">
 
                         <div class="">
                             <div class="d-flex justify-content-between ">
                                 Question
-                                <input type="text" (change)="changeField(i, 'label', $event.target['value'])"/>
+                                <input (change)="changeField(i, 'label', $event.target['value'])" type="text"/>
                             </div>
                             <div class="">
                                 Difficulté
@@ -87,8 +87,8 @@
                                 </label>
                             </div>
                             <div>
-                                <input type="file" id="image"
-                                       (change)="changeField(i, 'image', $event.target['value'])"/>
+                                <input (change)="changeField(i, 'image', $event.target['value'])" id="image"
+                                       type="file"/>
 
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="epsilon d-flex justify-content-end">
 
-                    <button class="btn btn-bluejoel" (click)="addQuestion()">Ajouter une question</button>
+                    <button (click)="addQuestion()" class="btn btn-bluejoel">Ajouter une question</button>
                 </div>
 
             </form>

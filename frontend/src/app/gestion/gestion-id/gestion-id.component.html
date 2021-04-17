@@ -1,5 +1,5 @@
-<div id="gestionid" *ngIf="userToModify !== null" class="h-100 w-100 ">
-    <div id="gestionidcard" class="card container d-flex my-5 d-flex justify-self-center">
+<div *ngIf="userToModify !== null" class="h-100 w-100 " id="gestionid">
+    <div class="card container d-flex my-5 d-flex justify-self-center" id="gestionidcard">
 
         <nav class="navbar justify-content-between">
             <div>
@@ -18,20 +18,20 @@
             <div class="">
                 <div class="row-mx-2 d-flex flex-column justify-content-center epsilon">
                     <button class="btn btn-sm btn-light col" disabled>Général</button>
-                    <button class="btn btn-sm btn-light col" (click)="goToScores()">Score</button>
-                    <button class="btn btn-sm btn-light col" (click)="goToSuivi()">Suivi</button>
+                    <button (click)="goToScores()" class="btn btn-sm btn-light col">Score</button>
+                    <button (click)="goToSuivi()" class="btn btn-sm btn-light col">Suivi</button>
                 </div>
             </div>
 
-            <div id="parametres"
-                 class="container d-flex justify-content-center flex-column  col-10 w-100 h-100 p-2 m-2">
+            <div class="container d-flex justify-content-center flex-column  col-10 w-100 h-100 p-2 m-2"
+                 id="parametres">
                 <div class="container p-5">
                     <form [formGroup]="changeUserForm" class="">
                         <div class="d-flex justify-content-between">
                             <label for="roleUser">
                                 Statut d'utilisateur
                             </label>
-                            <select [formControlName]="'roleUser'" id="roleUser" (change)="changeUser()">
+                            <select (change)="changeUser()" [formControlName]="'roleUser'" id="roleUser">
                                 <option *ngFor="let c of userRoleStr; let i=index" [ngValue]="i">{{c}}</option>
                             </select>
                         </div>
@@ -40,7 +40,7 @@
                                 <label for="maxQuestions">
                                     Nombre maximum de questions
                                 </label>
-                                <select [formControlName]="'maxQuestions'" id="maxQuestions" (change)="changeUser()">
+                                <select (change)="changeUser()" [formControlName]="'maxQuestions'" id="maxQuestions">
                                     <option *ngFor="let c of listMaxQuestions; let i=index" [ngValue]="i">{{c}}</option>
                                 </select>
                             </div>
@@ -48,23 +48,23 @@
                                 <label for="maxDifficulty">
                                     Difficulté maximale
                                 </label>
-                                <select [formControlName]="'maxDifficulty'" id="maxDifficulty" (change)="changeUser()">
+                                <select (change)="changeUser()" [formControlName]="'maxDifficulty'" id="maxDifficulty">
                                     <option *ngFor="let c of listMaxDifficulty;let i=index" [ngValue]="i">{{c}}</option>
                                 </select>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <input [formControlName]="'forceRecap'" class="form-check-input" id="forceRecap"
-                                       type="checkbox"
-                                       (change)="changeUser()">
+                                <input (change)="changeUser()" [formControlName]="'forceRecap'" class="form-check-input"
+                                       id="forceRecap"
+                                       type="checkbox">
                                 <label class="form-check-label" for="forceRecap">
                                     Imposer un recap après le quiz ?
                                 </label>
                             </div>
                         </div>
                         <div>
-                            <input [formControlName]="'highContrast'" class="form-check-input" id="highContrast"
-                                   type="checkbox"
-                                   (change)="changeUser()">
+                            <input (change)="changeUser()" [formControlName]="'highContrast'" class="form-check-input"
+                                   id="highContrast"
+                                   type="checkbox">
                             <label class="form-check-label" for="highContrast">
                                 Contraste élevé ?
                             </label>
