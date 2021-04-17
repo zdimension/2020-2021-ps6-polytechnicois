@@ -5,6 +5,7 @@ import { UserService } from "../../services/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Quiz } from "../../models/quiz.model";
 import { Question } from "../../models/question.model";
+import { User } from "../../models/user.model";
 
 @Component({
     selector: "app-recap",
@@ -21,6 +22,8 @@ export class RecapComponent implements OnInit
     public quiz: Quiz=null;
     private id: number=1;
     private history={};
+    private questionCount: number=0;
+    private user: User = null;
 
     constructor(public quizService: QuizService, public userService: UserService, private router: Router, private route: ActivatedRoute)
     {
@@ -28,7 +31,17 @@ export class RecapComponent implements OnInit
 
     ngOnInit(): void
     {
-        this.getQuiz();
+        this.userService.currentUser.subscribe(user => {
+            if(user === null) {
+                return;
+            }
+            this.user=user;
+            if(this.user.ignoredQuestions===null) {
+                this.user.ignoredQuestions=[];
+            }
+            this.getQuiz();
+        });
+        //this.getQuiz();
         this.numQuestion=0;
         this.history={};
     }
@@ -43,6 +56,12 @@ export class RecapComponent implements OnInit
             .subscribe(quiz =>
             {
                 this.quiz=quiz;
+                this.questionCount=this.quiz.questions.length;
+                while(this.numQuestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numQuestion].id))
+                {
+                    this.history[this.numQuestion]=false;
+                    this.numQuestion++;
+                }
                 this.showQuestion();
             });
     }
@@ -71,6 +90,11 @@ export class RecapComponent implements OnInit
      */
     nextQestion(compris: boolean): void {
         this.numQuestion++;
+        while(this.numQuestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numQuestion].id))
+        {
+            this.history[this.numQuestion]=true;
+            this.numQuestion++;
+        }
         this.history[(this.numQuestion-1).toString()]=compris;
         if(this.numQuestion >= this.quiz.questions.length) {
             console.log("here")
