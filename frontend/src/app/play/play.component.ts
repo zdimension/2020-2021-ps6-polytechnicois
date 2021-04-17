@@ -195,7 +195,7 @@ export class PlayComponent implements OnInit
         for (let i = 0; i < this.questionCount; i++)
         {
             if(i == this.correctAnswer) {
-                this.displayedInTrainMode.push(false);
+                this.displayedInTrainMode.push(true);
             } else {
                 this.displayedInTrainMode.push(randomBoolean.pop());
             }
