@@ -145,20 +145,20 @@ export class GestionIdScoresComponent implements OnInit
             hours.push([0, 0]);
         }
         if(dates[0] !== null) {
-            this.attemptsDisplayed=this.attempts.filter(a => a.createdAt >= dates[0]);
+            this.attemptsDisplayed=this.attemptsDisplayed.filter(a => a.createdAt >= dates[0]);
         }
         if(dates[1] !== null) {
-            this.attemptsDisplayed=this.attempts.filter(a => a.createdAt <= dates[1]);
+            this.attemptsDisplayed=this.attemptsDisplayed.filter(a => a.createdAt <= dates[1]);
         }
         if(hours[0][0] !== 0 && hours[0][1] !== 0) {
             console.log("here");
-            this.attemptsDisplayed=this.attempts.filter(a => {
+            this.attemptsDisplayed=this.attemptsDisplayed.filter(a => {
                 let creationDate: Date=new Date(a.createdAt);
                 return creationDate.getMinutes() + (creationDate.getHours()*60) >= hours[0][1] + (hours[0][0]*60);
             });
         }
         if(hours[1][0] !== 0 && hours[1][1] !== 0) {
-            this.attemptsDisplayed=this.attempts.filter(a => {
+            this.attemptsDisplayed=this.attemptsDisplayed.filter(a => {
                 let creationDate: Date=new Date(a.createdAt);
                 return creationDate.getMinutes() + (creationDate.getHours()*60) <= hours[1][1] + (hours[1][0]*60)
             });
