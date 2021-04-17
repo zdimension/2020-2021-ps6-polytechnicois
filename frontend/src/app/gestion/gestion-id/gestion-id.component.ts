@@ -77,4 +77,8 @@ export class GestionIdComponent implements OnInit
     goToScores(): void {
         this.router.navigate(['gestion/scores/'+this.userId]);
     }
+
+    goToSuivi(): void{
+        this.router.navigate(['gestion/suivi/'+this.userId]);
+    }
 }

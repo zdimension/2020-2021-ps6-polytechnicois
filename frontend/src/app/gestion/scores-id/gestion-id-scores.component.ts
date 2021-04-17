@@ -125,6 +125,10 @@ export class GestionIdScoresComponent implements OnInit
         this.router.navigate(['gestion/'+this.userId]);
     }
 
+    goToSuivi(): void{
+        this.router.navigate(['gestion/suivi/'+this.userId]);
+    }
+
     changeScoresDisplayedDateHours(): void {
         this.attemptsDisplayed=this.attempts;
         this.recapsDisplayed=this.recaps;

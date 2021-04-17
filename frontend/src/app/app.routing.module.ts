@@ -17,6 +17,7 @@ import { PlayComponent } from "./play/play.component";
 import { AuthGuard } from "../guards/auth.guard";
 import { RecapComponent } from "./recap/recap.component";
 import { GestionIdScoresComponent } from "./gestion/scores-id/gestion-id-scores.component";
+import { GestionIdSuiviComponent } from "./gestion/suivi-id/gestion-id-suivi.component";
 
 const routes: Routes = [
     { path: "quiz-list", component: QuizListComponent },
@@ -31,7 +32,8 @@ const routes: Routes = [
     { path: "choisirquiz", component: ChoisirQuizComponent },
     { path: "play/:id", component: PlayComponent },
     { path: "recap/:id", component: RecapComponent },
-    { path: "gestion/scores/:id", component: GestionIdScoresComponent}
+    { path: "gestion/scores/:id", component: GestionIdScoresComponent},
+    { path: "gestion/suivi/:id", component: GestionIdSuiviComponent}
 ];
 
 routes.forEach(route => route.canActivate = [AuthGuard]);

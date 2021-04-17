@@ -1,0 +1,42 @@
+<div id="gestionid" class="h-100 w-100 ">
+    <div id="gestionidcard" class="card container d-flex my-5 d-flex justify-self-center">
+        <nav class="navbar justify-content-between">
+            <div>
+                <a class="navbar-brand" routerLink="../../">Gestion Comptes</a>
+                <span class="navbar-brand">Suivi</span>
+            </div>
+            <div class="d-flex row justify-content-end">
+                <i class="bi bi-person col"></i>
+                <a class="col" *ngIf="user !== null" routerLink="../../{{user.id}}">{{user.name}}</a>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="">
+                <div class="row-mx-2 d-flex flex-column justify-content-center epsilon">
+                    <button class="btn btn-sm btn-light col" (click)="goToGeneral()">Général</button>
+                    <button class="btn btn-sm btn-light col" (click)="goToScores()">Score</button>
+                    <button class="btn btn-sm btn-light col" disabled>Suivi</button>
+                </div>
+
+            </div>
+            <div class="container p-5">
+                <table >
+                    <thead>
+                    <tr>
+                        <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr  *ngFor="let el of elements">
+                        <th scope="row">{{el.question}}</th>
+                        <td>{{el.question}}</td>
+                        <td>{{el.last}}</td>
+                        <td>{{el.handle}}</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

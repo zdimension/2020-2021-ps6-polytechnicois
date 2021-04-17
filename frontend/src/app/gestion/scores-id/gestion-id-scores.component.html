@@ -15,7 +15,7 @@
                 <div class="row-mx-2 d-flex flex-column justify-content-center epsilon">
                     <button class="btn btn-sm btn-light col" (click)="goToGeneral()">Général</button>
                     <button class="btn btn-sm btn-light col" disabled>Score</button>
-                    <button class="btn btn-sm btn-light col">Suivi</button>
+                    <button class="btn btn-sm btn-light col" (click)="goToSuivi()">Suivi</button>
                 </div>
                 <div class="form-filter-scores" *ngIf="quiz !== null">
                     <form [formGroup]="changeFilterScores" (change)="changeScoresDisplayedDateHours()">
