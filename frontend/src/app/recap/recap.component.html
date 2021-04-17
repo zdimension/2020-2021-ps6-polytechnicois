@@ -40,16 +40,17 @@
         </div>
 
     </div>
-    <div id="quiztermineplayingcard" class="card col-12 align-content-center flex-column px-0 mt-5 "
+    <div id="quiztermineplayingcard" class="d-flex justify-content-center flex-column col px-0 mt-5 h-100"
          *ngIf="quiz === null">
-        <div id="playingtermineheader" class="justify-content-between flex-row d-flex">
+        <div id="playingtermineheader" class="justify-content-center d-flex ml-3">
             Quiz terminé ! Félicitations !
         </div>
-        <div id="buttonsquiztermine" class="epsilon justify-content-between flex-row d-flex row">
-
-            <button class="btn" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" (click)="goToTrain()">S'entraîner</button>
-            <button class="btn" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" routerLink="/choisirquiz">Faire un autre quiz</button>
-            <button class="btn" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" routerLink="/">Retour à l'accueil</button>
+        <div id="buttonsquiztermine" class="d-flex justify-content-center mt-5">
+            <div class="epsilon w-50">
+                <button class="btn btn-md col" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" (click)="goToTrain()">S'entraîner</button>
+                <button class="btn btn-md col " [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" routerLink="/choisirquiz">Faire un autre quiz</button>
+                <button class="btn btn-md col " [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" routerLink="/">Retour à l'accueil</button>
+            </div>
         </div>
     </div>
 </div>
