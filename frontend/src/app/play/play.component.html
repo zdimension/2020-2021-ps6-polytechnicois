@@ -25,7 +25,7 @@
             <div class="d-flex ml-3 justify-content-center w-50">
                 <div id="playinganswer" class="d-flex flex-row flex-wrap epsilon justify-content-center">
                     <button class="btn" [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'"  *ngFor="let answer of answersDisplayed; let i=index;"
-                            [disabled]="(!firstStage || (trainMode && displayedInTrainMode[i])) && i != correctAnswer"
+                            [disabled]="(!firstStage || (trainMode && !displayedInTrainMode[i])) && i != correctAnswer"
                             (click)="reponseCliquee(i)">
                         {{answer}}
                     </button>
