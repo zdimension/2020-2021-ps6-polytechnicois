@@ -32,6 +32,7 @@ import { AuthInterceptor } from "../interceptors/auth.interceptor";
 import { ErrorInterceptor } from "../interceptors/error.interceptor";
 import { RecapComponent } from "./recap/recap.component";
 import { GestionIdScoresComponent } from "./gestion/scores-id/gestion-id-scores.component";
+import { GestionIdSuiviComponent } from "./gestion/suivi-id/gestion-id-suivi.component";
 
 @NgModule({
     declarations: [
@@ -57,7 +58,8 @@ import { GestionIdScoresComponent } from "./gestion/scores-id/gestion-id-scores.
         ChoisirQuizComponent,
         PlayComponent,
         RecapComponent,
-        GestionIdScoresComponent
+        GestionIdScoresComponent,
+        GestionIdSuiviComponent
     ],
     imports: [
         BrowserModule,

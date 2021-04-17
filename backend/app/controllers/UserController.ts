@@ -16,6 +16,7 @@ import User, { UserRole } from "../models/User";
 import AuthService from "../services/AuthService";
 import BcryptService from "../services/BcryptService";
 import { TDifficulty } from "../utils/types";
+import QuizHistory from "../models/QuizHistory";
 
 @JsonController("/auth")
 export default class UserController
@@ -134,6 +135,16 @@ export default class UserController
         @Body() user: UserUpdateQuery)
     {
         return await (await User.findByPk(id)).update(user);
+    }
+
+    @Get("/users/:id/attempts")
+    async getAttempts(@Param("id") id: number)
+    {
+        return await QuizHistory.findAll({
+            where: {
+                userId: id
+            }
+        });
     }
 }
 
