@@ -14,15 +14,15 @@ export class AccueilComponent implements OnInit
 
     constructor(public userService: UserService, private router: Router)
     {
-        this.userService.currentUser.subscribe((user) => {
-            this.user = user;
-            if(this.user.role.valueOf() === 1) {
-                router.navigate(['choisirquiz']);
-            }
-        });
     }
 
     ngOnInit(): void
     {
+        this.userService.currentUser.subscribe((user) => {
+            this.user = user;
+            if(this.user.role.valueOf() === 1 && this.router.url==="/") {
+                this.router.navigate(['choisirquiz']);
+            }
+        });
     }
 }
