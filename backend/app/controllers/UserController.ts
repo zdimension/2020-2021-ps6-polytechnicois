@@ -147,7 +147,11 @@ export default class UserController
             include: {
                 model: Question,
                 attributes: ["id", "label", "correctAnswer"]
-            }
+            },
+            order: [
+                [ "questions", "id", "ASC"]
+            ]
+
         });
         let quizzesById = [];
         for (const q of quizzes)
