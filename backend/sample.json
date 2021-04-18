@@ -17,14 +17,14 @@
       },
       {
         "label": "Qui est-ce ?",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/P%C3%A9tain_-_Portrait_photographique_1941.jpg/220px-P%C3%A9tain_-_Portrait_photographique_1941.jpg",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fran%C3%A7ois_Ier_Louvre.jpg",
         "difficulty": 3,
         "correctAnswer": 0,
         "answers": [
-          "Philippe Pétain",
-          "George Brassens",
-          "Charles de Gaulle",
-          "Adolf Hitler"
+          "François 1er",
+          "Léonard de Vinci",
+          "Napoléon 3",
+          "Louis IX"
         ]
       }
     ]
