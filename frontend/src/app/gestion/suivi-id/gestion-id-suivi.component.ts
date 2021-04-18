@@ -6,19 +6,9 @@ import { Quiz } from "../../../models/quiz.model";
 import { User } from "../../../models/user.model";
 import { AttemptResult } from "../../../models/attemptresult.model";
 import { RecapResult } from "../../../models/recapresult.model";
+import { QuizHistory } from "../../../models/quizhistory.model";
 import { FormBuilder, FormGroup } from "@angular/forms";
 
-export interface attemptTable
-{
-    quiz: number;
-    question: number;
-    name: string;
-    echecRep: number;
-    echecRecap: number;
-    nbRep: number;
-    nbRecap: number;
-    enabled: boolean;
-}
 
 @Component({
     selector: "app-gestion-id-suivi",
@@ -40,61 +30,14 @@ export class GestionIdSuiviComponent implements OnInit
     public resultsDisplayed: boolean[] = [];
     public changeFilterScores: FormGroup;
     public allAttempts: { [quizId: number]: AttemptResult[] } = {};
-    public elements: attemptTable[] = [];
-    public headElements = ["Question", "Échecs/tentatives", "Échecs/tentatives récap", "Retirer"];
+    public headElements = ["Question", "Échecs/ tentatives", "Échecs/tentatives récap", "Retirer"];
     private userId: number = 1;
     private recaps: RecapResult[] = [];
     private attempts: AttemptResult[] = [];
+    public quizHistory: QuizHistory[] = [];
 
     constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private userService: UserService, private formBuilder: FormBuilder)
     {
-        this.changeFilterScores = this.formBuilder.group({});
-        let temp: AttemptResult[] = [];
-        this.quizList.forEach((qui) =>
-        {
-            this.quizService.getAttempts(qui.id, this.userId).subscribe((a) =>
-            {
-                this.allAttempts[qui.id] = a;
-                temp = temp.concat(a);
-            });
-        });
-        //regrouper les question par questionId
-        let allQuiz = new Set();
-        temp.forEach((at) =>
-        {
-            allQuiz.add(at.id);
-            //allQuiz.add(Object.entries(at.answers));
-            //let queName: string;
-            //question.correctAnswer.valueOf() == (a.answers[i]).valueOf())
-            //this.elements.push({question:at.id, name:"a",  });
-        });
-        for (let key in this.allAttempts)
-        {
-            let quizzes = this.quizList;
-            let quizz: Quiz;
-            //on recupere quelle est la bonne reponse
-            //on boucle dans les attemps et on les ajoute a elements
-            this.quizService.getQuizById(+key).subscribe(q =>
-            {
-                quizz = q;
-                this.quizService.getAttempts(key, this.userId).subscribe(a =>
-                {
-                    this.attempts = a;
-                    this.attemptsDisplayed = a;
-                });
-                this.quizService.getRecaps(key, this.userId).subscribe(r =>
-                {
-                    this.recaps = r;
-                    this.recapsDisplayed = r;
-                });
-                this.quiz.questions.forEach(q =>
-                {
-                    this.resultsDisplayed.push(false);
-                });
-            });
-        }
-
-
     }
 
     /**
@@ -118,55 +61,12 @@ export class GestionIdSuiviComponent implements OnInit
                 this.user.ignoredQuestions = [];
             }
         });
-    }
-
-    /**
-     * On First stage, you can click on a quiz.
-     * @param idQuiz
-     */
-    setQuiz(idQuiz: number): void
-    {
-        this.resultsDisplayed = [];
-        this.quizService.getQuizById(idQuiz).subscribe(q =>
+        this.userService.getAllAttempts(this.userId).subscribe(a =>
         {
-            this.quiz = q;
-            this.quizService.getAttempts(idQuiz, this.userId).subscribe(a =>
-            {
-                this.attempts = a;
-                this.attemptsDisplayed = a;
-            });
-            this.quizService.getRecaps(idQuiz, this.userId).subscribe(r =>
-            {
-                this.recaps = r;
-                this.recapsDisplayed = r;
-            });
-            this.quiz.questions.forEach(q =>
-            {
-                this.resultsDisplayed.push(false);
-            });
+            this.quizHistory =a;
         });
     }
 
-    /**
-     * Set quiz to null
-     * Will come back to first stage
-     */
-    resetQuiz(): void
-    {
-        this.quiz = null;
-        this.attempts = [];
-        this.attemptsDisplayed = [];
-        this.recaps = [];
-        this.recapsDisplayed = [];
-    }
-
-    /**
-     * Go to GestionComponent
-     */
-    returnToParams(): void
-    {
-        this.router.navigate(["gestion/" + this.userId]);
-    }
 
     /**
      * Enable or disable a question for the user
