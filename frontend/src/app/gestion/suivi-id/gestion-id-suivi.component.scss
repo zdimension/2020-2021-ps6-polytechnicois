@@ -12,3 +12,23 @@
 #tableparent{
   //max-width: unset;
 }
+
+
+#theader {
+  //try this :
+  //https://css-tricks.com/restricting-a-pseudo-element-to-its-parents-border-box/
+  background: linear-gradient(to bottom, #fef086, #fde635);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  padding: 0.4em 1em;
+  width: 100%;
+}
+
+#trquestion{
+  background-color: #FFFFFF;
+  padding: 4px;
+}
+
+tbody{
+  background-color: #DDDDDD;
+}

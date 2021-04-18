@@ -20,20 +20,22 @@
 
             </div>
             <div id="tableparent" class="d-flex justify-content-center flex-column  col-10 w-100 h-100 p-2 m-2">
-                <table class="table-responsive-lg w-100">
-                    <thead>
+                <table class="table-responsive-lg text-center w-100">
+                    <thead id="theader">
                     <tr>
                         <th *ngFor="let head of headElements" scope="col">{{head}}</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let el of quizHistory">
-                        <td>{{el.name}}</td>
-                        <td>{{el.stats.correct}}/{{el.stats.total}}</td>
-                        <td>{{el.recap.correct}}/{{el.recap.total}}</td>
-                        <td>
+                    <tr id="trquestion" class="" *ngFor="let el of quizHistory">
+
+                        <td class="text-left">{{el.name}}</td>
+                        <td class="">{{el.stats.correct}}/{{el.stats.total}}</td>
+                        <td class="">{{el.recap.correct}}/{{el.recap.total}}</td>
+                        <td class="">
                             <div class="epsilon">
-                                <button (click)="enableDisableQuestion(el.id, user.ignoredQuestions.includes(el.id))" class="
+                                <button (click)="enableDisableQuestion(el.id, user.ignoredQuestions.includes(el.id))"
+                                        class="
                                         btn btn-xs btn-red">
                                     {{user.ignoredQuestions.includes(el.id) ? "Ajouter" : "Retirer"}}
                                 </button>

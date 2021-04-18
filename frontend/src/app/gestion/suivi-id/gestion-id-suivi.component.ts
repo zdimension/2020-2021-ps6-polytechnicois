@@ -30,7 +30,7 @@ export class GestionIdSuiviComponent implements OnInit
     public resultsDisplayed: boolean[] = [];
     public changeFilterScores: FormGroup;
     public allAttempts: { [quizId: number]: AttemptResult[] } = {};
-    public headElements = ["Question", "Échecs/ tentatives", "Échecs/tentatives récap", "Retirer"];
+    public headElements = ["Question", "Échecs/ tentatives", "Échecs/tentatives récap", ""];
     private userId: number = 1;
     private recaps: RecapResult[] = [];
     private attempts: AttemptResult[] = [];
@@ -63,7 +63,8 @@ export class GestionIdSuiviComponent implements OnInit
         });
         this.userService.getAllAttempts(this.userId).subscribe(a =>
         {
-            this.quizHistory =a;
+            this.quizHistory = a;
+            this.quizHistory.sort((a, b) => (b.stats.correct / b.stats.total) - (a.stats.correct / a.stats.total));
         });
     }
 
