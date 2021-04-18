@@ -61,7 +61,6 @@ export class RecapComponent implements OnInit
                 this.questionCount = this.quiz.questions.length;
                 while (this.numQuestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numQuestion].id))
                 {
-                    this.history[this.numQuestion] = false;
                     this.numQuestion++;
                 }
                 this.showQuestion();
@@ -78,7 +77,6 @@ export class RecapComponent implements OnInit
         this.numQuestion++;
         while (this.numQuestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numQuestion].id))
         {
-            this.history[this.numQuestion] = true;
             this.numQuestion++;
         }
         this.history[(this.numQuestion - 1).toString()] = compris;
