@@ -166,6 +166,7 @@ export default class UserController
                     attempts[qo.id] = {
                         id: qo.id,
                         name: qo.label,
+                        image: qo.image,
                         stats: { correct: 0, total: 0 },
                         recap: { correct: 0, total: 0 }
                     };
