@@ -34,9 +34,9 @@
                         <td class="">{{el.recap.correct}}/{{el.recap.total}}</td>
                         <td class="">
                             <div class="epsilon">
-                                <button (click)="enableDisableQuestion(el.id, user.ignoredQuestions.includes(el.id))"
+                                <button [ngClass]="user.ignoredQuestions.includes(el.id) ? 'btn-green' : 'btn-red'" (click)="enableDisableQuestion(el.id, user.ignoredQuestions.includes(el.id))"
                                         class="
-                                        btn btn-xs btn-red">
+                                        btn btn-xs">
                                     {{user.ignoredQuestions.includes(el.id) ? "Ajouter" : "Retirer"}}
                                 </button>
                             </div>
