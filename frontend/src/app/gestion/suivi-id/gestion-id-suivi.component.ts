@@ -67,8 +67,7 @@ export class GestionIdSuiviComponent implements OnInit
             this.quizHistory.sort((a, b) => (b.stats.correct / b.stats.total) - (a.stats.correct / a.stats.total));
         });
     }
-
-
+    
     /**
      * Enable or disable a question for the user
      * @param questionId
@@ -94,66 +93,6 @@ export class GestionIdSuiviComponent implements OnInit
     goToGeneral(): void
     {
         this.router.navigate(["gestion/" + this.userId]);
-    }
-
-    changeScoresDisplayedDateHours(): void
-    {
-        this.attemptsDisplayed = this.attempts;
-        this.recapsDisplayed = this.recaps;
-        let dates: Date[] = [];
-        let hours: number[][] = [];
-        dates.push(this.changeFilterScores.get("scoresformdatedebut").value);
-        dates.push(this.changeFilterScores.get("scoresformdatefin").value);
-        if (this.changeFilterScores.get("scoresformheuredebut").value !== null)
-        {
-            let hm = this.changeFilterScores.get("scoresformheuredebut").value.split(":");
-            hours.push([Number(hm[0]), Number(hm[1])]);
-        }
-        else
-        {
-            hours.push([0, 0]);
-        }
-        if (this.changeFilterScores.get("scoresformheurefin").value !== null)
-        {
-            let hm = this.changeFilterScores.get("scoresformheurefin").value.split(":");
-            hours.push([Number(hm[0]), Number(hm[1])]);
-        }
-        else
-        {
-            hours.push([0, 0]);
-        }
-        if (dates[0] !== null)
-        {
-            this.attemptsDisplayed = this.attemptsDisplayed.filter(a => a.createdAt >= dates[0]);
-        }
-        if (dates[1] !== null)
-        {
-            this.attemptsDisplayed = this.attemptsDisplayed.filter(a => a.createdAt <= dates[1]);
-        }
-        if (hours[0][0] !== 0 && hours[0][1] !== 0)
-        {
-            console.log("here");
-            this.attemptsDisplayed = this.attemptsDisplayed.filter(a =>
-            {
-                let creationDate: Date = new Date(a.createdAt);
-                return creationDate.getMinutes() + (creationDate.getHours() * 60) >= hours[0][1] + (hours[0][0] * 60);
-            });
-        }
-        if (hours[1][0] !== 0 && hours[1][1] !== 0)
-        {
-            this.attemptsDisplayed = this.attemptsDisplayed.filter(a =>
-            {
-                let creationDate: Date = new Date(a.createdAt);
-                return creationDate.getMinutes() + (creationDate.getHours() * 60) <= hours[1][1] + (hours[1][0] * 60);
-            });
-        }
-
-    }
-
-    reset(form: FormGroup): void
-    {
-        form.reset();
-        this.changeScoresDisplayedDateHours();
     }
 
     goToScores(): void
