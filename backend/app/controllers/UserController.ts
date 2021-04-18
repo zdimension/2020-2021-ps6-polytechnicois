@@ -161,17 +161,17 @@ export default class UserController
             for (const [q, a] of Object.entries(x.answers))
             {
                 const qo = quiz.questions[+q];
-                if (!(q in attempts))
+                if (!(qo.id in attempts))
                 {
-                    attempts[q] = {
-                        id: q,
+                    attempts[qo.id] = {
+                        id: qo.id,
                         name: qo.label,
                         stats: { correct: 0, total: 0 },
                         recap: { correct: 0, total: 0 }
                     };
                 }
-                attempts[q].stats.total++;
-                attempts[q].stats.correct += (a == qo.correctAnswer);
+                attempts[qo.id].stats.total++;
+                attempts[qo.id].stats.correct += (a == qo.correctAnswer);
             }
         }
         for (let x of await QuizRecap.findAll({ where: { userId: id } }))
@@ -181,8 +181,8 @@ export default class UserController
             {
                 const qo = quiz.questions[+q];
 
-                attempts[q].recap.total++;
-                attempts[q].recap.correct += a;
+                attempts[qo.id].recap.total++;
+                attempts[qo.id].recap.correct += a;
             }
         }
         return Object.values(attempts);
