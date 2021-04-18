@@ -222,9 +222,9 @@ export class UserService
         });
     }
 
-    getQuizAttempts(quizId: number, userId: number): Observable<QuizHistory[]>
+    getAllAttempts(userId: number): Observable<QuizHistory[]>
     {
-        return this.http.get<QuizHistory[]>(`${this.dataURL}/users/` + quizId + "/attempts/" + userId);
+        return this.http.get<QuizHistory[]>(`${this.dataURL}/users/` + userId + "/attempts/");
     }
 
     logout()
