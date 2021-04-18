@@ -173,15 +173,21 @@ export class GestionIdScoresComponent implements OnInit
         if (dates[0] !== null)
         {
             this.attemptsDisplayed = this.attemptsDisplayed.filter(a => a.createdAt >= dates[0]);
+            this.recapsDisplayed = this.recapsDisplayed.filter(a => a.createdAt >= dates[0]);
         }
         if (dates[1] !== null)
         {
             this.attemptsDisplayed = this.attemptsDisplayed.filter(a => a.createdAt <= dates[1]);
+            this.recapsDisplayed = this.recapsDisplayed.filter(a => a.createdAt <= dates[1]);
         }
         if (hours[0][0] !== 0 && hours[0][1] !== 0)
         {
-            console.log("here");
             this.attemptsDisplayed = this.attemptsDisplayed.filter(a =>
+            {
+                let creationDate: Date = new Date(a.createdAt);
+                return creationDate.getMinutes() + (creationDate.getHours() * 60) >= hours[0][1] + (hours[0][0] * 60);
+            });
+            this.recapsDisplayed = this.recapsDisplayed.filter(a =>
             {
                 let creationDate: Date = new Date(a.createdAt);
                 return creationDate.getMinutes() + (creationDate.getHours() * 60) >= hours[0][1] + (hours[0][0] * 60);
@@ -190,6 +196,11 @@ export class GestionIdScoresComponent implements OnInit
         if (hours[1][0] !== 0 && hours[1][1] !== 0)
         {
             this.attemptsDisplayed = this.attemptsDisplayed.filter(a =>
+            {
+                let creationDate: Date = new Date(a.createdAt);
+                return creationDate.getMinutes() + (creationDate.getHours() * 60) <= hours[1][1] + (hours[1][0] * 60);
+            });
+            this.recapsDisplayed = this.recapsDisplayed.filter(a =>
             {
                 let creationDate: Date = new Date(a.createdAt);
                 return creationDate.getMinutes() + (creationDate.getHours() * 60) <= hours[1][1] + (hours[1][0] * 60);
