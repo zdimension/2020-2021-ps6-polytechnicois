@@ -38,3 +38,4 @@ Thumbs.db
 
 *.sqlite
 backend/swagger.json
+*.sqlite-journal
