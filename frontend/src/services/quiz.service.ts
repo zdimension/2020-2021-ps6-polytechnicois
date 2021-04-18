@@ -115,7 +115,7 @@ export class QuizService
 
     getAttempts(idQuiz: number, idUser: number): Observable<AttemptResult[]>
     {
-        return this.http.get<AttemptResult[]>(this.dataURL.toString() + "quizzes/" + idQuiz + "/attempts/" + idUser);
+        return this.http.get<AttemptResult[]>(this.dataURL.toString() + "quizzes/" + idQuiz + "/attempts/");
     }
 
     getRecaps(idQuiz: number, idUser: number): Observable<RecapResult[]>

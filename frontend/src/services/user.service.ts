@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs/Rx";
 import { DEFAULT_FONT_SIZE, fonts, MAX_FONT_SIZE } from "../fonts";
+import { QuizHistory } from "../models/quizhistory.model";
 
 @Injectable({
     providedIn: "root"
@@ -219,6 +220,11 @@ export class UserService
             }
             this.http.patch(`${this.dataURL}/users/${userId}`, { ignoredQuestions: user.ignoredQuestions }).subscribe();
         });
+    }
+
+    getAllAttempts(userId: number): Observable<QuizHistory[]>
+    {
+        return this.http.get<QuizHistory[]>(`${this.dataURL}/users/` + userId + "/attempts/");
     }
 
     logout()

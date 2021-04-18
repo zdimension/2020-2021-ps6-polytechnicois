@@ -7,7 +7,7 @@
             </div>
             <div class="d-flex row justify-content-end">
                 <i class="bi bi-person col"></i>
-                <a *ngIf="user !== null" class="col" routerLink="../../{{user.id}}">{{user.name}}</a>
+                <a class="navbar-brand col" *ngIf="user !== null" routerLink="../../{{user.id}}">{{user.name}}</a>
             </div>
         </nav>
         <div class="row">
@@ -19,19 +19,26 @@
                 </div>
 
             </div>
-            <div class="container p-5">
-                <table>
+            <div id="tableparent" class="d-flex justify-content-center flex-column  col-10 w-100 h-100 p-2 m-2">
+                <table class="table-responsive-lg w-100">
                     <thead>
                     <tr>
                         <th *ngFor="let head of headElements" scope="col">{{head}}</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let el of elements">
-                        <th scope="row">{{el.question}}</th>
-                        <td>{{el.question}}</td>
-                        <td>{{el.last}}</td>
-                        <td>{{el.handle}}</td>
+                    <tr *ngFor="let el of quizHistory">
+                        <td>{{el.name}}</td>
+                        <td>{{el.stats.correct}}/{{el.stats.total}}</td>
+                        <td>{{el.recap.correct}}/{{el.recap.total}}</td>
+                        <td>
+                            <div class="epsilon">
+                                <button (click)="enableDisableQuestion(el.id, user.ignoredQuestions.includes(el.id))" class="
+                                        btn btn-xs btn-red">
+                                    {{user.ignoredQuestions.includes(el.id) ? "Ajouter" : "Retirer"}}
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
 
