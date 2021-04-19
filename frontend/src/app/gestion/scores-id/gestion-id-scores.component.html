@@ -11,7 +11,7 @@
             </div>
         </nav>
         <div class="row">
-            <div class="">
+            <div class="col">
                 <div class="row-mx-2 d-flex flex-column justify-content-center epsilon">
                     <button (click)="goToGeneral()" class="btn btn-sm btn-light col">Général</button>
                     <button class="btn btn-sm btn-light col" disabled>Score</button>
@@ -47,8 +47,8 @@
                     </form>
                 </div>
             </div>
-            <div class="container d-flex justify-content-center flex-column  col-10 w-100 h-100 p-2 m-2">
-                <div class="container p-5">
+            <div class="d-flex justify-content-center flex-wrap col-9 w-100 h-100 p-2 m-2">
+                <div class="p-5 w-100">
 
 
                     <div *ngIf="quiz===null" class="epsilon">
@@ -58,7 +58,7 @@
                         </button>
                     </div>
 
-                    <div *ngIf="quiz!==null"> <!--- Si un quiz est selectionne --->
+                    <div class="" *ngIf="quiz!==null"> <!--- Si un quiz est selectionne --->
                         <div class="epsilon">
 
                             <button (click)="resetQuiz()" class="btn btn-sm btn-yellow">Cacher</button>
@@ -76,8 +76,8 @@
                                 <!--- Activer ou desactiver le quiz --->
                             </div>
 
-                            <div *ngIf="question.image !== null"> <!--- Si l'image existe, l'afficher --->
-                                <img alt="François 1er" [src]="question.image" style="max-width: 100%"/>
+                            <div class="d-flex justify-content-center" *ngIf="question.image !== null"> <!--- Si l'image existe, l'afficher --->
+                                <img id="img-quest" alt="François 1er" [src]="question.image"/>
                             </div>
 
                             <p>Réponse attendue : {{question.answers[question.correctAnswer]}}</p>
