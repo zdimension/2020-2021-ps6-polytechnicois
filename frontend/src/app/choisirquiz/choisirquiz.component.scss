@@ -1,0 +1,21 @@
+$percent: calc(var(--rating) / 5 * 100%);
+$starsize: 300px;
+$starcolor: #9d9b9b;
+$starback: var(--starback);
+
+//https://css-tricks.com/five-methods-for-five-star-ratings/
+.Stars {
+
+  display: inline-block;
+  font-size: var($starsize);
+  font-family: Times; // make sure ★ appears correctly
+  line-height: 1;
+
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, $starback $percent, $starcolor $percent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

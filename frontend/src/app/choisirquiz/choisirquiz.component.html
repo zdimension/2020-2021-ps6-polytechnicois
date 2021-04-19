@@ -58,7 +58,8 @@
 
         <legend>{{quiz.name}}</legend>
         <div>{{quiz.questionCount}} questions</div>
-        <div>Difficulté {{quiz.difficulty}}</div>
+        <div class="Stars" style="--rating:{{quiz.difficulty}};" [style.--starback]="user.highContrast ? '#E0BB00' : '#fc0'">
+        </div>
         {{quiz.theme.name}}
         <div class="epsilon d-flex justify-content-center flex-column">
             <button [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" class="btn"
