@@ -108,12 +108,14 @@
 
                                 <hr/>
                                 <span class="align-self-center">Récap de {{user.name}}:</span>
-                                <div *ngFor="let r of recapsDisplayed"
-                                     [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'">
-                                    <!--- Pour chaque recap --->
-                                    Répondu {{r.answers[i] ? "VRAI" : "FAUX"}} au recap
-                                    <!--- Qu a t il repondu au recap, a quelle heure --->
-                                    le {{r.createdAt | date:' dd MMMM YYYY HH:mm:ss'}}
+                                <div *ngFor="let r of recapsDisplayed">
+                                    <div [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'" *ngIf="r.answers[i] !== undefined">
+                                        <!--- Pour chaque recap --->
+                                        Répondu {{r.answers[i] ? "VRAI" : "FAUX"}} au recap
+                                        <!--- Qu a t il repondu au recap, a quelle heure --->
+                                        le {{r.createdAt | date:' dd MMMM YYYY HH:mm:ss'}}
+                                        {{r.answers[i]}}
+                                    </div>
                                 </div>
                                 <div *ngIf="recapsDisplayed.length === 0" class="pasrepondu">
                                     <!--- N'a pas fait ce recap --->

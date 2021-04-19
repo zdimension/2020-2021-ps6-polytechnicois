@@ -79,7 +79,7 @@ export class RecapComponent implements OnInit
         {
             this.numQuestion++;
         }
-        this.history[(this.numQuestion - 1).toString()] = compris;
+        this.history[this.numQuestion.toString()] = compris;
         if (this.numQuestion >= this.quiz.questions.length)
         {
             console.log("here");
