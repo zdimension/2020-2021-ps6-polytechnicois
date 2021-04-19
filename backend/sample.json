@@ -134,7 +134,7 @@
         "difficulty": 3,
         "correctAnswer": 0,
         "answers": [
-          "Vous savez...",
+          "Mais vous savez...",
           "Oui",
           "Non",
           "Peut-être"
@@ -159,26 +159,25 @@
     "themeId": 1,
     "questions": [
       {
-        "label": "Qui était le roi Soleil ?",
+        "label": "Qui étaient les méchants ?",
         "difficulty": 3,
+        "correctAnswer": 1,
         "answers": [
-          "François 1er",
-          "Louis XIV",
-          "Benoît XVI",
-          "Ségolène Royale"
-        ],
-        "correctAnswer": 1
+          "Les Américains",
+          "Les Nazis",
+          "Les Chinois",
+          "La France"
+        ]
       },
       {
-        "label": "Qui est-ce ?",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fran%C3%A7ois_Ier_Louvre.jpg",
-        "difficulty": 3,
-        "correctAnswer": 0,
+        "label": "L'appel du 18 juin ...",
+        "difficulty": 1,
+        "correctAnswer": 2,
         "answers": [
-          "François 1er",
-          "Léonard de Vinci",
-          "Napoléon 3",
-          "Louis IX"
+          "De Napoléon",
+          "De Jean Rochefort",
+          "Du Général de Gaulle",
+          "De Banksy"
         ]
       }
     ]
@@ -189,56 +188,54 @@
     "themeId": 1,
     "questions": [
       {
-        "label": "Qui était le roi Soleil ?",
+        "label": "Qui a été élu en 2007 ?",
         "difficulty": 3,
+        "correctAnswer": 1,
         "answers": [
-          "François 1er",
-          "Louis XIV",
+          "François Hollande",
+          "Nicolas Sarcozy",
           "Benoît XVI",
           "Ségolène Royale"
-        ],
-        "correctAnswer": 1
+        ]
       },
       {
-        "label": "Qui est-ce ?",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fran%C3%A7ois_Ier_Louvre.jpg",
-        "difficulty": 3,
+        "label": "Qui a aboli le septennat présidentiel ?",
+        "difficulty": 4,
         "correctAnswer": 0,
         "answers": [
-          "François 1er",
-          "Léonard de Vinci",
-          "Napoléon 3",
-          "Louis IX"
+          "Jacques Chirac",
+          "François Mitterand",
+          "Raymond Poincaré",
+          "Albert Lebrun"
         ]
       }
     ]
   },
   {
-    "name": "Le Moyen-Âge",
+    "name": "La Révolution Française",
     "difficulty": 3,
     "themeId": 1,
     "questions": [
       {
-        "label": "Qui était le roi Soleil ?",
+        "label": "Quand a eu lieu la prise de la Bastille ?",
         "difficulty": 3,
+        "correctAnswer": 1,
         "answers": [
-          "François 1er",
-          "Louis XIV",
-          "Benoît XVI",
-          "Ségolène Royale"
-        ],
-        "correctAnswer": 1
+          "4 juillet 1987",
+          "14 juillet 1789",
+          "1 mai 1802",
+          "17 mars 1792"
+        ]
       },
       {
-        "label": "Qui est-ce ?",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fran%C3%A7ois_Ier_Louvre.jpg",
+        "label": "Qui a été guillotiné ?",
         "difficulty": 3,
-        "correctAnswer": 0,
+        "correctAnswer": 3,
         "answers": [
           "François 1er",
-          "Léonard de Vinci",
+          "Charlemagne",
           "Napoléon 3",
-          "Louis IX"
+          "Louis XVIII"
         ]
       }
     ]
@@ -249,26 +246,25 @@
     "themeId": 1,
     "questions": [
       {
-        "label": "Qui était le roi Soleil ?",
+        "label": "Comment s'appelait-elle avant que la 2e ait eu lieu ?",
+        "correctAnswer": 0,
         "difficulty": 3,
         "answers": [
-          "François 1er",
-          "Louis XIV",
-          "Benoît XVI",
-          "Ségolène Royale"
-        ],
-        "correctAnswer": 1
+          "La Grande Guerre",
+          "La Guerre de 100 ans",
+          "L'inquisition",
+          "La Guerre du Monde"
+        ]
       },
       {
-        "label": "Qui est-ce ?",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fran%C3%A7ois_Ier_Louvre.jpg",
+        "label": "Comment appelle-t-on les soldats français de cette guerre ?",
         "difficulty": 3,
-        "correctAnswer": 0,
+        "correctAnswer": 2,
         "answers": [
-          "François 1er",
-          "Léonard de Vinci",
-          "Napoléon 3",
-          "Louis IX"
+          "Les Casques bleus",
+          "Les Sales",
+          "Les Poilus",
+          "Les Cheveulus"
         ]
       }
     ]
