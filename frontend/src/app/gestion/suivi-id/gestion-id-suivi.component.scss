@@ -27,6 +27,7 @@
 #trquestion{
   background-color: #FFFFFF;
   padding: 4px;
+  border-bottom: 1px solid #a9a9a9;
 }
 
 tbody{
@@ -42,4 +43,8 @@ tbody{
   position:absolute;
   top: -100px;
   right:-40px;
+}
+
+.showimage{
+  cursor: pointer;
 }
