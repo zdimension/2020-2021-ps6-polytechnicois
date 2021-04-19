@@ -93,7 +93,7 @@
                                 <div *ngFor="let a of attemptsDisplayed">
                                     <!--- Pour chacune des tentatives sur ce quiz --->
                                     <!--- S'il a repondu (ie la question n'etait pas desactivee), reponse != -1 --->
-                                    <div *ngIf="a.answers[i].valueOf() !== -1"
+                                    <div *ngIf="a.answers[i] !== undefined && a.answers[i].valueOf() !== -1"
                                          [className]="(question.correctAnswer.valueOf() == (a.answers[i]).valueOf()) ? 'repondujuste' : 'repondufaux'">
                                         <!--- Met la bonne couleur en fonction de la reponse donnee --->
                                         Répondu "{{question.answers[a.answers[i]]}}"
