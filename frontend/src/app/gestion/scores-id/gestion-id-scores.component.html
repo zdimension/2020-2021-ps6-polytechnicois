@@ -77,7 +77,7 @@
                             </div>
 
                             <div *ngIf="question.image !== null"> <!--- Si l'image existe, l'afficher --->
-                                <img [src]="question.image"/>
+                                <img alt="François 1er" [src]="question.image" style="max-width: 100%"/>
                             </div>
 
                             <p>Réponse attendue : {{question.answers[question.correctAnswer]}}</p>
