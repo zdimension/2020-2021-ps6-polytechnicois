@@ -21,7 +21,8 @@ export default class DBService
 
         const themes = await QuizTheme.bulkCreate([
             { name: "Histoire" },
-            { name: "Musique" }
+            { name: "Musique" },
+            { name: "Pop culture" }
         ]);
 
         await Quiz.bulkCreate(JSON.parse(await fs.promises.readFile("sample.json", "utf-8")),

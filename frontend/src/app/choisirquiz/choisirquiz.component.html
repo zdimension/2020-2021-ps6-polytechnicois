@@ -52,9 +52,9 @@
     </div>
 </div>
 <hr/>
-<div class="choisirquiz container flex-row d-flex col">
+<div class="d-flex align-content-around flex-wrap m-2">
 
-    <div *ngFor="let quiz of quizListDisplayed" class="container card col">
+    <div *ngFor="let quiz of quizListDisplayed" class="mw-20 p-3 card col-xs-12 col-md-3 col-sm-6">
 
         <legend>{{quiz.name}}</legend>
         <div>{{quiz.questionCount}} questions</div>

@@ -79,5 +79,198 @@
         ]
       }
     ]
+  },
+  {
+    "name": "Astérix mission cléopâtre",
+    "difficulty": 5,
+    "themeId": 3,
+    "questions": [
+      {
+        "label": "En combien de temps doit être construit le palais  ?",
+        "difficulty": 2,
+        "correctAnswer": 0,
+        "answers": [
+          "3 mois",
+          "3 jours",
+          " 11 mois",
+          "6 ans"
+        ]
+      },
+      {
+        "label": "Comment s'appelle le personnage d'Édouard Baer",
+        "difficulty": 5,
+        "correctAnswer": 0,
+        "answers": [
+          "Otis",
+          "Osiris",
+          "Asterix",
+          "Par toutatis"
+        ]
+      },
+      {
+        "label": "Qui est Cléopâtre ?",
+        "difficulty": 1,
+        "correctAnswer": 0,
+        "answers": [
+          "La reine d'Égypte",
+          "La princesse de Prusse",
+          "La femme de César",
+          "Une paysanne"
+        ]
+      },
+      {
+        "label": "Comment s'appelle l'architecte choisi par Cléopâtre ?",
+        "difficulty": 4,
+        "correctAnswer": 3,
+        "answers": [
+          "Numerodeux",
+          "Amonbofis",
+          "Obiwankenobis",
+          "Numerobis"
+        ]
+      },
+      {
+        "label": "C'est une bonne situation scribe ?",
+        "difficulty": 3,
+        "correctAnswer": 0,
+        "answers": [
+          "Vous savez...",
+          "Oui",
+          "Non",
+          "Peut-être"
+        ]
+      },
+      {
+        "label": "Où sont enfermés les gaulois ?",
+        "difficulty": 3,
+        "correctAnswer": 2,
+        "answers": [
+          "En prison",
+          "À l'hôtel",
+          "Dans une pyramide",
+          "En Gaule"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "La 2nde Guerre Mondiale",
+    "difficulty": 3,
+    "themeId": 1,
+    "questions": [
+      {
+        "label": "Qui était le roi Soleil ?",
+        "difficulty": 3,
+        "answers": [
+          "François 1er",
+          "Louis XIV",
+          "Benoît XVI",
+          "Ségolène Royale"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "label": "Qui est-ce ?",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fran%C3%A7ois_Ier_Louvre.jpg",
+        "difficulty": 3,
+        "correctAnswer": 0,
+        "answers": [
+          "François 1er",
+          "Léonard de Vinci",
+          "Napoléon 3",
+          "Louis IX"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Les Présidents français",
+    "difficulty": 3,
+    "themeId": 1,
+    "questions": [
+      {
+        "label": "Qui était le roi Soleil ?",
+        "difficulty": 3,
+        "answers": [
+          "François 1er",
+          "Louis XIV",
+          "Benoît XVI",
+          "Ségolène Royale"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "label": "Qui est-ce ?",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fran%C3%A7ois_Ier_Louvre.jpg",
+        "difficulty": 3,
+        "correctAnswer": 0,
+        "answers": [
+          "François 1er",
+          "Léonard de Vinci",
+          "Napoléon 3",
+          "Louis IX"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Le Moyen-Âge",
+    "difficulty": 3,
+    "themeId": 1,
+    "questions": [
+      {
+        "label": "Qui était le roi Soleil ?",
+        "difficulty": 3,
+        "answers": [
+          "François 1er",
+          "Louis XIV",
+          "Benoît XVI",
+          "Ségolène Royale"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "label": "Qui est-ce ?",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fran%C3%A7ois_Ier_Louvre.jpg",
+        "difficulty": 3,
+        "correctAnswer": 0,
+        "answers": [
+          "François 1er",
+          "Léonard de Vinci",
+          "Napoléon 3",
+          "Louis IX"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "La 1ère Guerre Mondiale",
+    "difficulty": 3,
+    "themeId": 1,
+    "questions": [
+      {
+        "label": "Qui était le roi Soleil ?",
+        "difficulty": 3,
+        "answers": [
+          "François 1er",
+          "Louis XIV",
+          "Benoît XVI",
+          "Ségolène Royale"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "label": "Qui est-ce ?",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fran%C3%A7ois_Ier_Louvre.jpg",
+        "difficulty": 3,
+        "correctAnswer": 0,
+        "answers": [
+          "François 1er",
+          "Léonard de Vinci",
+          "Napoléon 3",
+          "Louis IX"
+        ]
+      }
+    ]
   }
 ]
