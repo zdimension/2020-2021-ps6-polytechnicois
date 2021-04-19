@@ -5,7 +5,9 @@ import User, { UserRole } from "../models/User";
 import Quiz from "../models/Quiz";
 import QuizTheme from "../models/QuizTheme";
 import Question from "../models/Question";
+import QuizHistory from "../models/QuizHistory";
 import * as fs from "fs";
+import QuizRecap from "../models/QuizRecap";
 
 export default class DBService
 {
@@ -15,7 +17,7 @@ export default class DBService
 
         await User.bulkCreate([
             { name: "isabelle", password: "123az", role: UserRole.Admin },
-            { name: "pierre", password: "123az", role: UserRole.NonAutonomous },
+            { name: "pierre", password: "123az", role: UserRole.NonAutonomous, forceRecap: true },
             { name: "germaine", password: "123az", role: UserRole.Regular },
         ]);
 
@@ -27,6 +29,20 @@ export default class DBService
 
         await Quiz.bulkCreate(JSON.parse(await fs.promises.readFile("sample.json", "utf-8")),
             { include: { model: Question, as: "questions" } });
+
+        await QuizHistory.bulkCreate([
+            {quizId: 1, userId:2, answers: {0:1, 1:0}, createdAt:"2020-12-17 15:03:23.275 +00:00"},
+            {quizId: 1, userId:2, answers: {0:1, 1:0}, createdAt:"2021-01-17 12:03:23.275 +00:00"},
+            {quizId: 1, userId:2, answers: {0:2, 1:3}, createdAt:"2021-03-17 9:28:23.275 +00:00"},
+            {quizId: 1, userId:2, answers: {0:2, 1:0}, createdAt:"2021-04-17 15:03:23.275 +00:00"}
+        ]);
+
+        await QuizRecap.bulkCreate([
+            {quizId: 1, userId:2, answers: {0:true, 1:true}, createdAt:"2020-12-17 15:03:23.275 +00:00"},
+            {quizId: 1, userId:2, answers: {0:true, 1:true}, createdAt:"2021-01-17 12:03:23.275 +00:00"},
+            {quizId: 1, userId:2, answers: {0:false, 1:true}, createdAt:"2021-03-17 9:28:23.275 +00:00"},
+            {quizId: 1, userId:2, answers: {0:false, 1:true}, createdAt:"2021-04-17 15:03:23.275 +00:00"}
+        ]);
     }
 
     async start()
