@@ -52,9 +52,9 @@
     </div>
 </div>
 <hr/>
-<div class="d-flex align-content-around flex-wrap m-2">
+<div class="d-flex align-content-around justify-content-center flex-wrap m-2 p-3">
 
-    <div *ngFor="let quiz of quizListDisplayed" class="mw-20 p-3 card col-xs-12 col-md-3 col-sm-6">
+    <div *ngFor="let quiz of quizListDisplayed" class="p-3 card col-xs-12 col-md-3 col-sm-6 m-3">
 
         <legend>{{quiz.name}}</legend>
         <div>{{quiz.questionCount}} questions</div>
