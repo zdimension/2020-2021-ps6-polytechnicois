@@ -1,6 +1,5 @@
 @import "../../styles/variables";
 
-
 /**
  Use :host to apply some style to your entire component #24c6dc, #514a9d
  #0f0c29, #302b63, #24243e linear-gradient(to right,#302b63, #0f0c29, #302b63);
@@ -14,6 +13,7 @@
   background: #FFFFFF;
   padding: 0.2em;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+
 
   button {
     padding-top: 0.7em;
@@ -81,5 +81,6 @@ label {
 }
 
 #changeHeaderContrastedMode {
+
   transform: scale(2);
 }
