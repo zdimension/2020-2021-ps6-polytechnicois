@@ -29,17 +29,21 @@
                     <tbody>
                     <tr id="trquestion" class="" *ngFor="let el of quizHistory">
 
-                        <td class="text-left" >
+                        <td class="text-left">
                             <span placement="top" ngbTooltip=" Quizz : {{el.quiz}}">
                             {{el.name}}
                             </span>
-                            <i class="bi bi-images" *ngIf="el.image != null"></i>
+
+                            <i class="bi bi-images showimage" *ngIf="el.image !== null">
+                            </i>
+                            <img class="hide" src="{{el.image}}" alt="" style="max-width: 20%">
                         </td>
-                        <td class="">{{el.stats.total-el.stats.correct}}/{{el.stats.total}}</td>
-                        <td class="">{{el.recap.total-el.recap.correct}}/{{el.recap.total}}</td>
+                        <td class="">{{el.stats.total - el.stats.correct}}/{{el.stats.total}}</td>
+                        <td class="">{{el.recap.total - el.recap.correct}}/{{el.recap.total}}</td>
                         <td class="">
                             <div class="epsilon">
-                                <button [ngClass]="user.ignoredQuestions.includes(el.id) ? 'btn-green' : 'btn-red'" (click)="enableDisableQuestion(el.id, user.ignoredQuestions.includes(el.id))"
+                                <button [ngClass]="user.ignoredQuestions.includes(el.id) ? 'btn-green' : 'btn-red'"
+                                        (click)="enableDisableQuestion(el.id, user.ignoredQuestions.includes(el.id))"
                                         class="
                                         btn btn-xs">
                                     {{user.ignoredQuestions.includes(el.id) ? "Ajouter" : "Retirer"}}

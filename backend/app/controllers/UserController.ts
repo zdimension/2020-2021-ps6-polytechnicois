@@ -146,7 +146,7 @@ export default class UserController
         const quizzes = await Quiz.findAll({
             include: {
                 model: Question,
-                attributes: ["id", "label", "correctAnswer"]
+                attributes: ["id", "label", "correctAnswer", "image"]
             },
             order: [
                 [ "questions", "id", "ASC"]

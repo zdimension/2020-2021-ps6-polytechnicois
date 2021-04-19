@@ -99,4 +99,6 @@ export class GestionIdSuiviComponent implements OnInit
     {
         this.router.navigate(["gestion/scores/" + this.userId]);
     }
+
+
 }

@@ -34,14 +34,18 @@ export default class DBService
             {quizId: 1, userId:2, answers: {0:1, 1:0}, createdAt:"2020-12-17 15:03:23.275 +00:00"},
             {quizId: 1, userId:2, answers: {0:1, 1:0}, createdAt:"2021-01-17 12:03:23.275 +00:00"},
             {quizId: 1, userId:2, answers: {0:2, 1:3}, createdAt:"2021-03-17 9:28:23.275 +00:00"},
-            {quizId: 1, userId:2, answers: {0:2, 1:0}, createdAt:"2021-04-17 15:03:23.275 +00:00"}
+            {quizId: 1, userId:2, answers: {0:2, 1:0}, createdAt:"2021-04-17 15:03:23.275 +00:00"},
+            {quizId: 2, userId:2, answers: {0:1, 1:2}, createdAt:"2021-02-17 16:03:23.275 +00:00"},
+            {quizId: 2, userId:2, answers: {0:0, 1:0}, createdAt:"2021-02-13 16:03:23.275 +00:00"}
         ]);
 
         await QuizRecap.bulkCreate([
             {quizId: 1, userId:2, answers: {0:true, 1:true}, createdAt:"2020-12-17 15:03:23.275 +00:00"},
             {quizId: 1, userId:2, answers: {0:true, 1:true}, createdAt:"2021-01-17 12:03:23.275 +00:00"},
             {quizId: 1, userId:2, answers: {0:false, 1:true}, createdAt:"2021-03-17 9:28:23.275 +00:00"},
-            {quizId: 1, userId:2, answers: {0:false, 1:true}, createdAt:"2021-04-17 15:03:23.275 +00:00"}
+            {quizId: 1, userId:2, answers: {0:false, 1:true}, createdAt:"2021-04-17 15:03:23.275 +00:00"},
+            {quizId: 2, userId:2, answers: {0:true, 1:true}, createdAt:"2021-02-17 16:03:23.275 +00:00"},
+            {quizId: 2, userId:2, answers: {0:false, 1:true}, createdAt:"2021-02-13 16:03:23.275 +00:00"}
         ]);
     }
 
