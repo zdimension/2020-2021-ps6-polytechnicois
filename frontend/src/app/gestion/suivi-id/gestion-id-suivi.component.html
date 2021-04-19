@@ -29,9 +29,12 @@
                     <tbody>
                     <tr id="trquestion" class="" *ngFor="let el of quizHistory">
 
-                        <td class="text-left">{{el.name}}</td>
-                        <td class="">{{el.stats.correct}}/{{el.stats.total}}</td>
-                        <td class="">{{el.recap.correct}}/{{el.recap.total}}</td>
+                        <td class="text-left">
+                            {{el.name}}
+                            <i class="bi bi-images" *ngIf="el.image != null"></i>
+                        </td>
+                        <td class="">{{el.stats.total-el.stats.correct}}/{{el.stats.total}}</td>
+                        <td class="">{{el.recap.total-el.recap.correct}}/{{el.recap.total}}</td>
                         <td class="">
                             <div class="epsilon">
                                 <button [ngClass]="user.ignoredQuestions.includes(el.id) ? 'btn-green' : 'btn-red'" (click)="enableDisableQuestion(el.id, user.ignoredQuestions.includes(el.id))"

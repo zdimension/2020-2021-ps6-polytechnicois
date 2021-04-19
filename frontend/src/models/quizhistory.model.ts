@@ -12,4 +12,5 @@ export interface QuizHistory extends BaseModel
         correct:number;
         total:number;
     }
+    image: string;
 }
