@@ -4,6 +4,7 @@ export interface QuizHistory extends BaseModel
 {
     id: number;
     name:string;
+    quiz:string;
     stats:{
         correct:number;
         total: number;

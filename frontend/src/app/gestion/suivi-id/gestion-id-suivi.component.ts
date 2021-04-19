@@ -64,10 +64,10 @@ export class GestionIdSuiviComponent implements OnInit
         this.userService.getAllAttempts(this.userId).subscribe(a =>
         {
             this.quizHistory = a;
-            this.quizHistory.sort((a, b) => (b.stats.correct / b.stats.total) - (a.stats.correct / a.stats.total));
+            this.quizHistory.sort((a, b) => ((b.stats.total-b.stats.correct) / b.stats.total) - ((a.stats.total-a.stats.correct) / a.stats.total));
         });
     }
-    
+
     /**
      * Enable or disable a question for the user
      * @param questionId

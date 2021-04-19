@@ -29,8 +29,10 @@
                     <tbody>
                     <tr id="trquestion" class="" *ngFor="let el of quizHistory">
 
-                        <td class="text-left">
+                        <td class="text-left" >
+                            <span placement="top" ngbTooltip=" Quizz : {{el.quiz}}">
                             {{el.name}}
+                            </span>
                             <i class="bi bi-images" *ngIf="el.image != null"></i>
                         </td>
                         <td class="">{{el.stats.total-el.stats.correct}}/{{el.stats.total}}</td>
