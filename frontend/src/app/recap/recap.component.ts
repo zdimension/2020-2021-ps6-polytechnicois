@@ -74,12 +74,12 @@ export class RecapComponent implements OnInit
      */
     nextQestion(compris: boolean): void
     {
+        this.history[this.numQuestion.toString()] = compris;
         this.numQuestion++;
         while (this.numQuestion < this.questionCount && this.user.ignoredQuestions.includes(this.quiz.questions[this.numQuestion].id))
         {
             this.numQuestion++;
         }
-        this.history[this.numQuestion.toString()] = compris;
         if (this.numQuestion >= this.quiz.questions.length)
         {
             console.log("here");
