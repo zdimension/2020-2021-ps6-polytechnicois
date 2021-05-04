@@ -7,14 +7,14 @@
                         routerLink="/choisirquiz">Faire quiz
                 </button>
                 <div *ngIf="user.role !== 1">
-                    <button *ngIf="user.role === 2"
+                    <!--<button *ngIf="user.role === 2"
                             [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" class="btn btn-md col my-3"
                             routerLink="/score">Scores
-                    </button>
-                    <button [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'"
+                    </button>-->
+                    <!--<button [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'"
                             class="btn btn-md col my-3"
                             routerLink="/creationquiz">Créer un quiz
-                    </button>
+                    </button>-->
                     <button *ngIf="user.role === 2"
                             [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" class="btn btn-md col my-3"
                             routerLink="/gestion">Gestion des comptes
