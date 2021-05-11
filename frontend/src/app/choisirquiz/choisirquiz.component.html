@@ -48,9 +48,9 @@
                     Trier au hasard ?
                 </label>
             </p>
-            <p>
-                <button (click)="doRandomQuiz()">Quiz au hasard</button>
-            </p>
+            <div class="epsilon">
+                <button [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" class="btn" (click)="doRandomQuiz()">Quiz au hasard</button>
+            </div>
         </form>
     </div>
 </div>
