@@ -43,7 +43,7 @@
                             <input [formControlName]="'scoresformheurefin'" id="scoresformheurefin" type="time">
                         </label>
                         <br/>
-                        <input (click)="reset(changeFilterScores)" type="reset" value="Tout afficher">
+                        <input (click)="reset(changeFilterScores)" type="reset" value="Annuler">
                     </form>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                         <div *ngFor="let question of quiz.questions; let i=index" class="card m-2 p-2">
                             <div class="epsilon">
                                 <button (click)="enableDisableQuestion(question.id, user.ignoredQuestions.includes(question.id))"
-                                        class="btn btn-sm btn-red">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button>
+                                        class="btn btn-sm" [ngClass]="user.ignoredQuestions.includes(question.id) ? 'btn-green' : 'btn-red'">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button>
                             </div>
                             <!--- Pour chaque question du quiz selectionne --->
                             <div class="labelQuestion">

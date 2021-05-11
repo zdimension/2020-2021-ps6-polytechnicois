@@ -41,13 +41,16 @@
                     </select>
                 </label>
             </p>
-            <p class="col">
+            <p class="col" style="display: none;">
                 <label for="trierauhasard">
                     <input (change)="changeDisplay()" [formControlName]="'trierauhasard'" class="input-custom" id="trierauhasard"
                            type="checkbox">
                     Trier au hasard ?
                 </label>
             </p>
+            <div class="epsilon">
+                <button [ngClass]="user.highContrast ? 'btn-bluecontrast' : 'btn-bluejoel'" class="btn" (click)="doRandomQuiz()">Quiz au hasard</button>
+            </div>
         </form>
     </div>
 </div>

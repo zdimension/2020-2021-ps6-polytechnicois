@@ -122,6 +122,13 @@ export class ChoisirQuizComponent implements OnInit
         }
     }
 
+    public doRandomQuiz(): void
+    {
+        this.shuffle(this.quizListDisplayed);
+        let quiz: Quiz = this.quizListDisplayed[0];
+        this.router.navigate(["play/"+quiz.id]);
+    }
+
     /**
      * Shuffle an array
      * @param array
