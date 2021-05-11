@@ -41,12 +41,15 @@
                     </select>
                 </label>
             </p>
-            <p class="col">
+            <p class="col" style="display: none;">
                 <label for="trierauhasard">
                     <input (change)="changeDisplay()" [formControlName]="'trierauhasard'" class="input-custom" id="trierauhasard"
                            type="checkbox">
                     Trier au hasard ?
                 </label>
+            </p>
+            <p>
+                <button (click)="doRandomQuiz()">Quiz au hasard</button>
             </p>
         </form>
     </div>
