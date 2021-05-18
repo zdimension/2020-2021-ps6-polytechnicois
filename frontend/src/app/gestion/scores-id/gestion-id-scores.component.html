@@ -11,13 +11,15 @@
             </div>
         </nav>
         <div class="row">
-            <div class="col">
-                <div class="row-mx-2 d-flex flex-column justify-content-center epsilon">
-                    <button (click)="goToGeneral()" class="btn btn-sm btn-light col">Général</button>
-                    <button class="btn btn-sm btn-light col" disabled>Score</button>
-                    <button (click)="goToSuivi()" class="btn btn-sm btn-light col">Suivi</button>
+            <div class="col flex-column">
+                <div class="row ">
+                    <div class="row-mx-2 d-flex flex-column justify-content-start epsilon">
+                        <button (click)="goToGeneral()" class="btn btn-sm btn-light col">Général</button>
+                        <button class="btn btn-sm btn-light col" disabled>Score</button>
+                        <button (click)="goToSuivi()" class="btn btn-sm btn-light col">Suivi</button>
+                    </div>
                 </div>
-                <div *ngIf="quiz !== null" class="form-filter-scores">
+                <div *ngIf="quiz !== null" class="form-filter-scores row">
                     <form (change)="changeScoresDisplayedDateHours()" [formGroup]="changeFilterScores">
                         <b>Trier par dates</b>
                         <br/>
@@ -68,7 +70,8 @@
                         <div *ngFor="let question of quiz.questions; let i=index" class="card m-2 p-2">
                             <div class="epsilon">
                                 <button (click)="enableDisableQuestion(question.id, user.ignoredQuestions.includes(question.id))"
-                                        class="btn btn-sm" [ngClass]="user.ignoredQuestions.includes(question.id) ? 'btn-green' : 'btn-red'">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button>
+                                        class="btn btn-sm"
+                                        [ngClass]="user.ignoredQuestions.includes(question.id) ? 'btn-green' : 'btn-red'">{{user.ignoredQuestions.includes(question.id) ? "Activer la question" : "Désactiver la question"}}</button>
                             </div>
                             <!--- Pour chaque question du quiz selectionne --->
                             <div class="labelQuestion">
@@ -76,7 +79,8 @@
                                 <!--- Activer ou desactiver le quiz --->
                             </div>
 
-                            <div class="d-flex justify-content-center" *ngIf="question.image !== null"> <!--- Si l'image existe, l'afficher --->
+                            <div class="d-flex justify-content-center" *ngIf="question.image !== null">
+                                <!--- Si l'image existe, l'afficher --->
                                 <img id="img-quest" alt="François 1er" [src]="question.image"/>
                             </div>
 
@@ -109,7 +113,8 @@
                                 <hr/>
                                 <span class="align-self-center">Récap de {{user.name}}:</span>
                                 <div *ngFor="let r of recapsDisplayed">
-                                    <div [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'" *ngIf="r.answers[i] !== undefined">
+                                    <div [className]="r.answers[i] ? 'repondujuste' : 'repondufaux'"
+                                         *ngIf="r.answers[i] !== undefined">
                                         <!--- Pour chaque recap --->
                                         Répondu {{r.answers[i] ? "VRAI" : "FAUX"}} au recap
                                         <!--- Qu a t il repondu au recap, a quelle heure --->
